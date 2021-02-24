@@ -138,15 +138,15 @@ The mobile responsiveness is also being handled by some neat JS and Bulma classe
   | Column Name | Data Type |
   | --- | --- |
   | id | Integer |
-  | Title | String |
+  | title | String |
   | user_ID | Integer |
   | Property_ID | Integer |
-  | Comments | String |
-  | Pros | String |
-  | Cons | String |
-  | Rating | Integer |
-  | Year_Of_Tenancy | Integer |
-  | Helpful_Score | Integer |
+  | comments | String |
+  | pros | String |
+  | cons | String |
+  | rating | Integer |
+  | year_of_tenancy | Integer |
+  | helpful_score | Integer |
 
 ### Properties
   | Column Name | Data Type |
