@@ -1,6 +1,7 @@
+
 import { getProperties } from '../apis/properties'
 
-export const SET_FRUITS = 'SET_FRUITS'
+export const SET_PROPERTIES = 'SET_PROPERTIES'
 
 export function setProperties (properties) {
   return {
@@ -18,3 +19,4 @@ export function fetchProperties () {
       })
   }
 }
+
