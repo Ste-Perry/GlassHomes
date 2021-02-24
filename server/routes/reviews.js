@@ -1,13 +1,13 @@
 const express = require('express')
 
-const db = require('../db/fruits')
+const db = require('../db/reviews')
 
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  db.getFruits()
+  db.getReviews()
     .then(results => {
-      res.json({ fruits: results.map(fruit => fruit.name) })
+      res.json({ reviews: results.map(review => review) })
       return null
     })
     .catch(err => {
