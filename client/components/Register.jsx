@@ -39,7 +39,7 @@ function Register(props) {
 
   return (
     <>
-      <section className="hero is-success is-fullheight">
+      <section className="hero is-success is-fullheight has-background-light">
         <div className="hero-body">
           <div className="container has-text-centered">
             <div className="column is-6 is-offset-3">
@@ -50,22 +50,53 @@ function Register(props) {
                 <form className="Register form box" onSubmit={handleSubmit}>
                   <hr />
                   {auth.errorMessage && <span className="has-text-danger is-large">{auth.errorMessage}</span>}
+                  
+                  <div className="field">
+										<div className="control">
                   <label className="column is-8 label is-offset-2 is-large has-text-centered">Username
-          <input required className="input is-large has-text-centered is-fullwidth" placeholder="User Name" type="text" name="username" autoComplete="username" onChange={handleChange} value={formData.username} />
+          <input required 
+                className="input is-large has-text-centered is-fullwidth" 
+                placeholder="User Name" 
+                type="text" 
+                name="username" 
+                autoComplete="username" 
+                onChange={handleChange} 
+                value={formData.username} />
                   </label>
+                  </div>
+                  </div>
 
+									<div className="field">
+										<div className="control">
                     <label className="column is-8 label is-offset-2 label is-large has-text-centered">First Name
             <input required className="input is-large has-text-centered is-fullwidth" placeholder="First Name" type="text" name="first_name" onChange={handleChange} value={formData.first_name} />
                     </label>
+</div>
+</div>
+
+<div className="field">
+										<div className="control">
                     <label className="column is-8 label is-offset-2 label is-large has-text-centered">Last Name
             <input required className="input is-large has-text-centered is-fullwidth" placeholder="Last Name" type="text" name="last_name" onChange={handleChange} value={formData.last_name} />
                     </label>
+                    </div>
+                    </div>
+
+                    <div className="field">
+										<div className="control">
                     <label className="column is-8 label is-offset-2 label is-large has-text-centered">Password
             <input required className="input is-large has-text-centered is-fullwidth" placeholder="Password" type="password" name="password" autoComplete="new-password" onChange={handleChange} value={formData.password} />
                     </label>
+                    </div>
+                    </div>
+
+                    <div className="field">
+										<div className="control">
                     <label className="column is-8 label is-offset-2 label is-large has-text-centered">Confirm Password
             <input required className="input is-large has-text-centered is-fullwidth" placeholder="Confirm Password" type="password" name="confirm_password" autoComplete="new-password" onChange={handleChange} value={formData.confirm_password} />
                     </label>
+                    </div>
+                    </div>
 
                   <input className="button is-success is-large is-half" value="Register" type="submit" />
                 </form>
