@@ -5,7 +5,7 @@ exports.up = function (knex) {
       table.string('title') 
       table.integer('user_ID')
       table.integer('property_ID')
-      table.string('comments') 
+      table.text('comments') 
       table.string('pros') 
       table.string('cons') 
       table.integer('rating')
