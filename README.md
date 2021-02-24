@@ -140,7 +140,7 @@ The mobile responsiveness is also being handled by some neat JS and Bulma classe
   | id | Integer |
   | title | String |
   | user_ID | Integer |
-  | Property_ID | Integer |
+  | property_ID | Integer |
   | comments | String |
   | pros | String |
   | cons | String |
