@@ -8,7 +8,6 @@ const App = (props) => {
   })
 
   
-
   return (
       <div >
           
@@ -17,8 +16,9 @@ const App = (props) => {
 }
 const mapStateToProps = (globalState) => {
   return {
-    fruits: globalState.fruits
+    properties: globalState.properties
   }
 }
 
-export default connect(mapStateToProps)(App)
+
+export default connect()(Home)
