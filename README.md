@@ -53,7 +53,7 @@ The mobile responsiveness is also being handled by some neat JS and Bulma classe
 
   ---
 
-# BELOW NEEDS UPDATING
+# THIS NEEDS UPDATING
 
 ## Views (Client Side)
   | name | purpose |
@@ -110,6 +110,9 @@ The mobile responsiveness is also being handled by some neat JS and Bulma classe
 | Get | /api/meetings/:id/users | Yes | Get the attendees of a Meeting | An Array of User objects |
 | Get | /api/users | Yes | Get the users of the app | An Array of User Objects |
 
+
+
+# Database
 ## DB (Server Side)
   There should be three tables for MVP
 
