@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import fruits from './fruits'
+import properties from './properties'
 
 export default combineReducers({
-  fruits
+  properties
 })

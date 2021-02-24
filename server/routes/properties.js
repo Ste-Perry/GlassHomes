@@ -5,9 +5,9 @@ const db = require('../db/fruits')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  db.getFruits()
+  db.getProperties()
     .then(results => {
-      res.json({ fruits: results.map(fruit => fruit.name) })
+      res.json({ properties: results.map(property => property.name) })
       return null
     })
     .catch(err => {

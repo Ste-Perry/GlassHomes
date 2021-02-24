@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchFruits } from '../actions'
+import { fetchProperties } from '../actions'
 
 const App = (props) => {
   useEffect(() => {
-    props.dispatch(fetchFruits())
+    props.dispatch(fetchProperties())
   })
+
+  
 
   return (
       <div >
-
+          
       </div>
   )
 }
