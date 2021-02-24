@@ -1,22 +1,24 @@
-
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { fetchProperties } from '../actions'
 
-function Home(props) {
+const App = (props) => {
+  useEffect(() => {
+    props.dispatch(fetchProperties())
+  })
 
-    
-    return (
-      <div className="container">
-			<h1>home</h1>
-      
-		</div>
-	)
+  
+  return (
+      <div >
+          
+      </div>
+  )
+}
+const mapStateToProps = (globalState) => {
+  return {
+    properties: globalState.properties
+  }
 }
 
-// const mapStateToProps = (globalState) => {
-// 	return {
-// 		meetings: globalState.meetings,
-// 	}
-// }
 
 export default connect()(Home)
