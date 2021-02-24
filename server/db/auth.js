@@ -27,9 +27,10 @@ function getUserByUsername (username, db = connection) {
     .where('username', username)
     .first()
     .then(user => {
-      user.hash = user.password
-      delete user.password
-      console.log(user)
+      if (user) {
+        user.hash = user.password
+        delete user.password
+      }
       return user
     })
 }
