@@ -2,16 +2,19 @@ import React, {useEffect} from 'react'
 import {HashRouter as Router, Route, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
+
 import Login from './Login'
 import Register from './Register'
 import Nav from './Nav'
 import Home from './Home'
+
 
 import {checkAuth} from '../actions/auth'
 
 function App ({auth, dispatch}) {
   
   useEffect(() => {
+
     const confirmSuccess = () => { }
     dispatch(checkAuth(confirmSuccess))
   }, [])
@@ -57,4 +60,5 @@ const mapStateToProps = ({auth}) => {
   }
 }
 
-export default connect(mapStateToProps)(App)
+
+export default App
