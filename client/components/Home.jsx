@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchProperties } from '../actions'
 
-const App = (props) => {
+const Home = (props) => {
   useEffect(() => {
     props.dispatch(fetchProperties())
   })
