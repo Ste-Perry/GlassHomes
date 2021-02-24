@@ -21,14 +21,14 @@ function Login(props) {
 	}
 
 
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		let { username, password } = formData
-		const confirmSuccess = () => {
-			props.history.push("/meeting")
-		}
-		props.dispatch(loginUser({ username, password }, confirmSuccess))
-	}
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    let { username, password } = formData
+    const confirmSuccess = () => {
+      props.history.push("/home")
+    }
+    props.dispatch(loginUser({ username, password }, confirmSuccess))
+  }
 
 	return (
 		<>

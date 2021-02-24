@@ -26,6 +26,13 @@ function getUserByUsername (username, db = connection) {
   return db('users')
     .where('username', username)
     .first()
+    .then(user => {
+      if (user) {
+        user.hash = user.password
+        delete user.password
+      }
+      return user
+    })
 }
 
 module.exports = {
