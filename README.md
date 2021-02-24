@@ -51,9 +51,6 @@ The mobile responsiveness is also being handled by some neat JS and Bulma classe
 * I want to be able to add an address for the property
 * I want to be able to add additional comments
 
-### Stretch
-
-
   ---
 
 # BELOW NEEDS UPDATING
@@ -123,25 +120,32 @@ The mobile responsiveness is also being handled by some neat JS and Bulma classe
   | username | String |
   | first_name | String |
   | last_name | String |
-  | hash | text |
+  | password (hash) | text |
 
-### Meetings
+### Reviews
   | Column Name | Data Type |
   | --- | --- |
   | id | Integer |
-  | meeting_name | String |
-  | time | Timestamp |
-  | attendees | integer |
-  | cost | Decimal |
+  | Title | String |
+  | user_ID | Integer |
+  | Property_ID | Integer |
+  | Comments | String |
+  | Pros | String |
+  | Cons | String |
+  | Rating | Integer |
+  | Year_Of_Tenancy | Integer |
+  | Helpful_Score | Integer |
 
-### Attendees (Join Table M2M)
-
-  Many Users attend Many Meetings
-
- | Column Name | Data Type |
- | --- | --- |
- | user_id | Integer |
- | meeting_id | Integer |
+### Properties
+  | Column Name | Data Type |
+  | --- | --- |
+  | id | Integer |
+  | suburb | String |
+  | address | String |
+   | bedrooms | Integer |
+   | bathrooms | Integer |
+   | parking | Integer |
+   | img | String |
 
  ---
 
