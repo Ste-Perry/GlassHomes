@@ -56,6 +56,8 @@ The mobile responsiveness is also being handled by some neat JS and Bulma classe
 
   ---
 
+# BELOW NEEDS UPDATING
+
 ## Views (Client Side)
   | name | purpose |
   | --- | --- |
