@@ -11,15 +11,39 @@ function Reviews(props) {
 
   return (
     <>
-      <h1 className="title article-title">Reviews</h1>
+      <section className="hero is-info is-medium is-bold" style={{ backgroundImage: 'url(/images/vic.jpg)' }}>
+        <div className="hero-body"></div>
+      </section>
+       
       <ul>
+        <section className="articles">
+        <div className="column is-12">
+          <div className="container has-text-centered">
+
+
+            <div className="card article">
+              <div className="card-content">
+
+
+                <div className="column is-12"></div>
         {props.reviews.map(review => {
-          return <div className="container">
+          return <div>
             <Review key={review.id} review={review}/>
           </div>;
         })}
+          </div>
+              </div>
+            </div>
+          </div>
+         </section>
+
       </ul>
+    
+    
+    
+    
     </>
+
   );
 }
 
