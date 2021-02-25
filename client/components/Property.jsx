@@ -29,18 +29,17 @@ function Property (props) {
 
     return(
         <>
+
+
+
             { singleProperty && (
             <>
             <Link to='/properties'>Back</Link>
-                <section className="hero is-info is-medium is-bold">
-                    <div className="hero-body">
-                        <div className="container has-text-centered">
-                            <h1 className="title">
-                            Cheese
-                            </h1>
-                        </div>
-                    </div>
-                </section>
+
+
+		<section className="hero is-info is-medium is-bold" style={{ backgroundImage: 'url(/images/vic.jpg)' }}>
+				<div className="hero-body"></div>
+			</section>
 
             <div className="container">
                 <section className="articles">
