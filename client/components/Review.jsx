@@ -20,7 +20,7 @@ const Review = (props) => {
 
   return (
     <div>
-      <section className="articles">
+      <section className="card">
         <div className="column is-8 is-offset-2">
           <div className="card article">
             <div className="card-content">

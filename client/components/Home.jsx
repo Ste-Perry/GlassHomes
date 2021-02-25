@@ -31,6 +31,7 @@ const Home = (props) => {
                 <p className="has-text-centered">
                   <Link className="button is-medium is-info is-outlined" to='/properties'>Properties</Link>
                 </p>
+                <br></br>
                 <p className="has-text-centered">
                   <Link className="button is-medium is-info is-outlined" to='/reviews'>Reviews</Link>
                 </p>

@@ -33,12 +33,8 @@ function Login(props) {
 
 	return (
 		<>
-			<section className="hero is-info is-medium is-bold" style={{backgroundImage: 'url(/images/Wellys.jpg)'}}>
-				<div className="hero-body">
-					<div className="container has-text-centered">
-						<h1 className="title">Because tenants should throw stones.</h1>
-            </div>
-					</div>
+			<section className="hero is-info is-medium is-bold" style={{backgroundImage: 'url(/images/vic.jpg)'}}>
+				<div className="hero-body"></div>
 					</section>
 
 					<section className="articles">
@@ -65,7 +61,7 @@ function Login(props) {
         <input
 														required
 														className="input has-text-centered is-large is-fullwidth"
-														placeholder="User Name"
+														placeholder="Username"
 														type="text"
 														name="username"
 														autoComplete="username"

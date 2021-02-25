@@ -35,9 +35,12 @@ function Nav ({auth, logout}) {
                 )
               : (
                 <>
+                <Link onClick={toggleBurger} className="navbar-item" to='/home'>Home</Link>
                   <Link onClick={toggleBurger} className="navbar-item is-large" to='/login'>Login</Link>
                   <Link onClick={toggleBurger} className="navbar-item" to='/register'>Register</Link>
-                  <Link onClick={toggleBurger} className="navbar-item" to='/home'>Home</Link>
+                  <Link onClick={toggleBurger} className="navbar-item" to='/properties'>Properties</Link>
+                  <Link onClick={toggleBurger} className="navbar-item" to='/reviews'>Reviews</Link>
+                  
                 </>
               )
             }
