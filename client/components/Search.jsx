@@ -1,11 +1,33 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { connect } from 'react-redux'
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
+import { Redirect } from 'react-router-dom';
 
 function Search (props) {
   const [address, setAddress] = useState("")
+  const [bool, setBool] = useState(false)
+  const [addRedirect, setAddRedirect] = useState(false)
+  const [propRedirect, setPropRedirect] = useState(false)
+  const [propId, setPropId] = useState("")
+
+  useEffect(()=> {
+    let addyIndex = address.indexOf(",")
+    let addy = address.substr(0, addyIndex)
+    if(bool) {
+      props.properties.map(property => {
+        if(property.address == addy) {
+          setPropId(property.id)
+          setPropRedirect(true)
+        } else {
+          setAddRedirect(true)
+        }
+        return property
+      })
+    }
+  },[address])
  
   const handleChange = (address) => {
     // console.log(address)
@@ -14,7 +36,9 @@ function Search (props) {
   
   const handleSelect = (a) => {
     setAddress(a)
-    console.log(a)
+    // console.log(address)
+    setBool(true)
+    
     geocodeByAddress(a)
     .then(results => getLatLng(results[0]))
     .then(latLng => console.log('Success', latLng))
@@ -34,7 +58,8 @@ function Search (props) {
   let count = 0
   
     // const [address, setAddress] = useState("")
-    return (
+    return ( 
+    <>
       <PlacesAutocomplete
         value={address}
         onChange={handleChange}
@@ -77,7 +102,17 @@ function Search (props) {
           </div>
         )}
       </PlacesAutocomplete>
+      {addRedirect && <Redirect to="/"/>}
+      {propRedirect && <Redirect to={`/property/${propId}`}/>}
+      </>
     );
   
 }
-export default Search
+
+const mapStateToProps = ({ properties }) => {
+	return {
+		properties
+	}
+}
+
+export default connect(mapStateToProps)(Search)
