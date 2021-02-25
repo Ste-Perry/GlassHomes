@@ -21,6 +21,13 @@ function Search (props) {
     .catch(error => console.error('Error', error));
     
   };
+
+  const searchOptions = {
+    location: new google.maps.LatLng(-41, 174),
+    radius: 100000,
+    componentRestrictions: { country: 'nz' },
+    types: ['address']
+}
   
   
   
@@ -32,6 +39,7 @@ function Search (props) {
         value={address}
         onChange={handleChange}
         onSelect={handleSelect}
+        searchOptions={searchOptions}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
