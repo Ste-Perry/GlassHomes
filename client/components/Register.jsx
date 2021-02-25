@@ -53,9 +53,9 @@ function Register(props) {
                   
                   <div className="field">
 										<div className="control">
-                  <label className="column is-8 label is-offset-2 is-large has-text-centered">Username
+                  <label className="column is-8 label is-offset-2 is-medium has-text-centered">Username
           <input required 
-                className="input is-large has-text-centered is-fullwidth" 
+                className="input is-medium has-text-centered is-fullwidth" 
                 placeholder="User Name" 
                 type="text" 
                 name="username" 
@@ -68,37 +68,37 @@ function Register(props) {
 
 									<div className="field">
 										<div className="control">
-                    <label className="column is-8 label is-offset-2 label is-large has-text-centered">First Name
-            <input required className="input is-large has-text-centered is-fullwidth" placeholder="First Name" type="text" name="first_name" onChange={handleChange} value={formData.first_name} />
+                    <label className="column is-8 label is-offset-2 label is-medium has-text-centered">First Name
+            <input required className="input is-medium has-text-centered is-fullwidth" placeholder="First Name" type="text" name="first_name" onChange={handleChange} value={formData.first_name} />
                     </label>
 </div>
 </div>
 
 <div className="field">
 										<div className="control">
-                    <label className="column is-8 label is-offset-2 label is-large has-text-centered">Last Name
-            <input required className="input is-large has-text-centered is-fullwidth" placeholder="Last Name" type="text" name="last_name" onChange={handleChange} value={formData.last_name} />
+                    <label className="column is-8 label is-offset-2 label is-medium has-text-centered">Last Name
+            <input required className="input is-medium has-text-centered is-fullwidth" placeholder="Last Name" type="text" name="last_name" onChange={handleChange} value={formData.last_name} />
                     </label>
                     </div>
                     </div>
 
                     <div className="field">
 										<div className="control">
-                    <label className="column is-8 label is-offset-2 label is-large has-text-centered">Password
-            <input required className="input is-large has-text-centered is-fullwidth" placeholder="Password" type="password" name="password" autoComplete="new-password" onChange={handleChange} value={formData.password} />
+                    <label className="column is-8 label is-offset-2 label is-medium has-text-centered">Password
+            <input required className="input is-medium has-text-centered is-fullwidth" placeholder="Password" type="password" name="password" autoComplete="new-password" onChange={handleChange} value={formData.password} />
                     </label>
                     </div>
                     </div>
 
                     <div className="field">
 										<div className="control">
-                    <label className="column is-8 label is-offset-2 label is-large has-text-centered">Confirm Password
-            <input required className="input is-large has-text-centered is-fullwidth" placeholder="Confirm Password" type="password" name="confirm_password" autoComplete="new-password" onChange={handleChange} value={formData.confirm_password} />
+                    <label className="column is-8 label is-offset-2 label is-medium has-text-centered">Confirm Password
+            <input required className="input is-medium has-text-centered is-fullwidth" placeholder="Confirm Password" type="password" name="confirm_password" autoComplete="new-password" onChange={handleChange} value={formData.confirm_password} />
                     </label>
                     </div>
                     </div>
 
-                  <input className="button is-success is-large is-half" value="Register" type="submit" />
+                  <input className="button is-success is-medium is-half" value="Register" type="submit" />
                 </form>
               </div>
 

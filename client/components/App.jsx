@@ -23,19 +23,8 @@ function App ({auth, dispatch}) {
 
     return (
         <div className="container has-text-centered">
-          <div className="hero is-small is-primary">
-            <div className="hero-body has-text-centered">
-            {!auth.isAuthenticated &&
-              <Link to='/register' className="">
-                <h1 className="title is-1">Glass House</h1>
-              </Link>}
-              {auth.isAuthenticated &&
-              <Link to='/home' className="">
-                <h1 className="title is-1">Glass House</h1>
-              </Link>}
-              <Route path="/" component={Nav} />
-            </div>
-          </div>
+
+          <Route path="/" component={Nav} />
 
           <div className=''>
             {!auth.isAuthenticated &&
