@@ -36,7 +36,7 @@ function App ({auth, dispatch}) {
 
           </div>
           <div>
-          <Route path='/property' component={Property}/>
+          <Route path='/property/:id' component={Property}/>
           <Route path='/properties' component={Properties}/>
           </div>
         </div>
