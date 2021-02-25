@@ -9,8 +9,6 @@ function Properties(props) {
 		props.dispatch(fetchProperties())
 	}, [])
 
-	console.log(props)
-
 	return (
 		<>
 

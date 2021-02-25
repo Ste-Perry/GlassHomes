@@ -1,6 +1,7 @@
-import { deleteReview, getReviews, addReview, updateReview} from '../apis/reviews'
+import { deleteReview, getReviews, addReview, updateReview, getReviewByPropertyId} from '../apis/reviews'
 
 export const SET_REVIEWS = 'SET_REVIEWS'
+export const SET_REVIEWS_BY_PROP_ID = 'SET_REVIEWS_BY_PROP_ID'
 
 export function setReviews (reviews) {
   return {
@@ -8,6 +9,14 @@ export function setReviews (reviews) {
     reviews
   }
 }
+
+export function setReviewsByPropId (reviews) {
+  return {
+    type: SET_REVIEWS_BY_PROP_ID,
+    reviews
+  }
+}
+
 
 export function fetchReviews () {
   return dispatch => {
@@ -43,6 +52,16 @@ export function updateReviewAction (review) {
     return updateReview(review)
       .then(() => {
         dispatch(fetchReviews())
+        return null
+      })
+  }
+}
+
+export function fetchReviewsByPropertyId (id) {
+  return dispatch => {
+    return getReviewByPropertyId(id)
+      .then(reviews => {
+        dispatch(setReviewsByPropId(reviews))
         return null
       })
   }

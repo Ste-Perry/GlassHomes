@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchProperties } from '../actions/index'
 import { getPropertyById } from '../apis/properties'
-import Reviews from './Reviews'
+import PropertyReviews from './PropertyReviews'
 function Property (props) {
 
     // useEffect(() => {
     //     props.dispatch(fetchProperties())
     // }, [])
 
-    const [singleProperty, setSingleProperty] = useState([])
+    const [singleProperty, setSingleProperty] = useState(null)
 
     const propertyId = props.match.params.id
 
@@ -58,7 +58,7 @@ function Property (props) {
                                     <p>Number of bedrooms: {singleProperty.bedrooms}</p>
                                     <p>Number of bathrooms: {singleProperty.bathrooms}</p>
                                     <h3 className="has-text-centered">Reviews</h3>
-                                    <Reviews propertyId={singleProperty.id} />
+                                    <PropertyReviews propertyId={singleProperty.id} />
                                 </div>
                             </div>
                         </div>

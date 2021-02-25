@@ -22,7 +22,8 @@ export function addReview (){
     pros:pros,
     cons:cons,
     rating:rating,
-    year_of_tenancy:year_of_tenancy
+    start_of_tenancy: start_of_tenancy,
+    end_of_tenancy:end_of_tenancy
   })
   .then(res => {
     return res.body
@@ -39,5 +40,10 @@ export function updateReview(review){
 export function deleteReview(){
   return request.delete(rootUrl)
   .send(review)
+  .then(res => res.body)
+}
+
+export function getReviewByPropertyId(id){
+  return request.get(rootUrl + "/property/" + id)
   .then(res => res.body)
 }
