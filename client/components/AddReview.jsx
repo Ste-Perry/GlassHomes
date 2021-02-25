@@ -13,9 +13,7 @@ function AddReview (props) {
     year_of_tenancy:''
   })
 
-  useEffect(() => {
-    props.dispatch()
-  }, [])
+  
   
   const handleChange = (e) => {
     setFormData((currentFormData) => {
@@ -31,7 +29,9 @@ function AddReview (props) {
     e.preventDefault()
     e.target.reset()
     let { title, comments, pros, cons, rating, year_of_tenancy} = formData
-    props.dispatch(addReviewAction({ title, comments, pros, cons, rating, year_of_tenancy }))
+    const confirmSuccess = () => {
+      props.history.push("/review")}
+    props.dispatch(addReviewAction({ title, comments, pros, cons, rating, year_of_tenancy }, confirmSuccess))
   }
 
     return(
@@ -44,14 +44,14 @@ function AddReview (props) {
               <hr className="login-hr"></hr>
               <p className="subtitle has-text-black">Add your Review</p>
               <div className="box">
-                <form className="Register form box" onSubmit={handleSubmit}>
+                <form className="form box" onSubmit={handleSubmit}>
                   <hr />
                   
                   
                   <div className="field">
 										<div className="control">
                   <label className="column is-8 label is-offset-2 is-medium has-text-centered">Title
-                <input required 
+                <input
                 className="input is-medium has-text-centered is-fullwidth" 
                 placeholder="Title" 
                 type="text" 
