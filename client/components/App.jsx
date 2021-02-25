@@ -7,9 +7,11 @@ import Login from './Login'
 import Register from './Register'
 import Nav from './Nav'
 import Home from './Home'
+import Properties from './Properties'
 
 
 import {checkAuth} from '../actions/auth'
+import Property from './Property'
 
 function App ({auth, dispatch}) {
   
@@ -20,9 +22,7 @@ function App ({auth, dispatch}) {
   }, [])
 
     return (
-      // <Router>
         <div className="container has-text-centered">
-
           <div className="hero is-small is-primary">
             <div className="hero-body has-text-centered">
             {!auth.isAuthenticated &&
@@ -44,13 +44,13 @@ function App ({auth, dispatch}) {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/home" component={Home}/>
-            {/* <Route path="/meeting" component={Meeting} />
-            <Route path="/history" component={History} />
-            <Route path="/histories" component={Histories} /> */}
-          </div>
 
+          </div>
+          <div>
+          <Route path='/property' component={Property}/>
+          <Route path='/properties' component={Properties}/>
+          </div>
         </div>
-      // </Router>
     )
 }
 
