@@ -8,7 +8,8 @@ import Register from './Register'
 import Nav from './Nav'
 import Home from './Home'
 import Properties from './Properties'
-
+import Review from './Review'
+import Reviews from './Reviews'
 
 import {checkAuth} from '../actions/auth'
 import Property from './Property'
@@ -37,9 +38,12 @@ function App ({auth, dispatch}) {
 
           </div>
           <div>
-          <Route path='/property' component={Property}/>
+          <Route path='/property/:id' component={Property}/>
           <Route path='/properties' component={Properties}/>
           <Route path='/addreview' component={AddReview}/>
+          <Route path='/review' component={Review}/>
+          <Route path='/reviews' component={Reviews}/>
+
           </div>
           
         </div>
