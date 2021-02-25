@@ -29,6 +29,7 @@ function Nav ({auth, logout}) {
                   {/* <Link to='/histories' className="navbar-item is-large" >All Meetings</Link>
                   <Link to='/meeting' className="navbar-item is-large" >New Meeting </Link> */}
                   <Link to='/' className="navbar-item is-large" onClick={() => logout()}>Logout</Link>
+                  <Link onClick={toggleBurger} className="navbar-item" to='/home'>Home</Link>
                   </>
                 )
               : (
