@@ -2,8 +2,7 @@
 const express = require('express')
 const { applyAuthRoutes } = require('authenticare/server')
 
-const { getUsers,
-        userExists, 
+const { userExists, 
         getUserByUsername, 
         createUser } = require('../db/auth')
 
@@ -15,11 +14,6 @@ applyAuthRoutes(router, {
   createUser
 })
 
-router.get('/', (req,res) => {
-  return getUsers()
-    .then(users => {
-      res.json(users)
-  })
-})
+
 
 module.exports = router
