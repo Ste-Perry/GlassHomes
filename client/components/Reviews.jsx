@@ -11,11 +11,11 @@ function Reviews(props) {
 
   return (
     <>
-      <h1 className="title article-title">Some nice properties</h1>
+      <h1 className="title article-title">Reviews</h1>
       <ul>
         {props.reviews.map(review => {
           return <div className="container">
-            <Review review={review}/>
+            <Review key={review.id} review={review}/>
           </div>;
         })}
       </ul>
