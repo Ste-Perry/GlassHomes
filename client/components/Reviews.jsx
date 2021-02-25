@@ -16,7 +16,7 @@ function Reviews(props) {
       </section>
        
       <ul>
-        <section className="articles">
+        <section className="article">
         <div className="column is-12">
           <div className="container has-text-centered">
 

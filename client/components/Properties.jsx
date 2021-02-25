@@ -20,13 +20,13 @@ function Properties(props) {
 					return (
 						<Link to={`/property/${prp.id}`}>
 							<div className="container">
-								<section className="articles">
+								<section className="card">
 									<div className="column is-8 is-offset-2">
-										<div className="card article">
+										<div className="card">
 											<div className="card-content">
 												<div className="media">
 													<div className="media-content has-text-centered">
-														<p className="title article-title">{prp.address}</p>
+														<p className="title">{prp.address}</p>
 													</div>
 												</div>
 
