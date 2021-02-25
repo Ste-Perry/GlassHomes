@@ -44,7 +44,7 @@ function Login(props) {
 						<div className="card article">
 							<div className="card-content">
 
-							<div className="column is-4 is-offset-4">
+							<div className="column is-6 is-offset-3">
 								<h3 className="title has-text-black">Login</h3>
 								<hr className="login-hr"></hr>
 								<p className="subtitle has-text-black">Please login to proceed.</p>
@@ -56,7 +56,7 @@ function Login(props) {
 
 										<div className="field">
 											<div className="control">
-												<label className="label is-large has-text-centered">
+												<label className="label is-8 is-offset-2 is-large has-text-centered">
 													Username
         <input
 														required
