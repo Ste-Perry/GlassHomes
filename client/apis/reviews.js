@@ -29,6 +29,15 @@ export function addReview (){
   })
 }
 
+
+
+export function updateReview(review){
+  return request.patch(baseUrl)
+      .send(review)
+      .then(res => res.body)
+}
+
+
 export function deleteReview(){
   return request.delete(rootUrl)
   .send(review)
