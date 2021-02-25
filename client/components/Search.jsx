@@ -3,35 +3,35 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
+
+function Search (props) {
+  const [address, setAddress] = useState("")
  
-class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { address: '' };
-  }
-  
-  handleChange = address => {
-    this.setState({ address });
+  const handleChange = (address) => {
+    // console.log(address)
+    setAddress(address)
   };
   
-  handleSelect = address => {
-    // setAddress(address)
-    geocodeByAddress(address)
+  const handleSelect = (a) => {
+    setAddress(a)
+    console.log(a)
+    geocodeByAddress(a)
     .then(results => getLatLng(results[0]))
     .then(latLng => console.log('Success', latLng))
     .catch(error => console.error('Error', error));
+    
   };
   
   
   
-  render() {
+  let count = 0
+  
     // const [address, setAddress] = useState("")
-    let count = 0
     return (
       <PlacesAutocomplete
-        value={this.state.address}
-        onChange={this.handleChange}
-        onSelect={this.handleSelect}
+        value={address}
+        onChange={handleChange}
+        onSelect={handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
@@ -60,7 +60,7 @@ class Search extends React.Component {
                   >
                     
                     <span>{suggestion.description}</span>
-                    {setAddress(suggestion.description)}
+                    {/* {setAddress(suggestion.description)} */}
                   </div>
                 );
               })}
@@ -70,6 +70,6 @@ class Search extends React.Component {
         )}
       </PlacesAutocomplete>
     );
-  }
+  
 }
 export default Search
