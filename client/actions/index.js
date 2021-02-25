@@ -1,5 +1,5 @@
 
-import { getProperties } from '../apis/properties'
+import { getProperties, getPropertyById } from '../apis/properties'
 
 export const SET_PROPERTIES = 'SET_PROPERTIES'
 
@@ -15,6 +15,16 @@ export function fetchProperties () {
     return getProperties()
       .then(properties => {
         dispatch(setProperties(properties))
+        return null
+      })
+  }
+}
+
+export function fetchPropertyById(id) {
+  return dispatch => {
+    return getPropertyById (id) 
+      .then(property => {
+        dispatch(setPropertyById(property))
         return null
       })
   }

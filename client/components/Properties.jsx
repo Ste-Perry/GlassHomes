@@ -5,20 +5,21 @@ import { fetchProperties } from '../actions/index'
 
 function Properties (props) {
 
-    console.log(props)
     useEffect(() => {
         props.dispatch(fetchProperties())
       }, [])
-  
+      
+      console.log(props)
+
     return(
         <>
             <h1 className='title article-title'>Some nice properties</h1>
-
             <ul>
+       
                 {props.properties.map(prp => {
                     return(
+                        <Link to={`/property/${prp.id}`}>
                         <div className="container">
-                        
                         <section className="articles">
                         <div className="column is-8 is-offset-2">
                         <div className="card article">
@@ -29,14 +30,17 @@ function Properties (props) {
                                 </div>
                             </div>
 
-                    <Link to='property'><li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking}</li></Link>
+                    <li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking}</li>
                     </div>
                     </div>
+                    
                 </div>
                 </section>
                 </div>
+                </Link>
                     )
                 })}
+               
             </ul>
 
             
