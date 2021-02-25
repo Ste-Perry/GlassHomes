@@ -14,8 +14,22 @@ function getReviewById (id, db = connection) {
   .where('id',id)
   .first()
 }
+
+function updateReview (id, review, db = connection) {
+  return db('reviews')
+  .where('id', id)
+  .update(review)
+}
+function deleteReview (id, db = connection) {
+  return db('reviews')
+  .where('id', id)
+  .delete()
+}
+
 module.exports = {
   getReviews,
   addReview,
-  getReviewById
+  getReviewById,
+  updateReview,
+  deleteReview
 }

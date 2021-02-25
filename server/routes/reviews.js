@@ -34,7 +34,7 @@ router.post('/', (req,res) => {
     rating: req.body.rating,
     year_of_tenancy: req.body.year_of_tenancy
   }
-  console.log(req.body)
+  // console.log(req.body)
   db.addReview(review)
   .then(review => {
     res.json({ review: review })
@@ -44,5 +44,29 @@ router.post('/', (req,res) => {
     res.status(500).json({ message: 'Post review broken' })
   })
 })
+
+router.delete('/:id', (req, res) =>{
+  const id = req.params.id
+  db.deleteReview(id)
+  .then(()=>{
+    res.sendStatus(200)
+  })
+})
+
+
+router.patch('/:id',(req,res) => {
+  const id = req.params.id
+  const review = req.body
+  // console.log(req.body)
+  db.updateReview(id, review)
+  .then(() => {
+    res.sendStatus(200)
+  })
+  .catch(err => {
+      console.log(err)
+      res.status(500).json({message: "update review broken."})
+    })
+})
+
 
 module.exports = router

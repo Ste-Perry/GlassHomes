@@ -14,8 +14,8 @@ function getPropertyById (id, db = connection) {
   return db('properties')
   .where('id',id)
   .first()
-
 }
+
 
 
 module.exports = {
