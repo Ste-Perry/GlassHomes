@@ -17,7 +17,7 @@ const Home = (props) => {
             <div className="columns is-vcentered">
               <div className="column is-5">
                 <figure className="image is-4by3">
-                  <img src="https://picsum.photos/800/600/?random" alt="Description" />
+                  <img className='home-image' src='./images/welly-home.jpg' alt="Description" />
                 </figure>
               </div>
               <div className="column is-6 is-offset-1">

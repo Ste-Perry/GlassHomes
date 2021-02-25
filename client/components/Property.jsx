@@ -4,9 +4,15 @@ import { connect } from 'react-redux'
 import { fetchProperties, updateTheProperties } from '../actions/index'
 import { getPropertyById } from '../apis/properties'
 import Reviews from './Reviews'
-function Property(props) {
+import PropertyReviews from './PropertyReviews'
 
-	const [formData, setFormData] = useState({
+function Property (props) {
+
+    // useEffect(() => {
+    //     props.dispatch(fetchProperties())
+    // }, [])
+    
+    const [formData, setFormData] = useState({
 		address: '',
 		suburb: '',
 		bedrooms: '',
@@ -14,7 +20,7 @@ function Property(props) {
 		parking: ''
 	})
 
-	const handleUpdateSubmit = (id, e) => {
+    	const handleUpdateSubmit = (id, e) => {
 		e.preventDefault()
 		console.log(e)
 		props.dispatch(updateTheProperties(id, { address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, bathrooms: formData.bathrooms, parking: formData.parking }))
@@ -32,67 +38,61 @@ function Property(props) {
 		})
 	}
 
-	const [singleProperty, setSingleProperty] = useState(null)
+    const [singleProperty, setSingleProperty] = useState(null)
 
-	const propertyId = props.match.params.id
+    const propertyId = props.match.params.id
 
-	const findSingleProperty = () => {
-		if (propertyId) {
-			getPropertyById(propertyId)
-				.then(singProperty => {
-					setSingleProperty(singProperty)
-				})
-		}
-	}
+    const findSingleProperty = () => {
+        if(propertyId) {
+            getPropertyById(propertyId)
+            .then(singProperty => {
+                setSingleProperty(singProperty)
+            })
+        }
+    }
 
-	useEffect(() => {
-		findSingleProperty()
-	}, [props.match.params.id])
-
+    useEffect(() => {
+        findSingleProperty()
+    }, [props.match.params.id])
+    
+    
 	useEffect(() => {
 		findSingleProperty()
 	}, [JSON.stringify(props.properties)])
 
 
-	// key={singleProperty.id}
+    return(
+        <>
+            { singleProperty && (
+            <>
+            <Link to='/properties'>Back</Link>
 
-	return (
-		<>
-			{ singleProperty && (
-				<>
-					<Link to='/properties'>Back</Link>
-					<section className="hero is-info is-medium is-bold">
-						<div className="hero-body">
-							<div className="container has-text-centered">
-								<h1 className="title">
-									Cheese
-                            </h1>
-							</div>
-						</div>
-					</section>
 
-					<div className="container">
-						<section className="articles">
-							<div className="column is-8 is-offset-2">
-								<div className="card article">
-									<div className="card-content">
-										<div className="media">
-											<div className="media-content has-text-centered">
-												<p className="title article-title">Details for flat {singleProperty.address}</p>
-											</div>
-										</div>
-										<div className="content article-body">
-											<p>Address: {singleProperty.address}</p>
-											<p>Suburb: {singleProperty.suburb}</p>
-											<p>Number of bedrooms: {singleProperty.bedrooms}</p>
-											<p>Number of bathrooms: {singleProperty.bathrooms}</p>
-											<form onSubmit={(e) => handleUpdateSubmit(propertyId, e)}>
+		<section className="hero is-info is-medium is-bold" style={{ backgroundImage: 'url(/images/vic.jpg)' }}>
+				<div className="hero-body"></div>
+			</section>
+
+            <div className="container">
+                <section className="articles">
+                    <div className="column is-8 is-offset-2">
+                        <div className="card article">
+                            <div className="card-content">
+                                <div className="media">
+                                    <div className="media-content has-text-centered">
+                                        <p className="title article-title">Details for flat {singleProperty.address}</p>
+                                    </div>
+                                </div>
+                                <div className="content article-body">
+                                    <p>Suburb: {singleProperty.suburb}</p>
+                                    <p>Address: {singleProperty.address}</p>
+                                    <p>Number of bedrooms: {singleProperty.bedrooms}</p>
+                                    <p>Number of bathrooms: {singleProperty.bathrooms}</p>
+                                    	<form onSubmit={(e) => handleUpdateSubmit(propertyId, e)}>
 												<label>
 													<input className='form' type='text' name='address' placeholder='Address' onChange={(e) => { handleUpdateChange(e) }} />
 
 													<input className='form' type='text' name='suburb' placeholder='Suburb' onChange={(e) => { handleUpdateChange(e) }} />
-
-													<input className='form' type='text' name='bedrooms' placeholder='Bedrooms' onChange={(e) => { handleUpdateChange(e) }} />
+                          	<input className='form' type='text' name='bedrooms' placeholder='Bedrooms' onChange={(e) => { handleUpdateChange(e) }} />
 
 													<input className='form' type='text' name='bathrooms' placeholder='Bathrooms' onChange={(e) => { handleUpdateChange(e) }} />
 
@@ -101,18 +101,19 @@ function Property(props) {
 												</label>
 												<button type='submit'>Update</button>
 											</form>
-											<h3 className="has-text-centered">Reviews</h3>
-											<Reviews propertyId={singleProperty.id} />
-										</div>
-									</div>
-								</div>
-							</div>
-						</section>
-					</div>
-				</>
-			)}
-		</>
-	)
+                                    <h3 className="has-text-centered">Reviews</h3>
+                                    <PropertyReviews propertyId={singleProperty.id} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+             </div>
+            </>
+        )}
+            
+        </>
+    )
 }
 
 const mapStateToProps = ({ properties }) => {

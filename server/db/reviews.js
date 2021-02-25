@@ -29,7 +29,7 @@ function deleteReview (id, db = connection) {
 }
 function getReviewByPropertyId (id, db = connection) {
   return db('reviews')
-  .where('reviews.property_id',id)
+  .where('reviews.property_ID', id)
 }
 
 module.exports = {

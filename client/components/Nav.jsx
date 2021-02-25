@@ -1,11 +1,13 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import PlacesAutocomplete from './Search'
 
 import {logoutUser} from '../actions/auth'
+import { fetchProperties } from '../actions'
 
-function Nav ({auth, logout}) {
+function Nav ({auth, logout, fetchHouses}) {
+
   const [burgerVisible, setBurgerVisible] = useState(false)
 
   const toggleBurger = () => {
@@ -13,6 +15,12 @@ function Nav ({auth, logout}) {
       return !currentBurgerState
     })
   }
+
+  useEffect(()=> {
+    fetchHouses()
+  },[])
+
+  
 
     return <nav className="navbar">
       <div className="container">
@@ -57,7 +65,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     logout: () => {
       const confirmSuccess = () => ownProps.history.push('/')
       dispatch(logoutUser(confirmSuccess))
-    }
+    },
+    fetchHouses: () => dispatch(fetchProperties())
   }
 }
 
