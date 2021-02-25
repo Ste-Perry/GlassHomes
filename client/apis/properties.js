@@ -28,3 +28,11 @@ export function deleteProperty (id) {
     return res.body
   })
 }
+
+export function updateProperty (id, property) {
+  return request.patch(rootUrl + '/properties/' + id)
+  .send(property)
+  .then(res => {
+    return res.body
+  })
+}
