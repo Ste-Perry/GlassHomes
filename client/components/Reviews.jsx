@@ -5,7 +5,6 @@ import Review from "./Review";
 
 function Reviews(props) {
 
-  console.log(props.propertyId)
   useEffect(() => {
     props.dispatch(fetchReviews());
   }, []);

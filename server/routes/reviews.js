@@ -44,7 +44,6 @@ router.post('/', (req,res) => {
     start_of_tenancy: req.body.start_of_tenancy,
     end_of_tenancy: req.body.end_of_tenancy
   }
-  // console.log(req.body)
   db.addReview(review)
   .then(review => {
     res.json({ review: review })

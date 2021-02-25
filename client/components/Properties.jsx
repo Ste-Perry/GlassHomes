@@ -9,6 +9,7 @@ function Properties(props) {
 		props.dispatch(fetchProperties())
 	}, [])
 
+
 	// const handleSubmit = (e, id) => {
 	// 	e.preventDefault()
 	// 	props.dispatch(deleteTheProperties(id))

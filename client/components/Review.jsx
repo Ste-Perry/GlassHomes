@@ -27,9 +27,10 @@ const Review = (props) => {
                 <div className="media-content has-text-centered">
                   <p className="title article-title">{review.title}</p>
                   <br />
-                  <p className="year_of_tenancy">
-                    Year of tenancy: {review.year_of_tenancy}
+                  <p className="years_of_tenancy">
+                    Years of tenancy: {review.start_of_tenancy} - {review.end_of_tenancy}
                   </p>
+             
                   <br />
                   <p className="pros">Pros: {review.pros}</p>
                   <br />
