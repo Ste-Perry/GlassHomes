@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import PlacesAutocomplete from './Search'
 
 import {logoutUser} from '../actions/auth'
 
@@ -38,6 +39,8 @@ function Nav ({auth, logout}) {
                 </>
               )
             }
+            <PlacesAutocomplete />
+            
           </div>
         </div>
       </div>
