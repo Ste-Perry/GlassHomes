@@ -1,4 +1,5 @@
 import React, {useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchProperties } from '../actions/index'
 
@@ -11,24 +12,24 @@ function Properties (props) {
   
     return(
         <>
-            <h1>cheese</h1>
+            <h1 className='title article-title'>Some nice properties</h1>
 
             <ul>
                 {props.properties.map(prp => {
                     return(
-                        <div class="container">
+                        <div className="container">
                         
-                        <section class="articles">
-                        <div class="column is-8 is-offset-2">
-                        <div class="card article">
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-content has-text-centered">
-                                    <p class="title article-title">{prp.address}</p>
+                        <section className="articles">
+                        <div className="column is-8 is-offset-2">
+                        <div className="card article">
+                        <div className="card-content">
+                            <div className="media">
+                                <div className="media-content has-text-centered">
+                                    <p className="title article-title">{prp.address}</p>
                                 </div>
                             </div>
 
-                    <li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking}</li>
+                    <Link to='property'><li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking}</li></Link>
                     </div>
                     </div>
                 </div>
