@@ -4,6 +4,13 @@ function getUsers (db = connection) {
   return db('users').select()
 }
 
+function addUsers (user, db = connection) {
+  return db('users')
+  .insert(user)
+  .then(ids => ids[0])
+}
+
 module.exports = {
-  getUsers
+  getUsers,
+  addUsers
 }
