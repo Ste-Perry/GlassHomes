@@ -8,3 +8,32 @@
     background-position: center center;
     padding-bottom: 150px;
 }
+
+.advert-banner-left{
+    border-style: solid;
+    background-color: lightgray;
+    width: 150px;
+    height: 600px;
+    position: absolute;
+    top: 60%;
+    left: 5%;
+    object-fit: cover;
+}
+
+.advert-banner-right{
+    border-style: solid;
+    background-color: lightgray;
+    width: 150px;
+    height: 600px;
+    position: absolute;
+    top: 60%;
+    right: 5%;
+    object-fit: cover;
+}
+
+
+
+@media screen and (max-width: 960px) {
+    .advert-banner-left { display: none; }
+    .advert-banner-right { display: none; }
+  }
