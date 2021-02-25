@@ -4,6 +4,32 @@ function getReviews (db = connection) {
   return db('reviews').select()
 }
 
+function addReview (reviews, db = connection) {
+  return db('reviews')
+  .insert(reviews)
+  .then(ids => ids[0])
+}
+function getReviewById (id, db = connection) {
+  return db('reviews')
+  .where('id',id)
+  .first()
+}
+
+function updateReview (id, review, db = connection) {
+  return db('reviews')
+  .where('id', id)
+  .update(review)
+}
+function deleteReview (id, db = connection) {
+  return db('reviews')
+  .where('id', id)
+  .delete()
+}
+
 module.exports = {
-  getReviews
+  getReviews,
+  addReview,
+  getReviewById,
+  updateReview,
+  deleteReview
 }
