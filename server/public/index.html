@@ -3,22 +3,34 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>glassHouse</title>
 
   <!-- Login Bulma Styles -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet"> -->
   <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
   <!-- Bulma Version 0.9.0-->
   <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
   <!-- <link rel="stylesheet" type="text/css" href="../css/login.css">  UNNEEDED?>-->
-
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.9.1/css/OverlayScrollbars.min.css'>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
   <link href="/styles.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
   <div id="app"></div>
 
    <script src="/bundle.js"></script>
+   <script src='https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.9.1/js/OverlayScrollbars.min.js'></script>
+   <script>
+   document.addEventListener("DOMContentLoaded", function() {
+   //The first argument are the elements to which the plugin shall be initialized
+   //The second argument has to be at least a empty object or a object with your desired options
+   OverlayScrollbars(document.querySelectorAll("body"), { });
+   });
+  </script>
 </body>
 </html>
