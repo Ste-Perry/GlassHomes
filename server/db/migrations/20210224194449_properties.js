@@ -6,6 +6,7 @@ exports.up = function (knex) {
       table.integer('bedrooms')
       table.integer('bathrooms')
       table.integer('parking')
+      table.integer('avg_score')
       table.string('img') 
     })
   }
