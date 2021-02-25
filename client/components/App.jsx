@@ -23,7 +23,7 @@ function App ({auth, dispatch}) {
       // <Router>
         <div className="container has-text-centered">
 
-          <div className="hero is-small is-primary">
+          {/* <div className="hero is-small is-primary">
             <div className="hero-body has-text-centered">
             {!auth.isAuthenticated &&
               <Link to='/register' className="">
@@ -35,7 +35,8 @@ function App ({auth, dispatch}) {
               </Link>}
               <Route path="/" component={Nav} />
             </div>
-          </div>
+          </div> */}
+          <Route path="/" component={Nav} />
 
           <div className=''>
             {!auth.isAuthenticated &&

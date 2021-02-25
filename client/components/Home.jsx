@@ -11,35 +11,6 @@ const Home = (props) => {
   return (
     <div >
       <section className="hero is-fullheight is-default is-bold">
-        <div className="hero-head">
-          <nav className="navbar">
-            <div className="container">
-              <div className="navbar-brand">
-                <a className="navbar-item" href="../">
-                  <img src="https://place-puppy.com/300x300" alt="Logo" />
-                </a>
-                <span className="navbar-burger burger" data-target="navbarMenu">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </span>
-              </div>
-              <div id="navbarMenu" className="navbar-menu">
-                <div className="navbar-end">
-                  <div className="tabs is-right">
-                    <ul>
-                      <li className="is-active"><a>Home</a></li>
-                      <li><a href="">Examples</a></li>
-                      <li><a href="">Features</a></li>
-                      <li><a href="">Team</a></li>
-                      <li><a href="">Help</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </nav>
-        </div>
 
         <div className="hero-body">
           <div className="container has-text-centered">
@@ -51,10 +22,10 @@ const Home = (props) => {
               </div>
               <div className="column is-6 is-offset-1">
                 <h1 className="title is-2">
-                  Superhero Scaffolding
+                  glassHouse
                         </h1>
                 <h2 className="subtitle is-4">
-                  Let this cover page describe a product or service.
+                  Because people can throw stones.
                         </h2>
                 <br />
                 <p className="has-text-centered">
