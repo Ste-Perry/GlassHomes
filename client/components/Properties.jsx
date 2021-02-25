@@ -13,6 +13,7 @@ function Properties(props) {
 
 	return (
 		<>
+
      <section className="hero is-info is-medium is-bold" style={{ backgroundImage: 'url(/images/vic.jpg)' }}>
         <div className="hero-body"></div>
       </section>
@@ -38,6 +39,7 @@ function Properties(props) {
                 <div className="media-content has-text-centered">
 
 														<p className="title article-title">{prp.address}</p>
+
 												<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking}</li>
 								</div>
               </div>

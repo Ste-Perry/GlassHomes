@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchProperties } from '../actions/index'
 import { getPropertyById } from '../apis/properties'
-
+import Reviews from './Reviews'
 function Property (props) {
 
     // useEffect(() => {
@@ -58,7 +58,7 @@ function Property (props) {
                                     <p>Number of bedrooms: {singleProperty.bedrooms}</p>
                                     <p>Number of bathrooms: {singleProperty.bathrooms}</p>
                                     <h3 className="has-text-centered">Reviews</h3>
-                                    <p></p>
+                                    <Reviews propertyId={singleProperty.id} />
                                 </div>
                             </div>
                         </div>

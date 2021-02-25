@@ -15,11 +15,17 @@ function getPropertyById (id, db = connection) {
   .where('id',id)
   .first()
 }
+function getPropertyByAddress (address, db = connection) {
+  return db('properties')
+  .where('address',address)
+  .first()
+}
 
 
 
 module.exports = {
   getProperties,
   addProperty,
-  getPropertyById
+  getPropertyById,
+  getPropertyByAddress
 }
