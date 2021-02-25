@@ -25,15 +25,12 @@ const Home = (props) => {
                   glassHouse
                         </h1>
                 <h2 className="subtitle is-4">
-                  Because people can throw stones.
+                  Because tennant should throw stones.
                         </h2>
                 <br />
                 <p className="has-text-centered">
-                  <a className="button is-medium is-info is-outlined">
-                    Learn more
-                            </a>
+                  <Link className="button is-medium is-info is-outlined" to='/properties'>Properties</Link>
                 </p>
-                <Link to='/properties'>Properties</Link>
               </div>
             </div>
           </div>
