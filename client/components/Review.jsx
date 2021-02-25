@@ -1,5 +1,5 @@
-import React, {useEffect} from "react";
-import {connect} from "react-redux";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
 const Review = (props) => {
   const review = props.review;
@@ -9,18 +9,18 @@ const Review = (props) => {
     let remainingStars = 5 - review.rating;
     for (let i = 0; i < review.rating; i++) {
       starArray.push(
-        <span style={{color: "gold"}} className="fa fa-star"></span>
+        <span style={{ color: "gold" }} className="fa fa-star"></span>
       );
     }
     for (let i = 0; i < remainingStars; i++) {
       starArray.push(<span className="fa fa-star"></span>);
     }
-    return starArray;
+    return starArray
   };
 
   return (
-    <div>
-      <section className="card">
+    <div key={review.id}  >
+      <section  className="card">
         <div className="column is-8 is-offset-2">
           <div className="card article">
             <div className="card-content">
@@ -28,7 +28,7 @@ const Review = (props) => {
                 <div className="media-content has-text-centered">
                   <p className="title article-title">{review.title}</p>
                   <br />
-                  <p className="cons">
+                  <p className="year_of_tenancy">
                     Year of tenancy: {review.year_of_tenancy}
                   </p>
                   <br />
@@ -36,9 +36,11 @@ const Review = (props) => {
                   <br />
                   <p className="cons">Cons: {review.cons}</p>
                   <br />
-                  <p className="cons">Comments: {review.comments}</p>
+                  <p className="comments">Comments: {review.comments}</p>
                   <br />
                   Rating: {stars()}
+                  <button class="button is-info">Helpful</button>
+
                 </div>
               </div>
             </div>

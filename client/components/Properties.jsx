@@ -13,8 +13,6 @@ function Properties(props) {
 
 	return (
 		<>
-
-
 			<ul>
 				{props.properties.map(prp => {
 					return (
@@ -29,7 +27,6 @@ function Properties(props) {
 														<p className="title">{prp.address}</p>
 													</div>
 												</div>
-
 												<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking}</li>
 											</div>
 										</div>
