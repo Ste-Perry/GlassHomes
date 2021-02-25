@@ -14,6 +14,7 @@ import Reviews from './Reviews'
 import {checkAuth} from '../actions/auth'
 import Property from './Property'
 import AddReview from './AddReview'
+import AddProperty from './AddProperty'
 
 function App ({auth, dispatch}) {
   
@@ -44,6 +45,7 @@ function App ({auth, dispatch}) {
           <Route path='/addreview' component={AddReview}/>
           <Route path='/review' component={Review}/>
           <Route path='/reviews' component={Reviews}/>
+          <Route path='/addproperty' component={AddProperty}/>
 
           </div>
 
