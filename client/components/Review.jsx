@@ -20,8 +20,8 @@ const Review = (props) => {
 
   return (
     <div>
-      <section className="card">
-        <div className="column is-8 is-offset-2">
+      {/* <section className="card">
+        <div className="column is-8 is-offset-2"> */}
           <div className="card article">
             <div className="card-content">
               <div className="media">
@@ -43,9 +43,12 @@ const Review = (props) => {
               </div>
             </div>
           </div>
+          <br></br>
+          <br></br>
         </div>
-      </section>
-    </div>
+        
+    //   </section>
+    // </div>
   );
 };
 const mapStateToProps = (globalState) => {
