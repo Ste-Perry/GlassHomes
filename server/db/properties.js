@@ -16,6 +16,11 @@ function getPropertyById (id, db = connection) {
   .where('id',id)
   .first()
 }
+function getPropertyByAddress (address, db = connection) {
+  return db('properties')
+  .where('address',address)
+  .first()
+}
 
 function deleteProperty (id , db = connection) {
   return db('properties').delete().where('id', id )
@@ -39,5 +44,7 @@ module.exports = {
   addProperty,
   getPropertyById,
   deleteProperty,
-  updateProperty
+  updateProperty,
+  getPropertyByAddress
+
 }
