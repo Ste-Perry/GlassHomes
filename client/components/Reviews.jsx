@@ -1,16 +1,20 @@
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {fetchReviews} from "../actions/reviews";
-
 import Review from "./Review";
 
 function Reviews(props) {
+
+  console.log(props.propertyId)
   useEffect(() => {
     props.dispatch(fetchReviews());
   }, []);
 
+
+  
   return (
     <>
+
       <section className="hero is-info is-medium is-bold" style={{ backgroundImage: 'url(/images/vic.jpg)' }}>
         <div className="hero-body"></div>
       </section>
@@ -43,11 +47,7 @@ function Reviews(props) {
          </section>
 
       </ul>
-    
-    
-    
-    
-    </>
+       </>
 
   );
 }

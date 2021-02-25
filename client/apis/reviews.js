@@ -29,8 +29,6 @@ export function addReview (){
   })
 }
 
-
-
 export function updateReview(review){
   return request.patch(baseUrl)
       .send(review)
