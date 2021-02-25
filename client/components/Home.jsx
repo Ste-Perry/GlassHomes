@@ -22,10 +22,10 @@ const Home = (props) => {
               </div>
               <div className="column is-6 is-offset-1">
                 <h1 className="title is-2">
-                  glassHouse
+                  GlassHouse
                         </h1>
                 <h2 className="subtitle is-4">
-                  Because tennants should throw stones.
+                  Because tenants should throw stones.
                         </h2>
                 <br />
                 <p className="has-text-centered">

@@ -24,7 +24,8 @@ function App ({auth, dispatch}) {
   }, [])
 
     return (
-        <div className="container has-text-centered">
+      <>
+        {/* <div className="container has-text-centered"> */}
 
           <Route path="/" component={Nav} />
 
@@ -45,8 +46,9 @@ function App ({auth, dispatch}) {
           <Route path='/reviews' component={Reviews}/>
 
           </div>
-          
-        </div>
+
+        </>
+
     )
 }
 
