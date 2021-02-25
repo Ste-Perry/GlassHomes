@@ -1,3 +1,5 @@
+
+
 const connection = require('./connection')
 
 function getReviews (db = connection) {
@@ -25,11 +27,16 @@ function deleteReview (id, db = connection) {
   .where('id', id)
   .delete()
 }
+function getReviewByPropertyId (id, db = connection) {
+  return db('reviews')
+  .where('reviews.property_id',id)
+}
 
 module.exports = {
   getReviews,
   addReview,
   getReviewById,
   updateReview,
-  deleteReview
+  deleteReview,
+  getReviewByPropertyId
 }

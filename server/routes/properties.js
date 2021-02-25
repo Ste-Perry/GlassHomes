@@ -33,7 +33,8 @@ router.post('/', (req,res) => {
     address: req.body.address,
     bedrooms: req.body.bedrooms,
     bathrooms: req.body.bathrooms,
-    parking: req.body.parking
+    parking: req.body.parking,
+    avg_score: req.body.avg_score
 
   }
   console.log(req.body)
