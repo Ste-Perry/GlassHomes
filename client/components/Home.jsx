@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchProperties } from '../actions'
 
 const Home = (props) => {
-  useEffect(() => {
-    props.dispatch(fetchProperties())
-  }, [])
-
+  // useEffect(() => {
+  //   props.dispatch(fetchProperties())
+  // }, [])
 
   return (
     <div >
@@ -62,6 +62,7 @@ const Home = (props) => {
                     Learn more
                             </a>
                 </p>
+                <Link to='/properties'>Properties</Link>
               </div>
             </div>
           </div>
