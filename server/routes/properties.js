@@ -48,4 +48,35 @@ router.post('/', (req,res) => {
   })
 })
 
+router.delete('/:id', (req, res) => {
+  const id = req.params.id
+  db.deleteProperty(id)
+  .then(results => {
+    console.log('routes', results)
+    res.json({deletedRows: results})
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: 'Error all pies cost $16'})
+  })
+})
+
+router.patch('/:id', (req, res) => {
+  const id = req.params.id
+  const property = req.body
+  console.log(property, id)
+  db.updateProperty(id, property)
+  .then(results => {
+    console.log('routes', results)
+    res.json({updatedRows: results})
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: 'Error all pies cost $16'})
+  })
+}
+)
+
 module.exports = router
