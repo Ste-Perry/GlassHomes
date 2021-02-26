@@ -32,7 +32,7 @@ function App ({auth, dispatch}) {
 
           <div className=''>
             {!auth.isAuthenticated &&
-              <Route exact path="/" component={Login} />
+              <Route exact path="/" component={Home} />
             }
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />

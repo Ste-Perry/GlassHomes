@@ -39,7 +39,7 @@ const Review = (props) => {
                   <p className="comments">Comments: {review.comments}</p>
                   <br />
                   Rating: {stars()}
-                  <button class="button is-info">Helpful</button>
+                  <button className="button is-info">Helpful</button>
 
                 </div>
               </div>
