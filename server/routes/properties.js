@@ -4,6 +4,8 @@ const db = require('../db/properties')
 
 const router = express.Router()
 
+
+
 router.get('/', (req, res) => {
   db.getProperties()
     .then(results => {
@@ -27,6 +29,11 @@ router.get ('/:id', (req, res) =>{
 
 
 })
+
+router.post('/image', (req,res)=> {
+
+})
+
 router.post('/', (req,res) => {
   const property = {
     suburb: req.body.suburb,
