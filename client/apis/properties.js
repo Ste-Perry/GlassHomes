@@ -14,15 +14,24 @@ export function getPropertyById (id) {
   .then(res => res.body)
 }
 
-export function addProperty (){
+export function addProperty (properties){
   return request.post(rootUrl + '/properties')
-  .send ({
-    suburb:suburb,
-    address:address,
-    bedrooms:bedrooms,
-    bathrooms:bathrooms,
-    parking:parking
+  .send ( properties )
+  .then(res => {
+    return res.body
   })
+}
+
+export function deleteProperty (id) {
+  return request.delete(rootUrl + '/properties/' + id)
+  .then(res => {
+    return res.body
+  })
+}
+
+export function updateProperty (id, property) {
+  return request.patch(rootUrl + '/properties/' + id)
+  .send(property)
   .then(res => {
     return res.body
   })

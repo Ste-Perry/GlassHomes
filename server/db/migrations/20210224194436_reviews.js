@@ -8,7 +8,8 @@ exports.up = function (knex) {
       table.text('pros') 
       table.text('cons') 
       table.integer('rating')
-      table.integer('year_of_tenancy')
+      table.integer('start_of_tenancy')
+      table.integer('end_of_tenancy')
       table.integer('helpful_score')
     })
   }

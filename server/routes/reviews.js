@@ -17,6 +17,15 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get ('/property/:id', (req, res) =>{
+  propertyId = req.params.id
+  console.log(req.params.id)
+  db.getReviewByPropertyId(propertyId)
+  .then(id => {
+    res.json (id)
+    })
+  })
+
 router.get ('/:id', (req, res) =>{
   reviewId = req.params.id
   db.getReviewById(reviewId)
@@ -32,9 +41,9 @@ router.post('/', (req,res) => {
     pros: req.body.pros,
     cons: req.body.cons,
     rating: req.body.rating,
-    year_of_tenancy: req.body.year_of_tenancy
+    start_of_tenancy: req.body.start_of_tenancy,
+    end_of_tenancy: req.body.end_of_tenancy
   }
-  // console.log(req.body)
   db.addReview(review)
   .then(review => {
     res.json({ review: review })
@@ -67,6 +76,8 @@ router.patch('/:id',(req,res) => {
       res.status(500).json({message: "update review broken."})
     })
 })
+
+
 
 
 module.exports = router

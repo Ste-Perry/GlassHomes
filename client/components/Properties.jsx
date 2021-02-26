@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchProperties } from '../actions/index'
+import { fetchProperties, deleteTheProperties } from '../actions/index'
 
 function Properties(props) {
 
@@ -9,14 +9,30 @@ function Properties(props) {
 		props.dispatch(fetchProperties())
 	}, [])
 
-	console.log(props)
+
+	// const handleSubmit = (e, id) => {
+	// 	e.preventDefault()
+	// 	props.dispatch(deleteTheProperties(id))
+	// 	props.history.push('/properties')
+	// }
+
+	const deleteOneProperty = (id) => {
+		return props.dispatch(deleteTheProperties(id))
+	}
+
+	// onClick={(e) => handleSubmit(e)}
+
+	// const handleButton = (e) => {
+	// 	e.preventDefault()
+	// 	props.history.push('/properties')
+	// } 
 
 	return (
 		<>
 			<section className="hero is-info is-medium is-bold" style={{ backgroundImage: 'url(/images/vic.jpg)' }}>
 				<div className="hero-body"></div>
 			</section>
-
+			<Link to='/addproperty'>Add new property</Link>
 			<ul>
 				<section className="articles">
 					<div className="column is-8 is-offset-2">
@@ -31,14 +47,17 @@ function Properties(props) {
 
 										{props.properties.map(prp => {
 											return (
-												<Link to={`/property/${prp.id}`}>
+												<>
+												<Link key={prp.id} to={`/property/${prp.id}`}>
 													<div className="card article">
 														<div className="card-content">
 															<div className="media">
 																<div className="media-content has-text-centered">
 
 																	<p className="title article-title">{prp.address}</p>
-																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking}</li>
+																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking}
+															
+																	</li>
 																</div>
 															</div>
 														</div>
@@ -46,7 +65,8 @@ function Properties(props) {
 													<br></br>
 													<br></br>
 												</Link>
-
+												<button type='button' onClick={() => deleteOneProperty(prp.id)}>Delete</button>
+												</>
 											)
 										})}
 									</div>

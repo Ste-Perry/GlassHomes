@@ -1,11 +1,20 @@
-
-import { getProperties, getPropertyById } from '../apis/properties'
+import { getProperties, getPropertyById, addProperty, deleteProperty, updateProperty } from '../apis/properties'
 
 export const SET_PROPERTIES = 'SET_PROPERTIES'
+export const ADD_PROPERTIES = 'ADD_PROPERTIES'
+export const DELETE_PROPERTIES = 'DELETE_PROPERTIES'
+export const UPDATE_PROPERTIES = 'UPDATE_PROPERTIES'
 
 export function setProperties (properties) {
   return {
     type: SET_PROPERTIES,
+    properties
+  }
+}
+
+export function addProperties (properties) {
+  return {
+    type: ADD_PROPERTIES,
     properties
   }
 }
@@ -27,6 +36,36 @@ export function fetchPropertyById(id) {
         dispatch(setPropertyById(property))
         return null
       })
+  }
+}
+
+export function addTheProperties(properties) {
+  return dispatch => {
+    return addProperty(properties)
+    .then(() => {
+      dispatch(fetchProperties())
+      return null
+    })
+  }
+}
+
+export function deleteTheProperties(id) {
+  return dispatch => {
+    return deleteProperty(id)
+    .then(() => {
+      dispatch(fetchProperties())
+      return null
+    })
+  }
+}
+
+export function updateTheProperties(id, property) {
+  return dispatch => {
+    return updateProperty(id, property)
+    .then(() => {
+      dispatch(fetchProperties())
+      return null
+    })
   }
 }
 
