@@ -8,7 +8,7 @@ function getReviews (db = connection) {
 
 function addReview (reviews, db = connection) {
   return db('reviews')
-  .insert(reviews)
+  .insert(reviews, 'id')
   .then(ids => ids[0])
 }
 function getReviewById (id, db = connection) {

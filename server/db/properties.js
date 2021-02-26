@@ -7,7 +7,7 @@ function getProperties (db = connection) {
 
 function addProperty (property, db = connection) {
   return db('properties')
-  .insert(property)
+  .insert(property, 'id')
   .then(ids => ids[0])
 }
 
