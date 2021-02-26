@@ -28,11 +28,11 @@ const Home = (props) => {
                         </h2>
                 <br />
                 <p className="has-text-centered">
-                  <Link className="button is-medium is-info is-outlined" to='/properties'>Properties</Link>
+                  <Link className="button is-medium is-info is-outlined" to='/login'>Sign in</Link>
                 </p>
                 <br></br>
                 <p className="has-text-centered">
-                  <Link className="button is-medium is-info is-outlined" to='/reviews'>Reviews</Link>
+                  <Link className="button is-medium is-info is-outlined" to='/register'>Sign up</Link>
                 </p>
               </div>
             </div>

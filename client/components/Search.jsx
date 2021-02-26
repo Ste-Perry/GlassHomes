@@ -21,16 +21,21 @@ function Search (props) {
         if(property.address == addy) {
           setPropId(property.id)
           setPropRedirect(true)
+          setAddress("")
+          
         } else {
           setAddRedirect(true)
+          setAddress("")
         }
+
+        // setAddress("")
         return property
       })
     }
   },[address])
  
   const handleChange = (address) => {
-    // console.log(address)
+    // console.log('change', address)
     setAddress(address)
   };
   
@@ -38,12 +43,11 @@ function Search (props) {
     setAddress(a)
     // console.log(address)
     setBool(true)
-    
     geocodeByAddress(a)
     .then(results => getLatLng(results[0]))
     .then(latLng => console.log('Success', latLng))
-    .catch(error => console.error('Error', error));
-    
+    .then(() => setBool(false))
+    .catch(error => console.error('Error', error));    
   };
 
   const searchOptions = {
@@ -75,7 +79,7 @@ function Search (props) {
               })}
             />
             <div className="autocomplete-dropdown-container">
-              {loading && <div className ="Loading">Loading...</div>}
+              {/* {loading && <div className ="Loading">Loading...</div>} */}
               {suggestions.map(suggestion => {
                 const className = suggestion.active
                   ? 'suggestion-item--active'
@@ -102,7 +106,7 @@ function Search (props) {
           </div>
         )}
       </PlacesAutocomplete>
-      {addRedirect && <Redirect to="/"/>}
+      {addRedirect && <Redirect to="/addproperty"/>}
       {propRedirect && <Redirect to={`/property/${propId}`}/>}
       </>
     );
