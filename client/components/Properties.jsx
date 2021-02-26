@@ -10,22 +10,9 @@ function Properties(props) {
 	}, [])
 
 
-	// const handleSubmit = (e, id) => {
-	// 	e.preventDefault()
-	// 	props.dispatch(deleteTheProperties(id))
-	// 	props.history.push('/properties')
-	// }
-
 	const deleteOneProperty = (id) => {
 		return props.dispatch(deleteTheProperties(id))
 	}
-
-	// onClick={(e) => handleSubmit(e)}
-
-	// const handleButton = (e) => {
-	// 	e.preventDefault()
-	// 	props.history.push('/properties')
-	// } 
 
 	return (
 		<>
@@ -90,7 +77,7 @@ function Properties(props) {
 
 const mapStateToProps = ({ properties }) => {
 	return {
-		properties
+		properties,
 	}
 }
 
