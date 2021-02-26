@@ -22,7 +22,7 @@ const Home = (props) => {
               </div>
               <div className="column is-6 is-offset-1">
                 <h1 className="title is-2">
-                  GlassHouse
+                  GlassHome
                         </h1>
                 <h2 className="subtitle is-4">
                   Because tenants should throw stones.

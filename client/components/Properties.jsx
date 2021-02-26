@@ -29,7 +29,7 @@ function Properties(props) {
 
 	return (
 		<>
-			<section className="hero is-info is-medium is-bold" style={{ backgroundImage: 'url(/images/vic.jpg)' }}>
+			<section className="hero is-info is-medium is-bold" id="hero-image">
 				<div className="hero-body"></div>
 			</section>
 			<Link to='/addproperty'>Add new property</Link>
@@ -58,6 +58,7 @@ function Properties(props) {
 																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking}
 															
 																	</li>
+																	
 																</div>
 															</div>
 														</div>
@@ -65,7 +66,7 @@ function Properties(props) {
 													<br></br>
 													<br></br>
 												</Link>
-												<button type='button' onClick={() => deleteOneProperty(prp.id)}>Delete</button>
+												{/* <button type='button' onClick={() => deleteOneProperty(prp.id)}>Delete</button> */}
 												</>
 											)
 										})}
