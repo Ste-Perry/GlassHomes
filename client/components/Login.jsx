@@ -1,19 +1,18 @@
-import React, { useState } from "react"
-import { connect } from "react-redux"
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
 
-import { loginUser, loginError } from "../actions/auth"
-
+import { loginUser, loginError } from '../actions/auth'
 
 function Login(props) {
 	const { auth } = props
 
 	const [formData, setFormData] = useState({
-		username: "",
-		password: "",
+		username: '',
+		password: '',
 	})
 
 	const handleChange = (e) => {
-		setFormData(currentFormData => {
+		setFormData((currentFormData) => {
 			return {
 				...currentFormData,
 				[e.target.name]: e.target.value,
@@ -21,33 +20,33 @@ function Login(props) {
 		})
 	}
 
-
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		let { username, password } = formData
 		const confirmSuccess = () => {
-			props.history.push("/home")
+			props.history.push('/home')
 		}
 		props.dispatch(loginUser({ username, password }, confirmSuccess))
 	}
 
 	return (
 		<>
-			<section className="hero is-info is-medium is-bold" style={{backgroundImage: 'url(/images/vic.jpg)'}}>
+
+
+			<section className="hero is-info is-medium is-bold" id="hero-image">
+
 				<div className="hero-body"></div>
-					</section>
+			</section>
 
-					<section className="articles">
-					<div className="column is-8 is-offset-2">
-						<div className="container has-text-centered">
-
+			<section className="articles">
+				<div className="column is-8 is-offset-2">
+					<div className="container has-text-centered">
 						<div className="card article">
 							<div className="card-content">
-
-							<div className="column is-6 is-offset-3">
-								<h3 className="title has-text-black">Login</h3>
-								<hr className="login-hr"></hr>
-								<p className="subtitle has-text-black">Please login to proceed.</p>
+								<div className="column is-6 is-offset-3">
+									<h3 className="title has-text-black">Login</h3>
+									<hr className="login-hr"></hr>
+									<p className="subtitle has-text-black">Please login to proceed.</p>
 									<form className="form box" onSubmit={handleSubmit}>
 										<hr />
 										{auth.errorMessage && (
@@ -58,7 +57,7 @@ function Login(props) {
 											<div className="control">
 												<label className="label is-8 is-offset-2 is-large has-text-centered">
 													Username
-        <input
+													<input
 														required
 														className="input has-text-centered is-large is-fullwidth"
 														placeholder="Username"
@@ -76,7 +75,7 @@ function Login(props) {
 											<div className="control">
 												<label className="label is-large has-text-centered">
 													Password
-        <input
+													<input
 														required
 														className="input has-text-centered is-large is-fullwidth"
 														placeholder="Password"
@@ -96,31 +95,24 @@ function Login(props) {
 										/>
 									</form>
 
-								<p className="has-text-grey">
-									<a href="../">Sign Up</a> &nbsp;·&nbsp;
-                        <a href="../">Forgot Password</a> &nbsp;·&nbsp;
-                        <a href="../">Need Help?</a>
-								</p>
-
+									<p className="has-text-grey">
+										<a href="../">Sign Up</a> &nbsp;·&nbsp;
+										<a href="../">Forgot Password</a> &nbsp;·&nbsp;
+										<a href="../">Need Help?</a>
+									</p>
+								</div>
 							</div>
-							</div>
-
-
-							</div>
-
-							
-
 						</div>
-						</div>
-						</section>
-
+					</div>
+				</div>
+			</section>
 		</>
 	)
 }
 
-const mapStateToProps = ({ auth}) => {
+const mapStateToProps = ({ auth }) => {
 	return {
-				auth,
+		auth,
 	}
 }
 
