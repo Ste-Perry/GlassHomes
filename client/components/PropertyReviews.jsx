@@ -1,38 +1,39 @@
-import React, {useEffect, useState} from "react";
-import {connect} from "react-redux";
-import { fetchReviewsByPropertyId} from "../actions/reviews";
-import Review from "./Review";
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import { fetchReviewsByPropertyId } from '../actions/reviews'
+import Review from './Review'
+import AddReview from './AddReview'
 
 function PropertyReviews(props) {
+	const [propertyReview, setPropertyReview] = useState([])
 
-  const [propertyReview, setPropertyReview] = useState([])
+	const id = props.propertyId
 
-  const id = props.propertyId
 
-  console.log(props.reviewByProperty)
-  
-  useEffect(() => {
-    props.dispatch(fetchReviewsByPropertyId(id));
-  }, []);
+	useEffect(() => {
+		props.dispatch(fetchReviewsByPropertyId(id))
+	}, [])
 
-  return (
-    <>
-                    {props.reviewByProperty.map((review) => {
-                      return (
-                        <div>
-                          <Review key={review.id} review={review} />
-                        </div>
-                      );
-                    })}
-
-    </>
-  );
+	return (
+		<>
+			{props.reviewByProperty.map((review) => {
+				return (
+					<div>
+						<Review key={review.id} review={review} />
+						<div>
+						<AddReview propsId={id} />
+						</div>
+					</div>
+				)
+			})}
+		</>
+	)
 }
 
-const mapStateToProps = ({reviewByProperty}) => {
-  return {
-    reviewByProperty,
-  };
-};
+const mapStateToProps = ({ reviewByProperty }) => {
+	return {
+		reviewByProperty,
+	}
+}
 
-export default connect(mapStateToProps)(PropertyReviews);
+export default connect(mapStateToProps)(PropertyReviews)
