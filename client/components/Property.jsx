@@ -83,10 +83,12 @@ function Property (props) {
                                     </div>
                                 </div>
                                 <div className="content article-body">
-                                    <p>Suburb: {singleProperty.suburb}</p>
-                                    <p>Address: {singleProperty.address}</p>
-                                    <p>Number of bedrooms: {singleProperty.bedrooms}</p>
-                                    <p>Number of bathrooms: {singleProperty.bathrooms}</p>
+      
+      												<div className="icon-text"><i style={{ color: "grey" }} className="fa fa-map-marker"></i><span> Suburb: {singleProperty.suburb}</span></div>
+												<div className="icon-text"><i style={{ color: "grey" }} className="fa fa-home"></i><span> Address: {singleProperty.address}</span></div>
+												<div className="icon-text"><i style={{ color: "grey" }} className="fa fa-bed"></i><span> Bedrooms: {singleProperty.bedrooms}</span></div>
+												<div className="icon-text"><i style={{ color: "grey" }} className="fa fa-bath"></i><span> Bathrooms: {singleProperty.bathrooms}</span></div>
+
                                     	<form onSubmit={(e) => handleUpdateSubmit(propertyId, e)}>
 												<label>
 													<input className='form' type='text' name='address' placeholder='Address' onChange={(e) => { handleUpdateChange(e) }} />
@@ -114,6 +116,7 @@ function Property (props) {
             
         </>
     )
+
 }
 
 const mapStateToProps = ({ properties }) => {

@@ -1,9 +1,9 @@
-
 .articles {
     margin-top: -250px;
 }
 
-.hero {
+#hero-image {
+    background-image: url('../../server/public/images/vic.jpg');
     background-size: cover;
     background-position: center center;
     padding-bottom: 150px;
@@ -11,4 +11,8 @@
 
 .home-image {
     object-fit: cover;
+}
+
+.property-details {
+    
 }
