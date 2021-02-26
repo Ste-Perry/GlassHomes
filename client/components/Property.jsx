@@ -8,10 +8,6 @@ import PropertyReviews from './PropertyReviews'
 
 function Property (props) {
 
-    // useEffect(() => {
-    //     props.dispatch(fetchProperties())
-    // }, [])
-    
     const [formData, setFormData] = useState({
 		address: '',
 		suburb: '',
