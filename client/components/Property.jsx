@@ -61,14 +61,14 @@ function Property (props) {
         <>
             { singleProperty && (
             <>
-            <Link to='/properties'>Back</Link>
+            {/* <Link to='/properties'>Back</Link> */}
 
 
-		<section className="hero is-info is-medium is-bold" style={{ backgroundImage: 'url(/images/vic.jpg)' }}>
+		<section className="hero is-info is-medium is-bold" id="hero-image">
 				<div className="hero-body"></div>
 			</section>
 
-            <div className="container">
+            <div >
                 <section className="articles">
                     <div className="column is-8 is-offset-2">
                         <div className="card article">
