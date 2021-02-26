@@ -75,15 +75,15 @@ function Search (props) {
               })}
             />
             <div className="autocomplete-dropdown-container">
-              {loading && <div>Loading...</div>}
+              {loading && <div className ="Loading">Loading...</div>}
               {suggestions.map(suggestion => {
                 const className = suggestion.active
                   ? 'suggestion-item--active'
                   : 'suggestion-item';
                 // inline style for demonstration purpose
                 const style = suggestion.active
-                  ? { backgroundColor: '#C0C0C0', cursor: 'pointer' ,color: 'black'}
-                  : { backgroundColor: '#C0C0C0', cursor: 'pointer' ,color: 'black'}
+                  ? { backgroundColor: 'lemonchiffon', cursor: 'pointer' ,color: 'black'}
+                  : { backgroundColor: 'lightblue', cursor: 'pointer' ,color: 'black'}
                 return (
                   <div key={count++}
                     {...getSuggestionItemProps(suggestion, {
