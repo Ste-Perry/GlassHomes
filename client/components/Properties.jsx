@@ -32,7 +32,7 @@ function Properties(props) {
 			<section className="hero is-info is-medium is-bold" id="hero-image">
 				<div className="hero-body"></div>
 			</section>
-			<Link to='/addproperty'>Add new property</Link>
+			{/* <Link to='/addproperty'>Add new property</Link> */}
 			<ul>
 				<section className="articles">
 					<div className="column is-8 is-offset-2">
