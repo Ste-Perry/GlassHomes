@@ -42,7 +42,8 @@ router.post('/', (req,res) => {
     cons: req.body.cons,
     rating: req.body.rating,
     start_of_tenancy: req.body.start_of_tenancy,
-    end_of_tenancy: req.body.end_of_tenancy
+    end_of_tenancy: req.body.end_of_tenancy,
+    property_ID: req.body.propsId
   }
   db.addReview(review)
   .then(review => {

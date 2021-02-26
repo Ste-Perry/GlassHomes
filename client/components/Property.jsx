@@ -103,6 +103,7 @@ function Property (props) {
 											</form>
                                     <h3 className="has-text-centered">Reviews</h3>
                                     <PropertyReviews propertyId={singleProperty.id} />
+                                    
                                 </div>
                             </div>
                         </div>
