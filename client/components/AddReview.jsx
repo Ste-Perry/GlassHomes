@@ -10,7 +10,8 @@ function AddReview (props) {
     pros: '',
     cons: '',
     rating: '',
-    year_of_tenancy:''
+    stat_of_tenancy:'',
+    end_of_tenancy:''
   })
 
   useEffect(() => {
