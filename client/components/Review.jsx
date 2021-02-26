@@ -32,13 +32,17 @@ const Review = (props) => {
                   </p>
              
                   <br />
-                  <p className="pros">Pros: {review.pros}</p>
+                  <div className="icon-text has-text-success"><i className="fa fa-check-square"></i><span> Pros:</span></div>
+                  <p>{review.pros}</p>
                   <br />
-                  <p className="cons">Cons: {review.cons}</p>
+                  <div className="icon-text has-text-danger"><i className="fa fa-ban"></i><span> Cons:</span></div>
+                  <p>{review.cons}</p>
                   <br />
                   <p className="comments">Comments: {review.comments}</p>
                   <br />
                   Rating: {stars()}
+                  <br />
+                  <br />
                   <button class="button is-info">Helpful</button>
 
                 </div>
