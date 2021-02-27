@@ -27,6 +27,9 @@ const upload = multer({
   })
 })
 
+router.post('/image', upload.single('img'), function (req, res, next) {
+  res.send(req.file.location)
+})
 
 router.get('/', (req, res) => {
   db.getProperties()
@@ -52,10 +55,6 @@ router.get ('/:id', (req, res) =>{
 
 })
 
-//need to change upload.single("")
-router.post('/image', upload.single('img'), function (req, res, next) {
-  res.send(req.file.location)
-})
 
 router.post('/', (req,res) => {
   const property = {
