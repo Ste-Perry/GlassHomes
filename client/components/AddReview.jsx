@@ -57,7 +57,7 @@ function AddReview (props) {
     return(
         <>
             
-            <Link to='/'>back</Link>
+            <Link to='/home'>back</Link>
             <h1>Add Review</h1>
             <form onSubmit={handleSubmit}>
                 <label>
