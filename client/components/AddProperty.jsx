@@ -1,14 +1,17 @@
 import React, {useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchProperties, addTheProperties } from '../actions/index'
+import { fetchProperties, addTheProperties, addPropertiesWithImage } from '../actions/index'
 
 function AddProperty (props) {
 
   useEffect(() => {
-    fetchProperties()
+    props.dispatch(fetchProperties())
   }, [])
   
+  //for adding image
+  const [propImage, setPropImage] = useState(null)
+
   const [formData, setFormData] = useState({
     address: '',
     suburb: '',
@@ -17,9 +20,20 @@ function AddProperty (props) {
     parking: ''
   })
 
+  const onChangeFile = (e) => {
+    setPropImage(e.target.files[0])
+  }
+
+  
   const handleSubmit = (e) => {
     e.preventDefault()
-    props.dispatch(addTheProperties({address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, bathrooms: formData.bathrooms, parking: formData.parking}))
+
+    //for adding image
+    const formImage = new FormData()
+    formImage.append('img', propImage)
+    props.dispatch(addPropertiesWithImage(formImage, {address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, bathrooms: formData.bathrooms, parking: formData.parking}))
+
+    // props.dispatch(addTheProperties({address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, bathrooms: formData.bathrooms, parking: formData.parking}))
     console.log('Data sent')
     e.target.reset()
     props.history.push('/properties')
@@ -53,6 +67,10 @@ function AddProperty (props) {
                     <input className='form' type='text' name='parking' placeholder='Parking ' onChange={(e) => handleChange(e)}/>
 
                 </label>
+                <label className="" htmlFor="img">
+                  <span className="">Property image </span>
+                   <input type="file" name="img" onChange={onChangeFile} />
+               </label>
                 <button type='submit'>Add</button>
             </form>
             

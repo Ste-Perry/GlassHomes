@@ -1,21 +1,21 @@
 import request from 'superagent'
 
-const rootUrl = '/api/v1'
+const rootUrl = '/api/v1/properties'
 
 export function getProperties () {
-  return request.get(rootUrl + '/properties')
+  return request.get(rootUrl)
     .then(res => {
       return res.body.properties
     })
 }
 
 export function getPropertyById (id) {
-  return request.get(rootUrl + '/properties/' + id)
+  return request.get(rootUrl + '/' + id)
   .then(res => res.body)
 }
 
 export function addProperty (properties){
-  return request.post(rootUrl + '/properties')
+  return request.post(rootUrl)
   .send ( properties )
   .then(res => {
     return res.body
@@ -23,16 +23,24 @@ export function addProperty (properties){
 }
 
 export function deleteProperty (id) {
-  return request.delete(rootUrl + '/properties/' + id)
+  return request.delete(rootUrl + '/' + id)
   .then(res => {
     return res.body
   })
 }
 
 export function updateProperty (id, property) {
-  return request.patch(rootUrl + '/properties/' + id)
+  return request.patch(rootUrl + '/' + id)
   .send(property)
   .then(res => {
     return res.body
   })
+}
+
+export function addImageProp (formData) {
+  return request.post(rootUrl + '/image')
+    .send(formData)
+    .then(res => {
+      return res.text
+    })
 }

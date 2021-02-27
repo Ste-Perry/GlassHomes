@@ -4,7 +4,32 @@ const db = require('../db/properties')
 
 const router = express.Router()
 
+const multer = require('multer')
+const multerS3 = require('multer-s3')
+const AWS = require('aws-sdk')
 
+// Amazon s3 config
+const s3 = new AWS.S3()
+AWS.config.update(
+  {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_ID
+  }
+)
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'glasshomes',
+    acl: 'public-read',
+    key: function (req, file, cb) {
+      cb(null, 'images/' + file.originalname)
+    }
+  })
+})
+
+router.post('/image', upload.single('img'), function (req, res, next) {
+  res.send(req.file.location)
+})
 
 router.get('/', (req, res) => {
   db.getProperties()
@@ -30,9 +55,6 @@ router.get ('/:id', (req, res) =>{
 
 })
 
-router.post('/image', (req,res)=> {
-
-})
 
 router.post('/', (req,res) => {
   const property = {
@@ -41,9 +63,10 @@ router.post('/', (req,res) => {
     bedrooms: req.body.bedrooms,
     bathrooms: req.body.bathrooms,
     parking: req.body.parking,
-    avg_score: req.body.avg_score
-
+    avg_score: req.body.avg_score,
+    img: req.body.image
   }
+  console.log(req.body.img)
   console.log(req.body)
   db.addProperty(property)
   .then(property => {
