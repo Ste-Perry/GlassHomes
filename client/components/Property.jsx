@@ -8,10 +8,6 @@ import PropertyReviews from './PropertyReviews'
 
 function Property (props) {
 
-    // useEffect(() => {
-    //     props.dispatch(fetchProperties())
-    // }, [])
-    
     const [formData, setFormData] = useState({
 		address: '',
 		suburb: '',
@@ -65,14 +61,14 @@ function Property (props) {
         <>
             { singleProperty && (
             <>
-            <Link to='/properties'>Back</Link>
+            {/* <Link to='/properties'>Back</Link> */}
 
 
-		<section className="hero is-info is-medium is-bold" style={{ backgroundImage: 'url(/images/vic.jpg)' }}>
+		<section className="hero is-info is-medium is-bold" id="hero-image">
 				<div className="hero-body"></div>
 			</section>
 
-            <div className="container">
+            <div >
                 <section className="articles">
                     <div className="column is-8 is-offset-2">
                         <div className="card article">
@@ -83,10 +79,14 @@ function Property (props) {
                                     </div>
                                 </div>
                                 <div className="content article-body">
-                                    <p>Suburb: {singleProperty.suburb}</p>
-                                    <p>Address: {singleProperty.address}</p>
-                                    <p>Number of bedrooms: {singleProperty.bedrooms}</p>
-                                    <p>Number of bathrooms: {singleProperty.bathrooms}</p>
+      
+      												<div className="icon-text"><i style={{ color: "grey" }} className="fa fa-map-marker"></i><span> Suburb: {singleProperty.suburb}</span></div>
+												<div className="icon-text"><i style={{ color: "grey" }} className="fa fa-home"></i><span> Address: {singleProperty.address}</span></div>
+												<div className="icon-text"><i style={{ color: "grey" }} className="fa fa-bed"></i><span> Bedrooms: {singleProperty.bedrooms}</span></div>
+												<div className="icon-text"><i style={{ color: "grey" }} className="fa fa-bath"></i><span> Bathrooms: {singleProperty.bathrooms}</span></div>
+												<div className=""><span><img src={singleProperty.img} alt="image of property"/></span></div>
+
+
                                     	<form onSubmit={(e) => handleUpdateSubmit(propertyId, e)}>
 												<label>
 													<input className='form' type='text' name='address' placeholder='Address' onChange={(e) => { handleUpdateChange(e) }} />
@@ -103,6 +103,7 @@ function Property (props) {
 											</form>
                                     <h3 className="has-text-centered">Reviews</h3>
                                     <PropertyReviews propertyId={singleProperty.id} />
+                                    
                                 </div>
                             </div>
                         </div>
@@ -114,6 +115,7 @@ function Property (props) {
             
         </>
     )
+
 }
 
 const mapStateToProps = ({ properties }) => {

@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-const rootUrl = '/api/v1/reviews'
+const rootUrl = '/api/v1/reviews/'
 
 export function getReviews () {
   return request.get(rootUrl )
@@ -14,36 +14,37 @@ export function getReviewById (id) {
   .then(res => res.body)
 }
 
-export function addReview (){
+export function addReview (reviews){
   return request.post(rootUrl)
-  .send ({
-    title: title,
-    comments:comments,
-    pros:pros,
-    cons:cons,
-    rating:rating,
-    start_of_tenancy: start_of_tenancy,
-    end_of_tenancy:end_of_tenancy
-  })
+  .send ( reviews )
   .then(res => {
     return res.body
   })
 }
 
-export function updateReview(review){
-  return request.patch(baseUrl)
+export function updateReview(id, review){
+  return request.patch(baseUrl + id)
       .send(review)
-      .then(res => res.body)
+      .then(res => {
+        return res.body})
 }
 
 
 export function deleteReview(){
   return request.delete(rootUrl)
-  .send(review)
-  .then(res => res.body)
+  .then(res => {
+    return res.body})
 }
 
 export function getReviewByPropertyId(id){
   return request.get(rootUrl + "/property/" + id)
   .then(res => res.body)
+}
+
+export function addImageReview (formData) {
+  return request.post(rootUrl + '/image')
+    .send(formData)
+    .then(res => {
+      return res.text
+    })
 }

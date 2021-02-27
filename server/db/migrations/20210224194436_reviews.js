@@ -11,6 +11,7 @@ exports.up = function (knex) {
       table.integer('start_of_tenancy')
       table.integer('end_of_tenancy')
       table.integer('helpful_score')
+      table.string('img')
     })
   }
   

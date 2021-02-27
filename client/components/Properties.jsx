@@ -10,29 +10,16 @@ function Properties(props) {
 	}, [])
 
 
-	// const handleSubmit = (e, id) => {
-	// 	e.preventDefault()
-	// 	props.dispatch(deleteTheProperties(id))
-	// 	props.history.push('/properties')
-	// }
-
 	const deleteOneProperty = (id) => {
 		return props.dispatch(deleteTheProperties(id))
 	}
 
-	// onClick={(e) => handleSubmit(e)}
-
-	// const handleButton = (e) => {
-	// 	e.preventDefault()
-	// 	props.history.push('/properties')
-	// } 
-
 	return (
 		<>
-			<section className="hero is-info is-medium is-bold" style={{ backgroundImage: 'url(/images/vic.jpg)' }}>
+			<section className="hero is-info is-medium is-bold" id="hero-image">
 				<div className="hero-body"></div>
 			</section>
-			<Link to='/addproperty'>Add new property</Link>
+			{/* <Link to='/addproperty'>Add new property</Link> */}
 			<ul>
 				<section className="articles">
 					<div className="column is-8 is-offset-2">
@@ -58,6 +45,7 @@ function Properties(props) {
 																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking}
 															
 																	</li>
+																	
 																</div>
 															</div>
 														</div>
@@ -65,7 +53,7 @@ function Properties(props) {
 													<br></br>
 													<br></br>
 												</Link>
-												<button type='button' onClick={() => deleteOneProperty(prp.id)}>Delete</button>
+												{/* <button type='button' onClick={() => deleteOneProperty(prp.id)}>Delete</button> */}
 												</>
 											)
 										})}
@@ -90,7 +78,7 @@ function Properties(props) {
 
 const mapStateToProps = ({ properties }) => {
 	return {
-		properties
+		properties,
 	}
 }
 

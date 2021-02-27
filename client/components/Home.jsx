@@ -21,19 +21,18 @@ const Home = (props) => {
                 </figure>
               </div>
               <div className="column is-6 is-offset-1">
-                <h1 className="title is-2">
-                  GlassHouse
-                        </h1>
+                <img className='logo' src='/images/default-monochrome.svg' alt='logo'/>
+
                 <h2 className="subtitle is-4">
                   Because tenants should throw stones.
                         </h2>
                 <br />
                 <p className="has-text-centered">
-                  <Link className="button is-medium is-info is-outlined" to='/properties'>Properties</Link>
+                  <Link className="button is-medium is-info is-outlined" to='/login'>Sign in</Link>
                 </p>
                 <br></br>
                 <p className="has-text-centered">
-                  <Link className="button is-medium is-info is-outlined" to='/reviews'>Reviews</Link>
+                  <Link className="button is-medium is-info is-outlined" to='/register'>Sign up</Link>
                 </p>
               </div>
             </div>
