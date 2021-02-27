@@ -1,4 +1,4 @@
-import { getProperties, getPropertyById, addProperty, deleteProperty, updateProperty } from '../apis/properties'
+import { getProperties, getPropertyById, addProperty, deleteProperty, updateProperty, addImageProp } from '../apis/properties'
 
 export const SET_PROPERTIES = 'SET_PROPERTIES'
 export const ADD_PROPERTIES = 'ADD_PROPERTIES'
@@ -46,6 +46,21 @@ export function addTheProperties(properties) {
       dispatch(fetchProperties())
       return null
     })
+  }
+}
+
+//testing addThePropsWithImage
+export function addPropertiesWithImage(image, property) {
+  return dispatch => {
+    return addImageProp(image)
+      .then(fileUrl => {
+        property.image = fileUrl
+        return addProperty(property)
+          .then(propId => {
+            dispatch(fetchProperties())
+            return null
+          })
+      })
   }
 }
 

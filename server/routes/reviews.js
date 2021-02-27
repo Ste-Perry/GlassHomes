@@ -1,4 +1,4 @@
-const routes = require('authenticare/server/routes')
+// const routes = ('authenticare/server/routes')
 const express = require('express')
 
 const db = require('../db/reviews')
