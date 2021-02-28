@@ -1,3 +1,4 @@
+
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
@@ -100,6 +101,23 @@ const added = () => {
   const handleClick = (e) => {
     setFormData({...formData, rating: e.target.value});
   }
+    const handleCheck = (e) => {
+
+     e.target.checked &&
+		setFormData({ ...formData, end_of_tenancy: "ongoing" })
+	}
+
+	// const getDropList = () => {
+	//   const year = new Date().getFullYear();
+	//   return (
+	//     Array.from( new Array(75), (v,i) =>
+	//       <option key={i} value={year-i}>{year-i}</option>
+	//     )
+	//   )
+	// }
+
+	const year = new Date().getFullYear()
+  
 
   return (
     <>
@@ -112,58 +130,53 @@ const added = () => {
                 <form onSubmit={handleSubmit}>
                   <hr />
 
-                  <div className="field">
-                    <div className="control">
-                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
-                        Title
-                        <input
-                          required
-                          className="input is-large has-text-centered is-medium"
-                          placeholder="Title"
-                          type="text"
-                          name="title"
-                          onChange={handleChange}
-                          value={formData.title}
-                        />
-                      </label>
-                    </div>
-                  </div>
+                       	<div className="field">
+										<div className="control">
+											<label className="column is-6 label is-offset-3 label is-large has-text-centered">
+												Start of Tenancy
+												<input
+													min="1900"
+													max={year}
+													required
+													className="input is-large has-text-centered is-fullwidth"
+													placeholder="2020"
+													type="number"
+													name="start_of_tenancy"
+													autoComplete="start_of_tenancy"
+													onChange={handleChange}
+													value={formData.start_of_tenancy}
+												/>
+											</label>
+										</div>
+									</div>
 
-                  <div className="field">
-                    <div className="control">
-                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
-                        Start of Tenancy
-                        <input
-                          required
-                          className="input is-large has-text-centered is-fullwidth"
-                          placeholder="Start of Tenancy"
-                          type="text"
-                          name="start_of_tenancy"
-                          autoComplete="start_of_tenancy"
-                          onChange={handleChange}
-                          value={formData.start_of_tenancy}
-                        />
-                      </label>
-                    </div>
-                  </div>
-
-                  <div className="field">
-                    <div className="control">
-                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
-                        End of Tenancy
-                        <input
-                          required
-                          className="input is-large has-text-centered is-fullwidth"
-                          placeholder="End of Tenancy"
-                          type="text"
+									<div className="field">
+										<div className="control">
+											<label className="column is-6 label is-offset-3 label is-large has-text-centered">
+												End of Tenancy
+												<input
+													min="1900"
+													max={year}
+													className="input is-large has-text-centered is-fullwidth"
+													placeholder="2020"
+													type="number"
+													name="end_of_tenancy"
+													autoComplete="end_of_tenancy"
+													onChange={handleChange}
+													value={formData.end_of_tenancy}
+												/>
+											</label>
+											<label>
+												Ongoing
+												<input
+													onChange={handleCheck}
+                          type="checkbox"
                           name="end_of_tenancy"
-                          autoComplete="end_of_tenancy"
-                          onChange={handleChange}
-                          value={formData.end_of_tenancy}
-                        />
-                      </label>
-                    </div>
-                  </div>
+													value="ongoing"
+												></input>
+											</label>
+										</div>
+									</div>
 
                   <div className="field">
                     <div className="control">
@@ -314,10 +327,10 @@ const added = () => {
 
 }
 
-const mapStateToProps = ({reviews}) => {
-  return {
-    reviews,
-  };
-};
+const mapStateToProps = ({ reviews }) => {
+	return {
+		reviews,
+	}
+}
 
-export default connect(mapStateToProps)(AddReview);
+export default connect(mapStateToProps)(AddReview)
