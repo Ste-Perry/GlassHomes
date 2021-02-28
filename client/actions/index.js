@@ -4,6 +4,8 @@ export const SET_PROPERTIES = 'SET_PROPERTIES'
 export const ADD_PROPERTIES = 'ADD_PROPERTIES'
 export const DELETE_PROPERTIES = 'DELETE_PROPERTIES'
 export const UPDATE_PROPERTIES = 'UPDATE_PROPERTIES'
+export const SET_PROPERTY_BY_PROP_ID = 'SET_PROPERTY_BY_PROP_ID'
+export const SET_PROPERTIES_EMPTY = 'SET_PROPERTIES_EMPTY'
 
 export function setProperties (properties) {
   return {
@@ -16,6 +18,13 @@ export function addProperties (properties) {
   return {
     type: ADD_PROPERTIES,
     properties
+  }
+}
+
+export function setPropertyById (property) {
+  return {
+    type: SET_PROPERTY_BY_PROP_ID,
+    property
   }
 }
 
@@ -64,6 +73,20 @@ export function addPropertiesWithImage(image, property) {
   }
 }
 
+export function addPropertiesWithDefaultImage(property) {
+  return dispatch => {
+        property.img = './images/default-monochrome.svg'
+        return addProperty(property)
+          .then(propId => {
+            dispatch(fetchPropertyById(propId))
+            // dispatch(fetchProperties())
+            return null
+          })
+  }
+}
+
+
+
 export function deleteTheProperties(id) {
   return dispatch => {
     return deleteProperty(id)
@@ -84,3 +107,9 @@ export function updateTheProperties(id, property) {
   }
 }
 
+export function clearPropById() {
+  return {
+    type: SET_PROPERTIES_EMPTY,
+    property: {}
+  }
+}
