@@ -38,6 +38,7 @@ function Nav ({auth, logout, fetchHouses}) {
                   <Link to='/' className="navbar-item is-large" onClick={() => logout()}>Logout</Link>
                   <Link onClick={toggleBurger} className="navbar-item" to='/home'>Home</Link>
                   <Link onClick={toggleBurger} className="navbar-item" to='/properties'>Properties</Link>
+                  <Link onClick={toggleBurger} className="navbar-item" to='/addproperty'>Add Property</Link>
                   </>
                 )
               : (

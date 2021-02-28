@@ -1,7 +1,9 @@
 import React, {useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchProperties, addTheProperties, addPropertiesWithImage } from '../actions/index'
+import { checkAuth } from '../actions/auth'
+import AddPropertyModal from './AddPropertyModalBulma'
 
 
 function AddProperty (props) {
@@ -50,12 +52,20 @@ function AddProperty (props) {
     })
 }
 
+useEffect(() => {
+  const confirmSuccess = () => { }
+  props.dispatch(checkAuth(confirmSuccess))
+}, [])
+
     return(
         <>
             <Link to='/properties'>back</Link>
-            <h1>More Cheese</h1>
+            <div className=''>
+            {props.auth.isAuthenticated &&
             <form onSubmit={handleSubmit}>
                 <label>
+                  <br/>
+                  <br/>
 
                     <input className='form' type='text' name='address' placeholder='Address ' onChange={(e) => handleChange(e)}/>
 
@@ -74,15 +84,26 @@ function AddProperty (props) {
                </label>
                 <button type='submit'>Add</button>
             </form>
-            
+              }
+              </div>
+              <div className=''>
+              {!props.auth.isAuthenticated &&
+              <>
+              <br/>
+              <br/>
+              <Route path="/" component={AddPropertyModal} />
+              </>
+              }
+            </div>
         </>
     )
 
 }
 
-  const mapStateToProps = ({properties}) => {
+  const mapStateToProps = (globalState) => {
     return {
-      properties
+      properties: globalState.properties,
+      auth: globalState.auth
     }
   }
 
