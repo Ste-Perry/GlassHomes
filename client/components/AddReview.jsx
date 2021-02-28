@@ -13,15 +13,12 @@ function AddReview(props) {
   const propsId = props.propsId;
 
   useEffect(() => {
-    fetchReviews()
+    fetchReviews();
   }, []);
 
- 
-const added = () => {
-
-  props.dispatch(fetchReviewsByPropertyId(propsId))
-
-}
+  const added = () => {
+    props.dispatch(fetchReviewsByPropertyId(propsId));
+  };
 
   const [reviewImage, setReviewImage] = useState(null);
 
@@ -44,9 +41,9 @@ const added = () => {
       return {
         ...currentFormData,
         [e.target.name]: e.target.value,
-      }
-    })
-  }
+      };
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,7 +67,7 @@ const added = () => {
         end_of_tenancy,
         propsId,
       })
-    )
+    );
     const formImage = new FormData();
     formImage.append("img", reviewImage);
     props.dispatch(
@@ -84,40 +81,25 @@ const added = () => {
         end_of_tenancy: formData.end_of_tenancy,
         propsId,
       })
-      )
-      
+    );
 
-    e.target.reset()
+    e.target.reset();
 
-    added()
+    added();
 
-    props.setShowState(!props.showState)
-    
-    props.history.push(`/property${propsId}`)
+    props.setShowState(!props.showState);
 
-    
-  }
+    props.history.push(`/property${propsId}`);
+    }
+    const handleCheck = (e) => {
+      e.target.checked && setFormData({...formData, end_of_tenancy: "ongoing"});
+    };
+    const year = new Date().getFullYear();
 
   const handleClick = (e) => {
     setFormData({...formData, rating: e.target.value});
   }
-    const handleCheck = (e) => {
 
-     e.target.checked &&
-		setFormData({ ...formData, end_of_tenancy: "ongoing" })
-	}
-
-	// const getDropList = () => {
-	//   const year = new Date().getFullYear();
-	//   return (
-	//     Array.from( new Array(75), (v,i) =>
-	//       <option key={i} value={year-i}>{year-i}</option>
-	//     )
-	//   )
-	// }
-
-	const year = new Date().getFullYear()
-  
 
   return (
     <>
@@ -130,6 +112,24 @@ const added = () => {
                 <form onSubmit={handleSubmit}>
                   <hr />
 
+                  <div className="field">
+                    <div className="control">
+                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
+                        Title
+                        <input
+                          required
+                          className="input is-large has-text-centered is-medium"
+                          placeholder="Title"
+                          type="text"
+                          name="title"
+                          onChange={handleChange}
+                          value={formData.title}
+                        />
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="field">
                        	<div className="field">
 										<div className="control">
 											<label className="column is-6 label is-offset-3 label is-large has-text-centered">
@@ -213,7 +213,6 @@ const added = () => {
                     </div>
                   </div>
 
-
                   <div className="field">
                     <div className="control">
                       <label className="column is-6 label is-offset-3 label is-large has-text-centered">
@@ -239,9 +238,10 @@ const added = () => {
                     </label>
                   </div>
 
-                  <div className="rating" >
+                  <div className="rating">
                     Rating:
-                    <input required
+                    <input
+                      required
                       onClick={(e) => handleClick(e)}
                       type="radio"
                       id="star5"
@@ -324,7 +324,6 @@ const added = () => {
       </div>
     </>
   );
-
 }
 
 const mapStateToProps = ({ reviews }) => {
