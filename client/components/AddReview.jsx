@@ -12,15 +12,12 @@ function AddReview(props) {
   const propsId = props.propsId;
 
   useEffect(() => {
-    fetchReviews()
+    fetchReviews();
   }, []);
 
- 
-const added = () => {
-
-  props.dispatch(fetchReviewsByPropertyId(propsId))
-
-}
+  const added = () => {
+    props.dispatch(fetchReviewsByPropertyId(propsId));
+  };
 
   const [reviewImage, setReviewImage] = useState(null);
 
@@ -43,9 +40,9 @@ const added = () => {
       return {
         ...currentFormData,
         [e.target.name]: e.target.value,
-      }
-    })
-  }
+      };
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,7 +66,7 @@ const added = () => {
         end_of_tenancy,
         propsId,
       })
-    )
+    );
     const formImage = new FormData();
     formImage.append("img", reviewImage);
     props.dispatch(
@@ -83,23 +80,25 @@ const added = () => {
         end_of_tenancy: formData.end_of_tenancy,
         propsId,
       })
-      )
-      
+    );
 
-    e.target.reset()
+    e.target.reset();
 
-    added()
+    added();
 
-    props.setShowState(!props.showState)
-    
-    props.history.push(`/property${propsId}`)
+    props.setShowState(!props.showState);
 
-    
-  }
+    props.history.push(`/property${propsId}`);
+    }
+    const handleCheck = (e) => {
+      e.target.checked && setFormData({...formData, end_of_tenancy: "ongoing"});
+    };
+  
 
   const handleClick = (e) => {
     setFormData({...formData, rating: e.target.value});
-  }
+  };
+  const year = new Date().getFullYear();
 
   return (
     <>
@@ -130,40 +129,52 @@ const added = () => {
                   </div>
 
                   <div className="field">
-                    <div className="control">
-                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
-                        Start of Tenancy
-                        <input
-                          required
-                          className="input is-large has-text-centered is-fullwidth"
-                          placeholder="Start of Tenancy"
-                          type="text"
-                          name="start_of_tenancy"
-                          autoComplete="start_of_tenancy"
-                          onChange={handleChange}
-                          value={formData.start_of_tenancy}
-                        />
-                      </label>
-                    </div>
-                  </div>
+										<div className="control">
+											<label className="column is-6 label is-offset-3 label is-large has-text-centered">
+												Start of Tenancy
+												<input
+													min="1900"
+													max={year}
+													required
+													className="input is-large has-text-centered is-fullwidth"
+													placeholder="2020"
+													type="number"
+													name="start_of_tenancy"
+													autoComplete="start_of_tenancy"
+													onChange={handleChange}
+													value={formData.start_of_tenancy}
+												/>
+											</label>
+										</div>
+									</div>
 
-                  <div className="field">
-                    <div className="control">
-                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
-                        End of Tenancy
-                        <input
-                          required
-                          className="input is-large has-text-centered is-fullwidth"
-                          placeholder="End of Tenancy"
-                          type="text"
+									<div className="field">
+										<div className="control">
+											<label className="column is-6 label is-offset-3 label is-large has-text-centered">
+												End of Tenancy
+												<input
+													min="1900"
+													max={year}
+													className="input is-large has-text-centered is-fullwidth"
+													placeholder="2020"
+													type="number"
+													name="end_of_tenancy"
+													autoComplete="end_of_tenancy"
+													onChange={handleChange}
+													value={formData.end_of_tenancy}
+												/>
+											</label>
+											<label>
+												Ongoing
+												<input
+													onChange={handleCheck}
+                          type="checkbox"
                           name="end_of_tenancy"
-                          autoComplete="end_of_tenancy"
-                          onChange={handleChange}
-                          value={formData.end_of_tenancy}
-                        />
-                      </label>
-                    </div>
-                  </div>
+													value="ongoing"
+												></input>
+											</label>
+										</div>
+									</div>
 
                   <div className="field">
                     <div className="control">
@@ -200,7 +211,6 @@ const added = () => {
                     </div>
                   </div>
 
-
                   <div className="field">
                     <div className="control">
                       <label className="column is-6 label is-offset-3 label is-large has-text-centered">
@@ -226,9 +236,10 @@ const added = () => {
                     </label>
                   </div>
 
-                  <div className="rating" >
+                  <div className="rating">
                     Rating:
-                    <input required
+                    <input
+                      required
                       onClick={(e) => handleClick(e)}
                       type="radio"
                       id="star5"
@@ -311,7 +322,6 @@ const added = () => {
       </div>
     </>
   );
-
 }
 
 const mapStateToProps = ({reviews}) => {
