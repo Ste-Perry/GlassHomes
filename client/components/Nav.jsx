@@ -20,8 +20,6 @@ function Nav ({auth, logout, fetchHouses}) {
     fetchHouses()
   },[])
 
-  
-
     return <nav className="navbar">
       <div className="container">
         <div className="navbar-brand">
@@ -39,6 +37,7 @@ function Nav ({auth, logout, fetchHouses}) {
                   <Link to='/meeting' className="navbar-item is-large" >New Meeting </Link> */}
                   <Link to='/' className="navbar-item is-large" onClick={() => logout()}>Logout</Link>
                   <Link onClick={toggleBurger} className="navbar-item" to='/home'>Home</Link>
+                  <Link onClick={toggleBurger} className="navbar-item" to='/properties'>Properties</Link>
                   </>
                 )
               : (

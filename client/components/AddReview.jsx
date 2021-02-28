@@ -70,6 +70,7 @@ function AddReview(props) {
     props.history.push("/reviews");
   };
 
+
 const handleClick = (e) => {
   setFormData({...formData, rating: e.target.value})
 }

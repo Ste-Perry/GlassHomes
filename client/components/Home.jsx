@@ -2,11 +2,17 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchProperties } from '../actions'
+import { checkAuth } from '../actions/auth'
 
 const Home = (props) => {
   // useEffect(() => {
   //   props.dispatch(fetchProperties())
   // }, [])
+
+  useEffect(() => {
+    const confirmSuccess = () => { }
+    props.dispatch(checkAuth(confirmSuccess))
+  }, [])
 
   return (
     <div >
@@ -27,6 +33,18 @@ const Home = (props) => {
                   Because tenants should throw stones.
                         </h2>
                 <br />
+                <div className=''>
+                  {props.auth.isAuthenticated &&
+                  <>
+                  <p className='has-text-centered'><Link className="button is-medium is-info is-outlined" to='/properties'>Properties</Link></p>
+                  <br/>
+                    <p className='has-text-centered'><Link className="button is-medium is-info is-outlined" to='/reviews'>Reviews</Link></p>
+                  </>
+                  }
+                </div>
+                <div className=''>
+                  {!props.auth.isAuthenticated &&
+                  <>
                 <p className="has-text-centered">
                   <Link className="button is-medium is-info is-outlined" to='/login'>Sign in</Link>
                 </p>
@@ -34,6 +52,9 @@ const Home = (props) => {
                 <p className="has-text-centered">
                   <Link className="button is-medium is-info is-outlined" to='/register'>Sign up</Link>
                 </p>
+                </>
+                  }
+                </div>
               </div>
             </div>
           </div>
@@ -45,7 +66,8 @@ const Home = (props) => {
 }
 const mapStateToProps = (globalState) => {
   return {
-    properties: globalState.properties
+    properties: globalState.properties,
+    auth: globalState.auth
   }
 }
 
