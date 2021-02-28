@@ -40,3 +40,11 @@ export function getReviewByPropertyId(id){
   return request.get(rootUrl + "/property/" + id)
   .then(res => res.body)
 }
+
+export function addImageReview (formData) {
+  return request.post(rootUrl + '/image')
+    .send(formData)
+    .then(res => {
+      return res.text
+    })
+}

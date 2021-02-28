@@ -105,6 +105,8 @@ function Property(props) {
                         <i style={{color: "grey"}} className="fa fa-bath"></i>
                         <span> Bathrooms: {singleProperty.bathrooms}</span>
                       </div>
+    												<div className=""><span><img src={singleProperty.img} alt="image of property"/></span></div>
+
 
                       <form onSubmit={(e) => handleUpdateSubmit(propertyId, e)}>
                         <label>
@@ -169,6 +171,7 @@ function Property(props) {
                           </>
                         )}
                       </div>
+
                     </div>
                   </div>
                 </div>

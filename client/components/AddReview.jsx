@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
-import {addReviewAction, fetchReviews} from "../actions/reviews";
+
+import React, {useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { addReviewAction, addReviewWithImage, fetchReviews } from '../actions/reviews'
 
 function AddReview(props) {
   const propsId = props.propsId;
@@ -10,17 +11,26 @@ function AddReview(props) {
     fetchReviews();
   }, []);
 
-  const [formData, setFormData] = useState({
-    title: "",
-    comments: "",
-    pros: "",
-    cons: "",
-    rating: "",
-    stat_of_tenancy: "",
-    end_of_tenancy: "",
-  });
 
-  const handleChange = (e) => {
+  const [reviewImage, setReviewImage] = useState(null)
+
+
+  const [formData, setFormData] = useState({
+
+    title: '',
+    comments: '',
+    pros: '',
+    cons: '',
+    rating: '',
+    stat_of_tenancy:'',
+    end_of_tenancy:''
+    })
+
+    const onChangeFile = (e) => {
+      setReviewImage(e.target.files[0])
+    }
+
+    const handleChange = (e) => {
     setFormData((currentFormData) => {
       return {
         ...currentFormData,
@@ -52,6 +62,10 @@ function AddReview(props) {
         propsId,
       })
     );
+        const formImage = new FormData()
+    formImage.append('img', reviewImage)
+    props.dispatch(addReviewWithImage(formImage, {title: formData.title, comments: formData.comments, pros: formData.pros, cons: formData.cons, rating: formData.rating, start_of_tenancy: formData.start_of_tenancy, end_of_tenancy: formData.end_of_tenancy, propsId}))
+
     e.target.reset();
     props.history.push("/reviews");
   };
@@ -59,6 +73,7 @@ function AddReview(props) {
 const handleClick = (e) => {
   setFormData({...formData, rating: e.target.value})
 }
+
 
 console.log(formData)
 
@@ -125,6 +140,13 @@ console.log(formData)
                       </label>
                     </div>
                   </div>
+    <div>                 </label>
+                
+                <label className="" htmlFor="img">
+                  <span className="">Review image </span>
+                   <input type="file" name="img" onChange={onChangeFile} />
+               </label>
+            </div>
 
                   <div class="rating">
                     <input onClick={(e) => handleClick(e)} type="radio" id="star5" name="rating" value = "5" />
@@ -195,14 +217,18 @@ console.log(formData)
 
     //                 <input className='form' type='text' name='start_of_tenancy' placeholder='Start_of_Tenancy' onChange={(e) => handleChange(e)}/>
 
-    //                 <input className='form' type='text' name='end_of_tenancy' placeholder='End_of_Tenancy' onChange={(e) => handleChange(e)}/>
 
-    //             </label>
-    //             <button type='submit'>Add</button>
-    //         </form>
-    //          */}
-    // {/* </> */}
-  );
+                </label>
+                
+                <label className="" htmlFor="img">
+                  <span className="">Review image </span>
+                   <input type="file" name="img" onChange={onChangeFile} />
+               </label>
+                <button type='submit'>Add</button>
+            </form>
+            
+    </>
+  )
 }
 
 const mapStateToProps = ({reviews}) => {

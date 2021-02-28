@@ -1,4 +1,4 @@
-import { deleteReview, getReviews, addReview, updateReview, getReviewByPropertyId} from '../apis/reviews'
+import { deleteReview, getReviews, addReview, updateReview, getReviewByPropertyId, addImageReview} from '../apis/reviews'
 
 export const SET_REVIEWS = 'SET_REVIEWS'
 export const SET_REVIEWS_BY_PROP_ID = 'SET_REVIEWS_BY_PROP_ID'
@@ -53,6 +53,21 @@ export function addReviewAction (review) {
       .then(() => {
         dispatch(fetchReviews())
         return null
+      })
+  }
+}
+
+//testing addThePropsWithImage
+export function addReviewWithImage(image, review) {
+  return dispatch => {
+    return addImageReview(image)
+      .then(fileUrl => {
+        review.image = fileUrl
+        return addReview(review)
+          .then(propId => {
+            dispatch(fetchReviews())
+            return null
+          })
       })
   }
 }
