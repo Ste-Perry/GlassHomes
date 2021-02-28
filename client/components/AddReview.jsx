@@ -1,43 +1,51 @@
-
-import React, {useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { addReviewAction, addReviewWithImage, fetchReviews } from '../actions/reviews'
+import React, {useEffect, useState} from "react";
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
+import {
+  addReviewAction,
+  addReviewWithImage,
+  fetchReviews,
+  fetchReviewsByPropertyId,
+} from "../actions/reviews";
 
 function AddReview(props) {
   const propsId = props.propsId;
 
   useEffect(() => {
-    fetchReviews();
+    fetchReviews()
   }, []);
 
+ 
+const added = () => {
 
-  const [reviewImage, setReviewImage] = useState(null)
+  props.dispatch(fetchReviewsByPropertyId(propsId))
 
+}
+
+  const [reviewImage, setReviewImage] = useState(null);
 
   const [formData, setFormData] = useState({
+    title: "",
+    comments: "",
+    pros: "",
+    cons: "",
+    rating: "",
+    stat_of_tenancy: "",
+    end_of_tenancy: "",
+  });
 
-    title: '',
-    comments: '',
-    pros: '',
-    cons: '',
-    rating: '',
-    stat_of_tenancy:'',
-    end_of_tenancy:''
-    })
+  const onChangeFile = (e) => {
+    setReviewImage(e.target.files[0]);
+  };
 
-    const onChangeFile = (e) => {
-      setReviewImage(e.target.files[0])
-    }
-
-    const handleChange = (e) => {
+  const handleChange = (e) => {
     setFormData((currentFormData) => {
       return {
         ...currentFormData,
         [e.target.name]: e.target.value,
-      };
-    });
-  };
+      }
+    })
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,23 +69,37 @@ function AddReview(props) {
         end_of_tenancy,
         propsId,
       })
-    );
-        const formImage = new FormData()
-    formImage.append('img', reviewImage)
-    props.dispatch(addReviewWithImage(formImage, {title: formData.title, comments: formData.comments, pros: formData.pros, cons: formData.cons, rating: formData.rating, start_of_tenancy: formData.start_of_tenancy, end_of_tenancy: formData.end_of_tenancy, propsId}))
+    )
+    const formImage = new FormData();
+    formImage.append("img", reviewImage);
+    props.dispatch(
+      addReviewWithImage(formImage, {
+        title: formData.title,
+        comments: formData.comments,
+        pros: formData.pros,
+        cons: formData.cons,
+        rating: formData.rating,
+        start_of_tenancy: formData.start_of_tenancy,
+        end_of_tenancy: formData.end_of_tenancy,
+        propsId,
+      })
+      )
+      
 
-    e.target.reset();
-    props.history.push("/reviews");
-  };
+    e.target.reset()
 
+    added()
 
-const handleClick = (e) => {
-  setFormData({...formData, rating: e.target.value})
-}
+    props.setShowState(!props.showState)
+    
+    props.history.push(`/property${propsId}`)
 
+    
+  }
 
-console.log(formData)
-
+  const handleClick = (e) => {
+    setFormData({...formData, rating: e.target.value});
+  }
 
   return (
     <>
@@ -110,6 +132,42 @@ console.log(formData)
                   <div className="field">
                     <div className="control">
                       <label className="column is-6 label is-offset-3 label is-large has-text-centered">
+                        Start of Tenancy
+                        <input
+                          required
+                          className="input is-large has-text-centered is-fullwidth"
+                          placeholder="Start of Tenancy"
+                          type="text"
+                          name="start_of_tenancy"
+                          autoComplete="start_of_tenancy"
+                          onChange={handleChange}
+                          value={formData.start_of_tenancy}
+                        />
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="field">
+                    <div className="control">
+                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
+                        End of Tenancy
+                        <input
+                          required
+                          className="input is-large has-text-centered is-fullwidth"
+                          placeholder="End of Tenancy"
+                          type="text"
+                          name="end_of_tenancy"
+                          autoComplete="end_of_tenancy"
+                          onChange={handleChange}
+                          value={formData.end_of_tenancy}
+                        />
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="field">
+                    <div className="control">
+                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
                         Pros
                         <input
                           required
@@ -132,7 +190,7 @@ console.log(formData)
                           required
                           className="input is-large has-text-centered is-fullwidth"
                           placeholder="Cons"
-                          type="cons"
+                          type="text"
                           name="cons"
                           autoComplete="cons"
                           onChange={handleChange}
@@ -141,47 +199,97 @@ console.log(formData)
                       </label>
                     </div>
                   </div>
-<div>                
-                <label className="" htmlFor="img">
-                  <span className="">Review image </span>
-                   <input type="file" name="img" onChange={onChangeFile} />
-               </label>
-            </div>
 
-                  <div class="rating">
-                    <input onClick={(e) => handleClick(e)} type="radio" id="star5" name="rating" value = "5" />
-                    <label 
-                      class="star"
+                  <div className="field">
+                    <div className="control">
+                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
+                        Comments
+                        <input
+                          required
+                          className="input is-large has-text-centered is-fullwidth"
+                          placeholder="Comments"
+                          type="text"
+                          name="comments"
+                          autoComplete="comments"
+                          onChange={handleChange}
+                          value={formData.comments}
+                        />
+                      </label>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="" htmlFor="img">
+                      <span className="">Review image </span>
+                      <input type="file" name="img" onChange={onChangeFile} />
+                    </label>
+                  </div>
+
+                  <div className="rating" >
+                    Rating:
+                    <input required
+                      onClick={(e) => handleClick(e)}
+                      type="radio"
+                      id="star5"
+                      name="rating"
+                      value="5"
+                    />
+                    <label
+                      className="star"
                       for="star5"
-                      title="Awesome"
+                      title="Amazing"
                       aria-hidden="true"
                     ></label>
-                    <input onClick={(e) => handleClick(e)}  type="radio" id="star4" name="rating" value="4" />
+                    <input
+                      onClick={(e) => handleClick(e)}
+                      type="radio"
+                      id="star4"
+                      name="rating"
+                      value="4"
+                    />
                     <label
-                      class="star"
+                      className="star"
                       for="star4"
-                      title="Great"
-                      aria-hidden="true"
-                    ></label>
-                    <input onClick={(e) => handleClick(e)}  type="radio" id="star3" name="rating" value="3" />
-                    <label
-                      class="star"
-                      for="star3"
-                      title="Very good"
-                      aria-hidden="true"
-                    ></label>
-                    <input onClick={(e) => handleClick(e)} type="radio" id="star2" name="rating" value="2" />
-                    <label
-                      class="star"
-                      for="star2"
                       title="Good"
                       aria-hidden="true"
                     ></label>
-                    <input onClick={(e) => handleClick(e)} type="radio" id="star1" name="rating" value="1" />
+                    <input
+                      onClick={(e) => handleClick(e)}
+                      type="radio"
+                      id="star3"
+                      name="rating"
+                      value="3"
+                    />
                     <label
-                      class="star"
-                      for="star1"
+                      className="star"
+                      for="star3"
+                      title="Ok"
+                      aria-hidden="true"
+                    ></label>
+                    <input
+                      onClick={(e) => handleClick(e)}
+                      type="radio"
+                      id="star2"
+                      name="rating"
+                      value="2"
+                    />
+                    <label
+                      className="star"
+                      for="star2"
                       title="Bad"
+                      aria-hidden="true"
+                    ></label>
+                    <input
+                      onClick={(e) => handleClick(e)}
+                      type="radio"
+                      id="star1"
+                      name="rating"
+                      value="1"
+                    />
+                    <label
+                      className="star"
+                      for="star1"
+                      title="Terrible"
                       aria-hidden="true"
                     ></label>
                   </div>
@@ -201,34 +309,7 @@ console.log(formData)
         </div>
       </div>
     </>
-
-    //                     {/* <form onSubmit={handleSubmit}>
-    //             <label> */}
-
-    //                 {/* <input className='form' type='text' name='title' placeholder='Title ' onChange={(e) => handleChange(e)}/> */}
-
-    //                 {/* <input className='form' type='text' name='pros' placeholder='Pros ' onChange={(e) => handleChange(e)}/>
-
-    //                 <input className='form' type='text' name='cons' placeholder='cons ' onChange={(e) => handleChange(e)}/>
-
-    //                 <input className='form' type='text' name='comments' placeholder='Comments' onChange={(e) => handleChange(e)}/>
-
-    //                 <input className='form' type='text' name='rating' placeholder='Rating' onChange={(e) => handleChange(e)}/>
-
-    //                 <input className='form' type='text' name='start_of_tenancy' placeholder='Start_of_Tenancy' onChange={(e) => handleChange(e)}/>
-
-
-            //     </label>
-                
-            //     <label className="" htmlFor="img">
-            //       <span className="">Review image </span>
-            //        <input type="file" name="img" onChange={onChangeFile} />
-            //    </label>
-            //     <button type='submit'>Add</button>
-            // </form>
-            
-    // </>
-  )
+  );
 }
 
 const mapStateToProps = ({reviews}) => {
