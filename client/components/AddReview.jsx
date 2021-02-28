@@ -141,7 +141,7 @@ console.log(formData)
                       </label>
                     </div>
                   </div>
-    <div>                 </label>
+    <div>                
                 
                 <label className="" htmlFor="img">
                   <span className="">Review image </span>
@@ -219,16 +219,6 @@ console.log(formData)
     //                 <input className='form' type='text' name='start_of_tenancy' placeholder='Start_of_Tenancy' onChange={(e) => handleChange(e)}/>
 
 
-                </label>
-                
-                <label className="" htmlFor="img">
-                  <span className="">Review image </span>
-                   <input type="file" name="img" onChange={onChangeFile} />
-               </label>
-                <button type='submit'>Add</button>
-            </form>
-            
-    </>
   )
 }
 
