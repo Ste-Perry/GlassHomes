@@ -5,7 +5,6 @@ import Review from './Review'
 import AddReview from './AddReview'
 
 function PropertyReviews(props) {
-	const [propertyReview, setPropertyReview] = useState([])
 
 	const id = props.propertyId
 
@@ -20,12 +19,10 @@ function PropertyReviews(props) {
 				return (
 					<div>
 						<Review key={review.id} review={review} />
-						<div>
-						<AddReview propsId={id} />
-						</div>
 					</div>
 				)
 			})}
+      
 		</>
 	)
 }

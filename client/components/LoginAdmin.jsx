@@ -31,7 +31,9 @@ function Login(props) {
 
 	return (
 		<>
-			<section className="hero is-info is-medium is-bold" id="hero-image">
+
+
+			<section className="hero is-info is-medium is-bold" id="hero-admin">
 
 				<div className="hero-body"></div>
 			</section>
@@ -42,7 +44,7 @@ function Login(props) {
 						<div className="card article">
 							<div className="card-content">
 								<div className="column is-6 is-offset-3">
-									<h3 className="title has-text-black">Login</h3>
+									<h3 className="title has-text-black">Admin Login</h3>
 									<hr className="login-hr"></hr>
 									<p className="subtitle has-text-black">Please login to proceed.</p>
 									<form className="form box" onSubmit={handleSubmit}>
@@ -93,11 +95,6 @@ function Login(props) {
 										/>
 									</form>
 
-									<p className="has-text-grey">
-										<a href="../">Sign Up</a> &nbsp;·&nbsp;
-										<a href="../">Forgot Password</a> &nbsp;·&nbsp;
-										<a href="../">Need Help?</a>
-									</p>
 								</div>
 							</div>
 						</div>
