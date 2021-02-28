@@ -1,4 +1,3 @@
-
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
@@ -94,12 +93,12 @@ function AddReview(props) {
     const handleCheck = (e) => {
       e.target.checked && setFormData({...formData, end_of_tenancy: "ongoing"});
     };
-    const year = new Date().getFullYear();
+  
 
   const handleClick = (e) => {
     setFormData({...formData, rating: e.target.value});
-  }
-
+  };
+  const year = new Date().getFullYear();
 
   return (
     <>
@@ -130,7 +129,6 @@ function AddReview(props) {
                   </div>
 
                   <div className="field">
-                       	<div className="field">
 										<div className="control">
 											<label className="column is-6 label is-offset-3 label is-large has-text-centered">
 												Start of Tenancy
@@ -326,10 +324,10 @@ function AddReview(props) {
   );
 }
 
-const mapStateToProps = ({ reviews }) => {
-	return {
-		reviews,
-	}
-}
+const mapStateToProps = ({reviews}) => {
+  return {
+    reviews,
+  };
+};
 
-export default connect(mapStateToProps)(AddReview)
+export default connect(mapStateToProps)(AddReview);
