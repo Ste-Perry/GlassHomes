@@ -62,7 +62,6 @@ function Property(props) {
 
   const [show, setShow] = useState(false)
 
-
   return (
     <>
       {singleProperty && (
@@ -161,16 +160,23 @@ function Property(props) {
                         </label>
                         <button type="submit">Update</button>
                       </form>
+
+
+                      
                       <h3 className="has-text-centered">Reviews</h3>
-                      <PropertyReviews propertyId={singleProperty.id} />
+
                       <div>
                         <button  className="button is-large is-fullwidth is-success" onClick={() => setShow(!show)}>Add Review</button>
                         {show && (
                           <>
-                            <AddReview propsId={singleProperty.id} />
+                            <AddReview showState={show} setShowState={setShow}  propsId={singleProperty.id} />
                           </>
                         )}
                       </div>
+
+                      <PropertyReviews propertyId={singleProperty.id} />
+             
+
 
                     </div>
                   </div>
