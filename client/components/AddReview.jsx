@@ -200,6 +200,7 @@ const added = () => {
                     </div>
                   </div>
 
+
                   <div className="field">
                     <div className="control">
                       <label className="column is-6 label is-offset-3 label is-large has-text-centered">
@@ -310,6 +311,7 @@ const added = () => {
       </div>
     </>
   );
+
 }
 
 const mapStateToProps = ({reviews}) => {

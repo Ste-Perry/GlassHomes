@@ -18,6 +18,7 @@ import { checkAuth } from '../actions/auth'
 import Property from './Property'
 import AddReview from './AddReview'
 import AddProperty from './AddProperty'
+import AddPropertyModal from './AddPropertyModalBulma'
 
 function App({ auth, dispatch }) {
 
@@ -59,6 +60,7 @@ function App({ auth, dispatch }) {
         <Route path='/review' component={Review} />
         <Route path='/reviews' component={Reviews} />
         <Route path='/addproperty' component={AddProperty} />
+        <Route path='/addpropertymodal' component={AddPropertyModal}/>
 
       </div>
 
