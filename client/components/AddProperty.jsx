@@ -5,6 +5,7 @@ import { fetchProperties, addTheProperties, addPropertiesWithImage } from '../ac
 import { checkAuth } from '../actions/auth'
 import AddPropertyModal from './AddPropertyModalBulma'
 
+
 function AddProperty (props) {
 
   useEffect(() => {
