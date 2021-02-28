@@ -14,7 +14,8 @@ function Footer () {
 		<div>
     <p>
 		<Link to="/loginadmin">Admin</Link> /   
-		<Link href="/adminlogin"> Contact</Link>
+		<a href="mailto:admin@glasshomes.co.nz"> Contact</a> / 
+		<Link to="adminportal"> Admin Portal (will remove)</Link>
 		</p>
 		</div>
   </div>
