@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchProperties, addTheProperties, addPropertiesWithImage } from '../actions/index'
 
+
 function AddProperty (props) {
 
   useEffect(() => {
