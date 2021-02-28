@@ -31,8 +31,6 @@ function Login(props) {
 
 	return (
 		<>
-
-
 			<section className="hero is-info is-medium is-bold" id="hero-image">
 
 				<div className="hero-body"></div>

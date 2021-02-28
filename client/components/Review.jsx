@@ -16,7 +16,7 @@ const Review = (props) => {
       starArray.push(<span className="fa fa-star"></span>);
     }
     return starArray
-  };
+  }
 
   return (
     <div key={review.id}  >
