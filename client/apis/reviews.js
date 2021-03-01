@@ -33,6 +33,7 @@ export function updateReview(id, review){
 export function deleteReview(id){
   return request.delete(rootUrl + '/' + id)
   .then(res => {
+    console.log(res.body)
     return res.body})
 }
 

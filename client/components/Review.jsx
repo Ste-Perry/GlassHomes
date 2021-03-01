@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
-import { deleteReviews } from '../actions/reviews'
+import { deleteReviews, fetchReviewsWithOffsetAndLimit } from '../actions/reviews'
 
 const Review = (props) => {
   const review = props.review;
@@ -23,14 +23,16 @@ const Review = (props) => {
 
   const [showImg, setShowImg] = useState(false);
 
+
+  //refactor to use store
   const handleDelete = (id, e) => {
     if (confirm("Are you sure you want to delete this review?")){
       e.preventDefault()
       props.dispatch(
-      deleteReviews(id),
+      deleteReviews(id)
       )
       alert('Deleted!')
-      
+      props.dispatch(fetchReviewsWithOffsetAndLimit(props.setOffset.offset, props.setOffset.limit, props.setOffset.id))
     }else {
       alert('Not deleted')
     }
@@ -100,7 +102,8 @@ const Review = (props) => {
 const mapStateToProps = (globalState) => {
   return {
     reviews: globalState.reviews,
-    auth: globalState.auth
+    auth: globalState.auth,
+    setOffset: globalState.setOffset
   };
 };
 

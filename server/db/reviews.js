@@ -3,8 +3,7 @@
 const connection = require('./connection')
 
 function getReviews (db = connection) {
-  return db('reviews').select().limit(limit).offset(offset)
-}
+  return db('reviews').select() }
 
 function getReviewsWithLimitAndOffset (limit, offset, id, db = connection) {
   return db('reviews').select().limit(limit).offset(offset)

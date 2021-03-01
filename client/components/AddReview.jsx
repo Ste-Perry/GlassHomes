@@ -5,7 +5,8 @@ import {
   addReviewWithImage,
   fetchReviews,
   fetchReviewsByPropertyId,
-  addReviewWithDefaultImage
+  addReviewWithDefaultImage,
+  fetchReviewsWithOffsetAndLimit
 } from "../actions/reviews"
 
 function AddReview(props) {
@@ -67,6 +68,7 @@ function AddReview(props) {
         propsId,
       }))
       e.target.reset()
+      props.dispatch(fetchReviewsWithOffsetAndLimit(props.setOffset.offset, props.setOffset.limit, props.setOffset.id))
       props.setShowState(!props.showState)
 
     } else {
@@ -84,6 +86,7 @@ function AddReview(props) {
       })
       )
       e.target.reset()
+      props.dispatch(fetchReviewsWithOffsetAndLimit(props.setOffset.offset, props.setOffset.limit, props.setOffset.id))
       props.setShowState(!props.showState)
     }
 
@@ -327,9 +330,10 @@ function AddReview(props) {
   );
 }
 
-const mapStateToProps = ({reviews}) => {
+const mapStateToProps = ({reviews, setOffset}) => {
   return {
     reviews,
+    setOffset,
   }
 }
 

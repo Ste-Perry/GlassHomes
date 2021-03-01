@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { fetchReviews, fetchReviewsByPropertyId, fetchReviewsWithOffsetAndLimit } from '../actions/reviews'
+import { fetchReviews, fetchReviewsByPropertyId, fetchReviewsWithOffsetAndLimit, reviewOffsetLimitAndId } from '../actions/reviews'
 import Review from './Review'
 // import AddReview from './AddReview'
 import ReactPaginate from 'react-paginate'
@@ -15,11 +15,14 @@ function PropertyReviews(props) {
 	// const [pageCount, setPageCount] = useState(0)
 	// const [count , setCount] = useState(0)
 
+	//refactor to use store
 	useEffect(() => {
 		props.dispatch(fetchReviewsByPropertyId(id))
+		
 		props.dispatch(fetchReviewsWithOffsetAndLimit(offset, limit, id))
-		// console.log(offset, limit)
+		props.dispatch(reviewOffsetLimitAndId(offset, limit, id))
 	}, [offset])
+
 
 	const handleLimitChange = (e) => {
 		// console.log("handleChange",e.target.value)
@@ -29,6 +32,8 @@ function PropertyReviews(props) {
 	const handleLimitSubmit = (e) => {
 		e.preventDefault()
 		props.dispatch(fetchReviewsWithOffsetAndLimit(offset, limit, id))
+		props.dispatch(reviewOffsetLimitAndId(offset, limit, id))
+
 		// setLimit(e.target.value)
 		
 	}
