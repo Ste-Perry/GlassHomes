@@ -46,7 +46,7 @@ function Search (props) {
     geocodeByAddress(a)
     .then(results => getLatLng(results[0]))
     .then(latLng => console.log('Success', latLng))
-    .then(() => setBool(false))
+    .then(() => {return (setBool(false), setAddRedirect(false), setPropRedirect(false))})
     .catch(error => console.error('Error', error));    
   };
 
