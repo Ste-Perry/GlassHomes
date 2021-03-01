@@ -6,6 +6,9 @@ import {getPropertyById} from "../apis/properties";
 import Reviews from "./Reviews";
 import PropertyReviews from "./PropertyReviews";
 import AddReview from './AddReview'
+import { checkAuth } from '../actions/auth'
+import { GlobalAccelerator } from "aws-sdk";
+
 function Property(props) {
   const [formData, setFormData] = useState({
     address: "",
@@ -14,6 +17,12 @@ function Property(props) {
     bathrooms: "",
     parking: "",
   });
+
+  useEffect(() => {
+    const confirmSuccess = () => { }
+    props.dispatch(checkAuth(confirmSuccess))
+  }, [])
+  
 
   const handleUpdateSubmit = (id, e) => {
     e.preventDefault();
@@ -167,12 +176,18 @@ function Property(props) {
                       <h3 className="has-text-centered">Reviews</h3>
 
                       <div>
-                        <button  className="button is-large is-fullwidth is-success" onClick={() => setShow(!show)}>Add Review</button>
-                        {show && (
-                          <>
+                        <div className='box has-text-centered'>
+                        {props.auth.isAuthenticated &&
+                        <>
+                        <button  className="button is-medium is-info is-outlined" onClick={() => setShow(!show)}>Add Review</button>
+                        {
+                        show && (
                             <AddReview showState={show} setShowState={setShow}  propsId={singleProperty.id} />
-                          </>
+                        
                         )}
+                          </>
+                          }
+                          </div>
                       </div>
 
                       <PropertyReviews propertyId={singleProperty.id} />
@@ -191,9 +206,10 @@ function Property(props) {
   );
 }
 
-const mapStateToProps = ({properties}) => {
+const mapStateToProps = (globalState) => {
   return {
-    properties,
+    properties: globalState.properties,
+    auth: globalState.auth
   };
 };
 
