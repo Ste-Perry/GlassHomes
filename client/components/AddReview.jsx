@@ -1,3 +1,4 @@
+
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
@@ -69,13 +70,12 @@ function AddReview(props) {
         end_of_tenancy,
         propsId,
       })
+    )
 
-    );
-    const formImage = new FormData()
-    // formImage.append("img", reviewImage)
-    if(reviewImage == null) {
+    const formImage = new FormData();
+    formImage.append("img", reviewImage);
     props.dispatch(
-      addReviewWithImage({
+      addReviewWithImage(formImage, {
         title: formData.title,
         comments: formData.comments,
         pros: formData.pros,
@@ -84,23 +84,10 @@ function AddReview(props) {
         start_of_tenancy: formData.start_of_tenancy,
         end_of_tenancy: formData.end_of_tenancy,
         propsId,
-
-      }))
-      } else {
-      formImage.append('img' )
-      props.dispatch(
-        addReviewWithImage(formImage, {
-          title: formData.title,
-          comments: formData.comments,
-          pros: formData.pros,
-          cons: formData.cons,
-          rating: formData.rating,
-          start_of_tenancy: formData.start_of_tenancy,
-          end_of_tenancy: formData.end_of_tenancy,
-          propsId,
-      }))
-    }
+      })
+    )
     
+
 
     e.target.reset();
 
@@ -108,7 +95,7 @@ function AddReview(props) {
 
     props.setShowState(!props.showState);
 
-
+    // props.history.push(`/property/${propsId}`);
     }
     const handleCheck = (e) => {
       e.target.checked ? setFormData({...formData, end_of_tenancy: "ongoing"}) : setFormData({...formData, end_of_tenancy: ""})
