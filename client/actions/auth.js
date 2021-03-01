@@ -68,6 +68,7 @@ export function logoutUser (confirmSuccess) {
 
 export function registerUserRequest (creds, confirmSuccess) {
   return (dispatch) => {
+    creds.admin = 0
     register(creds)
       .then(userInfo => {
         dispatch(receiveLogin(userInfo))
