@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { fetchReviewsByPropertyId } from '../actions/reviews'
 import Review from './Review'
-import AddReview from './AddReview'
 
 function PropertyReviews(props) {
 
@@ -28,7 +27,6 @@ function PropertyReviews(props) {
 }
 
 const mapStateToProps = ({ reviewByProperty }) => {
-  console.log(reviewByProperty.length)
 	return {
 		reviewByProperty,
 	}
