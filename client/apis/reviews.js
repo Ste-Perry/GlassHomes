@@ -48,3 +48,10 @@ export function addImageReview (formData) {
       return res.text
     })
 }
+
+export function getReviewsWithOffsetAndLimit(offset, limit) {
+  return request.get(rootUrl + offset + "/" + limit)
+  .then(res => res.body)
+}
+
+// reviews/property/:offset/:limit

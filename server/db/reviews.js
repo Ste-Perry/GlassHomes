@@ -3,7 +3,11 @@
 const connection = require('./connection')
 
 function getReviews (db = connection) {
-  return db('reviews').select()
+  return db('reviews').select().limit(limit).offset(offset)
+}
+
+function getReviewsWithLimitAndOffset (limit, offset, db = connection) {
+  return db('reviews').select().limit(limit).offset(offset)
 }
 
 function addReview (reviews, db = connection) {
@@ -38,5 +42,6 @@ module.exports = {
   getReviewById,
   updateReview,
   deleteReview,
-  getReviewByPropertyId
+  getReviewByPropertyId,
+  getReviewsWithLimitAndOffset
 }
