@@ -25,13 +25,16 @@ function AddPropertyModal(props) {
 
       <div className={['modal', isActive ? "is-active" : ""].join(' ')}>
         <div className="modal-background"></div>
-        <div className="modal-content has-text-centered">
+        <div class="modal-card">
+        <section className="modal-card-body has-text-centered">
           <div className="box">
             <p>Oopsie, Looks like that place hasn't been listed yet.</p>
             <p>Log in or register to add it!</p>
-          </div>
-        </div>
-        <button className="modal-close is-large" aria-label="close" onClick={() => setActive(false)} onClick={(e) => redirect(e)}></button>
+          </div>    
+      <button class="button is-medium is-info is-outlined" onClick={() => setActive(false)} onClick={(e) => redirect(e)}>OK!</button>
+    </section>
+    </div>
+        {/* <button className="modal-close is-large" aria-label="close" onClick={() => setActive(false)} onClick={(e) => redirect(e)}></button> */}
       </div>
     </>
   )
