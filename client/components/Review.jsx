@@ -27,9 +27,10 @@ const Review = (props) => {
     if (confirm("Are you sure you want to delete this review?")){
       e.preventDefault()
       props.dispatch(
-      deleteReviews(id)
+      deleteReviews(id),
       )
       alert('Deleted!')
+      
     }else {
       alert('Not deleted')
     }

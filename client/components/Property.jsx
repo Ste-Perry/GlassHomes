@@ -34,7 +34,8 @@ function Property(props) {
       deleteTheProperties(id)
       )
       alert('Deleted!')
-      
+      props.history.push('/properties')
+
     }else {
       alert('Not deleted')
     }
