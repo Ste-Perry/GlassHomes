@@ -71,7 +71,7 @@ function Search (props) {
         searchOptions={searchOptions}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
+          <div className="searchbox">
             <input
               {...getInputProps({
                 placeholder: 'Search Places ...',
@@ -86,7 +86,7 @@ function Search (props) {
                   : 'suggestion-item';
                 // inline style for demonstration purpose
                 const style = suggestion.active
-                  ? { backgroundColor: 'lemonchiffon', cursor: 'pointer' ,color: 'black'}
+                  ? { backgroundColor: 'lemonchiffon', cursor: 'pointer' ,color: 'black' }
                   : { backgroundColor: 'lightblue', cursor: 'pointer' ,color: 'black'}
                 return (
                   <div key={count++}
