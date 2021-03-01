@@ -43,3 +43,18 @@ body {
   height: 300px;
 
 }
+.checkboxtext {
+  font-size: 110%;
+  // display: inline;
+  width: 25px;
+        height: 15px;
+}
+.checkbox {
+  -ms-transform: scale(3);
+  -moz-transform: scale(1.5); 
+  -webkit-transform: scale(1.5); 
+  -o-transform: scale(1.5); 
+  transform: scale(1.5);
+  padding: 10px;
+  font-weight: bold;
+}

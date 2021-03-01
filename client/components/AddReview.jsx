@@ -167,9 +167,9 @@ function AddReview(props) {
 													value={formData.end_of_tenancy}
 												/>
 											</label>)}
-											<label className="column is-6 label is-offset-3 label is-large has-text-centered">
+											<label className="checkbox">
 												Ongoing  
-												<input
+												<input className="checkboxtext"
 													onChange={handleCheck}
                           type="checkbox"
                           name="end_of_tenancy"
