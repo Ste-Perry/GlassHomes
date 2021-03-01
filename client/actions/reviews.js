@@ -99,12 +99,15 @@ export function fetchReviewsByPropertyId (id) {
   }
 }
 
-export function fetchReviewsWithOffsetAndLimit(offset, limit) {
+export function fetchReviewsWithOffsetAndLimit(offset, limit, id) {
   return dispatch => {
-    return getReviewsWithOffsetAndLimit(offset,limit)
-      .then(reviews => {
-        dispatch(setSpecificReviews(reviews))
-        return null
-      })
+    // return fetchReviewsByPropertyId(id)
+    // .then(reviews=> {
+      return getReviewsWithOffsetAndLimit(offset,limit, id)
+        .then(reviews => {
+          dispatch(setSpecificReviews(reviews))
+          return null
+        })
+    // })
   }
 }

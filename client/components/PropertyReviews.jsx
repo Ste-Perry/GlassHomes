@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { fetchReviewsByPropertyId } from '../actions/reviews'
+import { fetchReviews, fetchReviewsByPropertyId, fetchReviewsWithOffsetAndLimit } from '../actions/reviews'
 import Review from './Review'
 // import AddReview from './AddReview'
 import ReactPaginate from 'react-paginate'
@@ -10,65 +10,37 @@ import ReactPaginate from 'react-paginate'
 function PropertyReviews(props) {
 
 	const id = props.propertyId
-	const [data, setData] = useState([])
+	const [limit, setLimit] = useState(2)
 	const [offset, setOffset] = useState(0)
-	const [pageCount, setPageCount] = useState(0)
+	// const [pageCount, setPageCount] = useState(0)
 	// const [count , setCount] = useState(0)
 
 	useEffect(() => {
-		props.dispatch(fetchReviewsByPropertyId(id))
+		// props.dispatch(fetchReviewsByPropertyId(id))
+		props.dispatch(fetchReviewsWithOffsetAndLimit(offset, limit, id))
 	}, [])
 
-	const handlePageClick = (data) => {
-		console.log(data)
-		let selected = data
-		setOffset(Math.ceil(selected * limitPerPage))
-	}
 	
 	let limitPerPage = 2
-	let totalPages = Math.ceil(props.reviewByProperty.length/limitPerPage)
-	// const updateCount = () => {
-	// 	setCount(count++)
-	// }
 
-	// let currentPage = 1
-	// filteredReviews = props.reviewByProperty.slice(0, limitPerPage)
-
-	// let reviewNodes = props.reviewByProperty.map((review, index) => {
-	// 	return <div key={index}>{review.title}</div>
-	// })
+	const handlePageClick = (data) => {
+		let selected = data.selected
+		setOffset(Math.ceil(selected * 2))
+	}
+	
+	let totalPages = Math.ceil(props.paginationReviews.length/limitPerPage)
 
 	return (
 			
 		<>
-		{/* {reviewNodes} */}
-			{/* if there are more than 5 reviews, show 5 at a time */}
-			{/* {totalPages = Math.ceil(props.reviewByProperty.length/limitPerPage)} */}
-			{/* {console.log(totalPages)} */}
-			{props.reviewByProperty.length > 5 //limitPerPage
-			//if
-			? props.reviewByProperty.map((review) => {
-				return (
-					<>
-					<div>
-						{/* <Review key={review.id} review={review} /> */}
-					</div>
-					<div>
-					
-					</div>
-					</>
-				)
-			})
-			//else
-			: props.reviewByProperty.map((review) => {
-				// {updateCount}
+			{props.paginationReviews.map((review) => {
 				return (
 					<div key={review.id} >
 						<Review key={review.id} review={review} />
 					</div>
 				)
-			})
-			}
+			})}
+			
 			<ReactPaginate
           				previousLabel={'previous'}
           				nextLabel={'next'}
@@ -88,10 +60,11 @@ function PropertyReviews(props) {
 	)
 }
 
-const mapStateToProps = ({ reviewByProperty }) => {
+const mapStateToProps = ({ reviewByProperty, paginationReviews }) => {
   console.log(reviewByProperty.length)
 	return {
 		reviewByProperty,
+		paginationReviews
 	}
 }
 

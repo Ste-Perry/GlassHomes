@@ -44,6 +44,17 @@ router.get('/', (req, res) => {
     })
 })
 
+
+router.get('/property/:limit/:offset/:id', (req, res) => {
+  let limit = req.params.limit
+  let offset = req.params.offset
+  let id = req.params.id
+  db.getReviewsWithLimitAndOffset(limit, offset, id)
+  .then(reviewsPage => {
+    res.json(reviewsPage)
+  })
+})
+
 router.get ('/property/:id', (req, res) =>{
   propertyId = req.params.id
   console.log(req.params.id)
@@ -52,16 +63,6 @@ router.get ('/property/:id', (req, res) =>{
     res.json (id)
     })
   })
-
-  router.get('reviews/property/:offset/:limit', (req, res) => {
-    let offset = req.params.offset
-    let limit = req.params.limit
-    db.getReviewsWithLimitAndOffset(limit, offset)
-    .then(reviewsPage => {
-      res.json(reviewsPage)
-    })
-  })
-
 router.get ('/:id', (req, res) =>{
   reviewId = req.params.id
   db.getReviewById(reviewId)

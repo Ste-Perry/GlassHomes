@@ -6,8 +6,9 @@ function getReviews (db = connection) {
   return db('reviews').select().limit(limit).offset(offset)
 }
 
-function getReviewsWithLimitAndOffset (limit, offset, db = connection) {
+function getReviewsWithLimitAndOffset (limit, offset, id, db = connection) {
   return db('reviews').select().limit(limit).offset(offset)
+  .where("property_ID", id)
 }
 
 function addReview (reviews, db = connection) {
