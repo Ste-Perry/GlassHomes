@@ -51,7 +51,7 @@ export function addReviewAction (review) {
   return dispatch => {
     return addReview(review)
       .then(() => {
-        dispatch(fetchReviews())
+        dispatch(fetchReviewsByPropertyId(review.propsId))
         return null
       })
   }
@@ -64,9 +64,9 @@ export function addReviewWithImage(image, review) {
       .then(fileUrl => {
         review.image = fileUrl
         return addReview(review)
-          .then(propId => {
-            dispatch(fetchReviews())
-            return null
+          .then(reviewId => {
+            dispatch(fetchReviewsByPropertyId(review.propsId))
+        return null
           })
       })
   }

@@ -17,7 +17,7 @@ function PropertyReviews(props) {
 		<>
 			{props.reviewByProperty.map((review) => {
 				return (
-					<div>
+					<div key={review.id} >
 						<Review key={review.id} review={review} />
 					</div>
 				)
@@ -28,6 +28,7 @@ function PropertyReviews(props) {
 }
 
 const mapStateToProps = ({ reviewByProperty }) => {
+  console.log(reviewByProperty.length)
 	return {
 		reviewByProperty,
 	}

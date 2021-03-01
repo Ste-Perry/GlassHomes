@@ -50,6 +50,7 @@ const Review = (props) => {
               Rating: {stars()}
               <br />
               <br />
+
               {review.img && (
                 <button
                   onClick={() => setShowImg(!showImg)}
@@ -63,7 +64,6 @@ const Review = (props) => {
               {showImg && (
                 <img className="review-img" alt="uh oh!" src={review.img} />
               )}
-              <br />
               <br />
               <button className="button is-info">Helpful</button>
             </div>
