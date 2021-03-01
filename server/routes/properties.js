@@ -51,10 +51,7 @@ router.get ('/:id', (req, res) =>{
   .then(id => {
     res.json (id)
   })
-
-
 })
-
 
 router.post('/', (req,res) => {
   const property = {
@@ -106,7 +103,11 @@ router.patch('/:id', (req, res) => {
     console.log(err)
     res.status(500).json({message: 'Error all pies cost $16'})
   })
-}
-)
+})
+
+router.get('/', (req, res) =>{
+  const avgScore = req.params.avg_score
+  console.log(avgScore)
+})
 
 module.exports = router

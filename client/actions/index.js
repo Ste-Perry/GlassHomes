@@ -6,6 +6,8 @@ export const DELETE_PROPERTIES = 'DELETE_PROPERTIES'
 export const UPDATE_PROPERTIES = 'UPDATE_PROPERTIES'
 export const SET_PROPERTY_BY_PROP_ID = 'SET_PROPERTY_BY_PROP_ID'
 export const SET_PROPERTIES_EMPTY = 'SET_PROPERTIES_EMPTY'
+export const FILTER_BY_AVGSCORE = "FILTER_BY_AVGSCORE"
+
 
 export function setProperties (properties) {
   return {
@@ -111,5 +113,12 @@ export function clearPropById() {
   return {
     type: SET_PROPERTIES_EMPTY,
     property: {}
+  }
+}
+
+export function filterByAvgScore () {
+  return {
+  type: FILTER_BY_AVGSCORE,
+  property 
   }
 }
