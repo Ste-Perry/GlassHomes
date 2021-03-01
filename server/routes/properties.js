@@ -68,9 +68,9 @@ router.post('/', (req,res) => {
   }
   console.log(req.body.img)
   console.log(req.body)
-  db.addProperty(property)
-  .then(property => {
-    res.json({ property: property })
+  db.addProperty(req.body)
+  .then(id => {
+    res.json(id)
   })
   .catch(err => {
     console.log(err)

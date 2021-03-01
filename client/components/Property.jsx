@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {fetchProperties, updateTheProperties} from "../actions/index";
+import {clearPropById, fetchProperties, updateTheProperties} from "../actions/index";
 import {getPropertyById} from "../apis/properties";
 import Reviews from "./Reviews";
 import PropertyReviews from "./PropertyReviews";
@@ -54,6 +54,7 @@ function Property(props) {
 
   useEffect(() => {
     findSingleProperty();
+    props.dispatch(clearPropById())
   }, [props.match.params.id]);
 
   useEffect(() => {

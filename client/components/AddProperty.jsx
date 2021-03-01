@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from 'react'
-import { Link, Route } from 'react-router-dom'
+import { Link, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchProperties, addTheProperties, addPropertiesWithImage } from '../actions/index'
+import { fetchProperties, addTheProperties, addPropertiesWithImage, addPropertiesWithDefaultImage } from '../actions/index'
 import { checkAuth } from '../actions/auth'
 import AddPropertyModal from './AddPropertyModalBulma'
 
@@ -23,6 +23,7 @@ function AddProperty (props) {
     parking: ''
   })
 
+
   const onChangeFile = (e) => {
     setPropImage(e.target.files[0])
   }
@@ -33,18 +34,20 @@ function AddProperty (props) {
 
     //for adding image
     const formImage = new FormData()
-    formImage.append('img', propImage)
-    props.dispatch(addPropertiesWithImage(formImage, {address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, bathrooms: formData.bathrooms, parking: formData.parking}))
 
-    // props.dispatch(addTheProperties({address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, bathrooms: formData.bathrooms, parking: formData.parking}))
-    console.log('Data sent')
-    e.target.reset()
-    props.history.push('/properties')
+    if(propImage == null) {
+        props.dispatch(addPropertiesWithDefaultImage({address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, bathrooms: formData.bathrooms, parking: formData.parking}))
+        e.target.reset()
+      } else {
+      formImage.append('img', propImage)
+      props.dispatch(addPropertiesWithImage(formImage, {address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, bathrooms: formData.bathrooms, parking: formData.parking}))
+      e.target.reset()
+    }
   }
 
   const handleChange = (e) => {
     setFormData(currentFormData => {
-        console.log(e)
+        // console.log(e)
         return {
             ...currentFormData,
             [e.target.name]: e.target.value
@@ -95,6 +98,9 @@ useEffect(() => {
               </>
               }
             </div>
+            {props.propertyById.id && (
+                <Redirect to={`/property/${props.propertyById.id}`} />
+              )}
         </>
     )
 
@@ -103,7 +109,8 @@ useEffect(() => {
   const mapStateToProps = (globalState) => {
     return {
       properties: globalState.properties,
-      auth: globalState.auth
+      auth: globalState.auth,
+      propertyById: globalState.propertyById
     }
   }
 
