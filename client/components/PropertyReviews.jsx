@@ -10,29 +10,54 @@ import ReactPaginate from 'react-paginate'
 function PropertyReviews(props) {
 
 	const id = props.propertyId
-	const [limit, setLimit] = useState(2)
+	const [limit, setLimit] = useState(3)
 	const [offset, setOffset] = useState(0)
 	// const [pageCount, setPageCount] = useState(0)
 	// const [count , setCount] = useState(0)
 
 	useEffect(() => {
-		// props.dispatch(fetchReviewsByPropertyId(id))
+		props.dispatch(fetchReviewsByPropertyId(id))
 		props.dispatch(fetchReviewsWithOffsetAndLimit(offset, limit, id))
-	}, [])
+		// console.log(offset, limit)
+	}, [offset])
 
+	const handleLimitChange = (e) => {
+		// console.log("handleChange",e.target.value)
+		setLimit(e.target.value)
+	}
+
+	const handleLimitSubmit = (e) => {
+		e.preventDefault()
+		props.dispatch(fetchReviewsWithOffsetAndLimit(offset, limit, id))
+		// setLimit(e.target.value)
+		
+	}
 	
-	let limitPerPage = 2
+	// let limitPerPage = 3
 
 	const handlePageClick = (data) => {
 		let selected = data.selected
-		setOffset(Math.ceil(selected * 2))
+		setOffset(Math.ceil(selected * limit))
+		// props.dispatch(fetchReviewsWithOffsetAndLimit(offset, limit, id))
+
 	}
 	
-	let totalPages = Math.ceil(props.paginationReviews.length/limitPerPage)
+	let totalPages = Math.ceil(props.reviewByProperty.length/limit)
 
 	return (
 			
 		<>
+			<form onSubmit={handleLimitSubmit} >
+				<label>
+				Reviews per page:
+				<select onChange={handleLimitChange}>
+				<option value="3">3</option>
+				<option value="5">5</option>
+				<option value="10">10</option>
+				</select>
+				</label>
+				<input type="submit" value="submit"/>
+			</form>
 			{props.paginationReviews.map((review) => {
 				return (
 					<div key={review.id} >
@@ -45,14 +70,14 @@ function PropertyReviews(props) {
           				previousLabel={'previous'}
           				nextLabel={'next'}
           				breakLabel={'...'}
-          				// breakClassName={'break-me'}
+          				breakClassName={'break-me'}
           				pageCount={totalPages}
           				// marginPagesDisplayed={2}
           				// pageRangeDisplayed={5}
           				onPageChange={handlePageClick}
-          				// containerClassName={'pagination'}
-          				// subContainerClassName={'pages pagination'}
-          				// activeClassName={'active'}
+          				containerClassName={'pagination'}
+          				subContainerClassName={'pages pagination'}
+          				activeClassName={'active'}
        					 />
 			
 			{/* {console.log(count)} */}
