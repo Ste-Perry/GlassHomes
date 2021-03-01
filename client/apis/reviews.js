@@ -30,8 +30,8 @@ export function updateReview(id, review){
 }
 
 
-export function deleteReview(){
-  return request.delete(rootUrl)
+export function deleteReview(id){
+  return request.delete(rootUrl + '/' + id)
   .then(res => {
     return res.body})
 }

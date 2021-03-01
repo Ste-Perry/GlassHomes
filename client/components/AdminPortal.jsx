@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { connect, useStore } from 'react-redux'
 
 function AdminPortal(props) {
 
 	const propertyCount = props.properties
-	console.log(propertyCount) 
+
+	const lastestPropertListings = (propertyCount.length - 5)
+	console.log(lastestPropertListings)
 
 	return (
 		<>
@@ -45,7 +47,7 @@ function AdminPortal(props) {
 					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child box">
-							<p className="title">69k</p>
+							<p className="title">{propertyCount.length}</p>
 							<p className="subtitle">properties</p>
 						</article>
 					</div>'
@@ -175,7 +177,7 @@ function AdminPortal(props) {
 const mapStateToProps = (globalState) => {
 	return {
 		auth: globalState.auth,
-		properties: globalState.properties
+		properties: globalState.properties,
 	}
 }
 
