@@ -1,39 +1,16 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import PlacesAutocomplete from './Search'
+import { connect, useStore } from 'react-redux'
 
-function AdminPortal({ auth }) {
+function AdminPortal(props) {
 
+	const propertyCount = props.properties
 
+	const lastestPropertListings = (propertyCount.length - 5)
+	console.log(lastestPropertListings)
 
 	return (
 		<>
-			{/* ADMIN NAV - need seperate admin nav?*/}
-
-			{/* <nav className="navbar is-white">
-				<div className="container">
-					<div className="navbar-brand">
-						<p className="navbar-item brand-text" href="../index.html">Glasshomes Admin</p>
-						<div className="navbar-burger burger" data-target="navMenu">
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-					<div id="navMenu" className="navbar-menu">
-						<div className="navbar-end">
-							<Link className="navbar-item" to='/'>Home</Link>
-							<Link className="navbar-item" to='/properties'>Properties</Link>
-							<Link className="navbar-item" to='/reviews'>Reviews</Link>
-							<Link className="navbar-item" to='/'>Logout</Link>
-							<PlacesAutocomplete />
-						</div>
-					</div>
-				</div>
-			</nav> */}
-
-
 			{/* ADMIN BANNER */}
 			<div className="container">
 				<div className="columns">
@@ -70,7 +47,7 @@ function AdminPortal({ auth }) {
 					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child box">
-							<p className="title">69k</p>
+							<p className="title">{propertyCount.length}</p>
 							<p className="subtitle">properties</p>
 						</article>
 					</div>'
@@ -197,9 +174,10 @@ function AdminPortal({ auth }) {
 	)
 }
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = (globalState) => {
 	return {
-		auth
+		auth: globalState.auth,
+		properties: globalState.properties,
 	}
 }
 

@@ -44,3 +44,8 @@ export function addImageProp (formData) {
       return res.text
     })
 }
+
+export function getPropertyAvgScore (id){
+  return request.get(rootUrl + "/property/" + id)
+  .then(res => res.body)
+}

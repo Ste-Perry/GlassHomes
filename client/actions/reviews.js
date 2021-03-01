@@ -79,6 +79,19 @@ export function addReviewWithImage(image, review) {
       })
   }
 }
+
+export function addReviewWithDefaultImage(review) {
+  return dispatch => {
+        review.img = ''
+        return addReview(review)
+          .then(reviewId => {
+            dispatch(fetchReviewsByPropertyId(review.propsId))
+            // dispatch(fetchProperties())
+            return null
+          })
+  }
+}
+
 export function updateReviewAction (review) {
   return dispatch => {
     return updateReview(review)

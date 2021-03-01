@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {connect} from "react-redux"
 
-function Footer() {
+function Footer(props) {
+
+	const isAdmin = props.auth.user.is_admin
 
 	return (
 		<>
@@ -13,9 +16,13 @@ function Footer() {
    				</p>
 					<div>
 						<p >
-							<Link to="/loginadmin">Admin</Link> &nbsp;·&nbsp;
-							<a href="mailto:admin@glasshomes.co.nz"> Contact</a> &nbsp;·&nbsp;
-							<Link to="adminportal"> Admin Portal (will remove)</Link>
+							{isAdmin &&
+							<>
+							<Link to="/adminportal">Admin </Link>
+							/
+							</>  
+							}
+							<a href="mailto:admin@glasshomes.co.nz"> Contact</a> 
 						</p>
 					</div>
 				</div>
@@ -24,4 +31,11 @@ function Footer() {
 	)
 }
 
-export default Footer
+const mapStateToProps = (globalState) => {
+	return {
+	  properties: globalState.properties,
+	  auth: globalState.auth
+	};
+  };
+  
+export default connect(mapStateToProps)(Footer);

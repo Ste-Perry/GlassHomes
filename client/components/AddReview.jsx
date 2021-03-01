@@ -1,23 +1,19 @@
-import React, {useEffect, useState} from "react";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from "react"
+import {connect} from "react-redux"
 import {
   addReviewAction,
   addReviewWithImage,
   fetchReviews,
   fetchReviewsByPropertyId,
-} from "../actions/reviews";
+  addReviewWithDefaultImage
+} from "../actions/reviews"
 
 function AddReview(props) {
   const propsId = props.propsId;
 
   useEffect(() => {
-    fetchReviews();
-  }, []);
-
-  const added = () => {
-    props.dispatch(fetchReviewsByPropertyId(propsId));
-  };
+    fetchReviews()
+  }, [])
 
   const [reviewImage, setReviewImage] = useState(null);
 
@@ -29,20 +25,20 @@ function AddReview(props) {
     rating: "",
     stat_of_tenancy: "",
     end_of_tenancy: "",
-  });
+  })
 
   const onChangeFile = (e) => {
     setReviewImage(e.target.files[0]);
-  };
+  }
 
   const handleChange = (e) => {
     setFormData((currentFormData) => {
       return {
         ...currentFormData,
         [e.target.name]: e.target.value,
-      };
-    });
-  };
+      }
+    })
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,28 +50,13 @@ function AddReview(props) {
       rating,
       start_of_tenancy,
       end_of_tenancy,
-    } = formData;
+    } = formData   
 
 
-    
-    props.dispatch(
-      addReviewAction({
-        title,
-        comments,
-        pros,
-        cons,
-        rating,
-        start_of_tenancy,
-        end_of_tenancy,
-        propsId,
-      })
-
-    );
     const formImage = new FormData()
-    // formImage.append("img", reviewImage)
+
     if(reviewImage == null) {
-    props.dispatch(
-      addReviewWithImage({
+      props.dispatch(addReviewWithDefaultImage({
         title: formData.title,
         comments: formData.comments,
         pros: formData.pros,
@@ -84,44 +65,38 @@ function AddReview(props) {
         start_of_tenancy: formData.start_of_tenancy,
         end_of_tenancy: formData.end_of_tenancy,
         propsId,
+      }))
+      e.target.reset()
+      props.setShowState(!props.showState)
 
-      }))
-      } else {
-      formImage.append('img' )
-      props.dispatch(
-        addReviewWithImage(formImage, {
-          title: formData.title,
-          comments: formData.comments,
-          pros: formData.pros,
-          cons: formData.cons,
-          rating: formData.rating,
-          start_of_tenancy: formData.start_of_tenancy,
-          end_of_tenancy: formData.end_of_tenancy,
-          propsId,
-      }))
+    } else {
+    formImage.append("img", reviewImage)
+    props.dispatch(
+      addReviewWithImage(formImage, {
+        title: formData.title,
+        comments: formData.comments,
+        pros: formData.pros,
+        cons: formData.cons,
+        rating: formData.rating,
+        start_of_tenancy: formData.start_of_tenancy,
+        end_of_tenancy: formData.end_of_tenancy,
+        propsId,
+      })
+      )
+      e.target.reset()
+      props.setShowState(!props.showState)
     }
-    
-
-    e.target.reset();
-
-    // added()
-
-    props.setShowState(!props.showState);
-
 
     }
     const handleCheck = (e) => {
       e.target.checked ? setFormData({...formData, end_of_tenancy: "ongoing"}) : setFormData({...formData, end_of_tenancy: ""})
       setOngoing(!ongoing)
-
     }
   
-
   const handleClick = (e) => {
-    setFormData({...formData, rating: e.target.value});
+    setFormData({...formData, rating: e.target.value})
   }
   const year = new Date().getFullYear();
-
 
   const [ongoing, setOngoing] = useState(false)
 
@@ -276,7 +251,7 @@ function AddReview(props) {
                     />
                     <label
                       className="star"
-                      for="star5"
+                      htmlFor="star5"
                       title="Amazing"
                       aria-hidden="true"
                     ></label>
@@ -289,7 +264,7 @@ function AddReview(props) {
                     />
                     <label
                       className="star"
-                      for="star4"
+                      htmlFor="star4"
                       title="Good"
                       aria-hidden="true"
                     ></label>
@@ -302,7 +277,7 @@ function AddReview(props) {
                     />
                     <label
                       className="star"
-                      for="star3"
+                      htmlFor="star3"
                       title="Ok"
                       aria-hidden="true"
                     ></label>
@@ -315,7 +290,7 @@ function AddReview(props) {
                     />
                     <label
                       className="star"
-                      for="star2"
+                      htmlFor="star2"
                       title="Bad"
                       aria-hidden="true"
                     ></label>
@@ -328,7 +303,7 @@ function AddReview(props) {
                     />
                     <label
                       className="star"
-                      for="star1"
+                      htmlFor="star1"
                       title="Terrible"
                       aria-hidden="true"
                     ></label>
@@ -355,7 +330,7 @@ function AddReview(props) {
 const mapStateToProps = ({reviews}) => {
   return {
     reviews,
-  };
-};
+  }
+}
 
 export default connect(mapStateToProps)(AddReview);

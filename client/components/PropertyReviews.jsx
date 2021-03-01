@@ -61,7 +61,6 @@ function PropertyReviews(props) {
 }
 
 const mapStateToProps = ({ reviewByProperty, paginationReviews }) => {
-  console.log(reviewByProperty.length)
 	return {
 		reviewByProperty,
 		paginationReviews
