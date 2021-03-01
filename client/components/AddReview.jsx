@@ -55,6 +55,9 @@ function AddReview(props) {
       start_of_tenancy,
       end_of_tenancy,
     } = formData;
+
+
+    
     props.dispatch(
       addReviewAction({
         title,
@@ -66,6 +69,7 @@ function AddReview(props) {
         end_of_tenancy,
         propsId,
       })
+
     );
     const formImage = new FormData()
     // formImage.append("img", reviewImage)
@@ -80,6 +84,7 @@ function AddReview(props) {
         start_of_tenancy: formData.start_of_tenancy,
         end_of_tenancy: formData.end_of_tenancy,
         propsId,
+
       }))
       } else {
       formImage.append('img' )
@@ -99,11 +104,11 @@ function AddReview(props) {
 
     e.target.reset();
 
-    added();
+    // added()
 
     props.setShowState(!props.showState);
 
-    // props.history.push(`/property${propsId}`);
+
     }
     const handleCheck = (e) => {
       e.target.checked ? setFormData({...formData, end_of_tenancy: "ongoing"}) : setFormData({...formData, end_of_tenancy: ""})
