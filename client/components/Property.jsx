@@ -34,8 +34,8 @@ function Property(props) {
       deleteTheProperties(id)
       )
       alert('Deleted!')
-      props.history.push('/properties')
 
+      props.history.push('/properties')
     }else {
       alert('Not deleted')
     }
@@ -78,10 +78,11 @@ function Property(props) {
     }
   };
 
+  //refactor to use store
   useEffect(() => {
     findSingleProperty();
     props.dispatch(clearPropById())
-  }, [props.match.params.id]);
+  }, [props.match.params.id, props.properties]);
 
   useEffect(() => {
     findSingleProperty();
