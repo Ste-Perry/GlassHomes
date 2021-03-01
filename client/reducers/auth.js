@@ -1,7 +1,9 @@
 const initialState = {
   isFetching: false,
   isAuthenticated: false,
-  user: {},
+  user: {
+    is_admin: false
+  },
   errorMessage: ''
 }
 
@@ -33,7 +35,9 @@ export default function auth (state = initialState, action) {
         ...state,
         isFetching: false,
         isAuthenticated: false,
-        user: null
+        user: {
+          is_admin: false
+        }
       }
     case 'REGISTER_REQUEST':
       return {
