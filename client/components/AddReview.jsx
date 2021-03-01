@@ -14,7 +14,22 @@ function AddReview(props) {
 
   useEffect(() => {
     fetchReviews()
+    props.dispatch(fetchReviewsByPropertyId(propsId))
   }, [])
+
+  
+  let totalReviewScore = 0;
+  let ratingLength = props.reviewByProperty.length;
+
+  // console.log(ratingLength)
+  const averageRatingCalc = props.reviewByProperty.map(
+    (review) => (totalReviewScore += review.rating)
+  )
+
+  let averageReviewScore = totalReviewScore/ratingLength
+  
+  console.log(averageReviewScore)
+
 
   const [reviewImage, setReviewImage] = useState(null);
 
@@ -330,10 +345,11 @@ function AddReview(props) {
   );
 }
 
-const mapStateToProps = ({reviews, setOffset}) => {
+const mapStateToProps = ({reviews, setOffset, reviewByProperty}) => {
   return {
     reviews,
     setOffset,
+    reviewByProperty
   }
 }
 

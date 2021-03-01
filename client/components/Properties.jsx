@@ -2,12 +2,31 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchProperties, deleteTheProperties } from '../actions/index'
+import { fetchReviewsByPropertyId } from '../actions/reviews';
 
 function Properties(props) {
 
+  // let totalReviewScore = 0;
+  // let ratingLength = props.reviewByProperty.length;
+
+  // console.log(ratingLength)
+  // const averageRatingCalc = props.reviewByProperty.map(
+  //   (review) => (totalReviewScore += review.rating)
+  // )
+
+  // let averageReviewScore = totalReviewScore/ratingLength
+
+
 	useEffect(() => {
-		props.dispatch(fetchProperties())
-	}, [])
+    props.dispatch(fetchProperties())
+  }, [])
+  
+ 
+
+	useEffect(() => {
+    props.dispatch(fetchReviewsByPropertyId())
+  }, [])
+  
 
 
 	const deleteOneProperty = (id) => {
@@ -33,6 +52,11 @@ function Properties(props) {
 										<p className="subtitle has-text-black">Have a looksie.</p>
 
 										{props.properties.map(prp => {
+
+
+
+
+
 											return (
 												<>
 												<Link key={prp.id} to={`/property/${prp.id}`}>
@@ -42,7 +66,7 @@ function Properties(props) {
 																<div className="media-content has-text-centered">
 
 																	<p className="title article-title">{prp.address}</p>
-																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking}
+																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score}
 															
 																	</li>
 																	
@@ -67,8 +91,6 @@ function Properties(props) {
 
 
 			</ul>
-
-
 
 
 		</>
