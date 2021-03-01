@@ -91,14 +91,19 @@ function AddReview(props) {
     props.history.push(`/property${propsId}`);
     }
     const handleCheck = (e) => {
-      e.target.checked && setFormData({...formData, end_of_tenancy: "ongoing"});
-    };
+      e.target.checked ? setFormData({...formData, end_of_tenancy: "ongoing"}) : setFormData({...formData, end_of_tenancy: ""})
+      setOngoing(!ongoing)
+
+    }
   
 
   const handleClick = (e) => {
     setFormData({...formData, rating: e.target.value});
-  };
+  }
   const year = new Date().getFullYear();
+
+
+  const [ongoing, setOngoing] = useState(false)
 
   return (
     <>
@@ -150,10 +155,13 @@ function AddReview(props) {
 
 									<div className="field">
 										<div className="control">
+
+                      { !ongoing && (
 											<label className="column is-6 label is-offset-3 label is-large has-text-centered">
 												End of Tenancy
 												<input
-													min="1900"
+                        required
+													min={formData.start_of_tenancy}
 													max={year}
 													className="input is-large has-text-centered is-fullwidth"
 													placeholder="2020"
@@ -163,9 +171,9 @@ function AddReview(props) {
 													onChange={handleChange}
 													value={formData.end_of_tenancy}
 												/>
-											</label>
-											<label>
-												Ongoing
+											</label>)}
+											<label className="column is-6 label is-offset-3 label is-large has-text-centered">
+												Ongoing  
 												<input
 													onChange={handleCheck}
                           type="checkbox"
