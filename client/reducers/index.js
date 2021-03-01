@@ -7,6 +7,7 @@ import reviews from './reviews'
 import propertyById from './propertyById'
 import reviewByProperty from './reviewByProperty'
 import setOffset from './setOffset'
+import users from './users'
 export default combineReducers({
   properties,
   auth,
@@ -14,5 +15,6 @@ export default combineReducers({
   reviewByProperty,
   propertyById,
   paginationReviews,
-  setOffset
+  setOffset,
+  users
 })
