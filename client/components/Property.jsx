@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { clearPropById, fetchProperties, updateTheProperties } from "../actions/index";
+import { clearPropById, fetchProperties, updateTheProperties, deleteTheProperties } from "../actions/index";
 import { getPropertyById } from "../apis/properties";
 import Reviews from "./Reviews";
 import PropertyReviews from "./PropertyReviews";
@@ -26,6 +26,19 @@ function Property(props) {
     props.dispatch(checkAuth(confirmSuccess))
   }, [])
 
+
+  const handleDelete = (id, e) => {
+    if (confirm("Are you sure you want to delete this property?")){
+      e.preventDefault()
+      props.dispatch(
+      deleteTheProperties(id)
+      )
+      alert('Deleted!')
+      
+    }else {
+      alert('Not deleted')
+    }
+  }
 
   const handleUpdateSubmit = (id, e) => {
     e.preventDefault();
@@ -75,13 +88,7 @@ function Property(props) {
 
   const [show, setShow] = useState(false)
 
-  const handleDelete = (e) => {
-    if (confirm("Are you sure you want to delete this property?")){
-      alert('deleted!')
-    }else {
-      alert('not deleted')
-    }
-  }
+
 
   return (
     <>
@@ -184,7 +191,7 @@ function Property(props) {
                           <button type="submit">Update</button>
                         </form>
 
-                        <button className='button is-small is-danger' onClick={()=> handleDelete()} >Delete</button>
+                        <button className='button is-small is-danger' onClick={(e)=> handleDelete(propertyId, e)} >Delete</button>
 
                         </>
                       )}

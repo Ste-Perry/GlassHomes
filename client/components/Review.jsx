@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
+import { deleteReviews } from '../actions/reviews'
 
 const Review = (props) => {
   const review = props.review;
+  const reviewId = props.review.id
   const isAdmin = props.auth.user.is_admin
 
   const stars = () => {
@@ -21,11 +23,15 @@ const Review = (props) => {
 
   const [showImg, setShowImg] = useState(false);
 
-  const handleDelete = (e) => {
+  const handleDelete = (id, e) => {
     if (confirm("Are you sure you want to delete this review?")){
-      alert('deleted!')
+      e.preventDefault()
+      props.dispatch(
+      deleteReviews(id)
+      )
+      alert('Deleted!')
     }else {
-      alert('not deleted')
+      alert('Not deleted')
     }
   }
 
@@ -76,7 +82,7 @@ const Review = (props) => {
               <br />
               <button className="button is-info">Helpful</button>
               {isAdmin &&
-              <button className='button is-danger' onClick={()=> handleDelete()} >Delete</button>
+                <button className='button is-danger' onClick={(e)=> handleDelete(reviewId, e)} >Delete</button>
               }
             </div>
           </div>
