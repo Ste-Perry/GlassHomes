@@ -1,39 +1,13 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import PlacesAutocomplete from './Search'
 
-function AdminPortal({ auth }) {
+function AdminPortal() {
 
-
+	const isAdmin = props.auth.user.is_admin
 
 	return (
 		<>
-			{/* ADMIN NAV - need seperate admin nav?*/}
-
-			{/* <nav className="navbar is-white">
-				<div className="container">
-					<div className="navbar-brand">
-						<p className="navbar-item brand-text" href="../index.html">Glasshomes Admin</p>
-						<div className="navbar-burger burger" data-target="navMenu">
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-					<div id="navMenu" className="navbar-menu">
-						<div className="navbar-end">
-							<Link className="navbar-item" to='/'>Home</Link>
-							<Link className="navbar-item" to='/properties'>Properties</Link>
-							<Link className="navbar-item" to='/reviews'>Reviews</Link>
-							<Link className="navbar-item" to='/'>Logout</Link>
-							<PlacesAutocomplete />
-						</div>
-					</div>
-				</div>
-			</nav> */}
-
-
 			{/* ADMIN BANNER */}
 			<div className="container">
 				<div className="columns">
@@ -197,9 +171,9 @@ function AdminPortal({ auth }) {
 	)
 }
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = (globalState) => {
 	return {
-		auth
+		auth: globalState.auth
 	}
 }
 

@@ -5,6 +5,7 @@ import { loginUser, loginError } from '../actions/auth'
 
 function Login(props) {
 	const { auth } = props
+	
 
 	const [formData, setFormData] = useState({
 		username: '',
@@ -27,7 +28,7 @@ function Login(props) {
 			props.history.push('/home')
 		}
 		props.dispatch(loginUser({ username, password }, confirmSuccess))
-	}
+}
 
 	return (
 		<>
