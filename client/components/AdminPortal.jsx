@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-function AdminPortal() {
+function AdminPortal(props) {
 
-	const isAdmin = props.auth.user.is_admin
+	const propertyCount = props.properties
+	console.log(propertyCount) 
 
 	return (
 		<>
@@ -173,7 +174,8 @@ function AdminPortal() {
 
 const mapStateToProps = (globalState) => {
 	return {
-		auth: globalState.auth
+		auth: globalState.auth,
+		properties: globalState.properties
 	}
 }
 
