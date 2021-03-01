@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 
 const Review = (props) => {
   const review = props.review;
+  const isAdmin = props.auth.user.is_admin
 
   const stars = () => {
     let starArray = [];
@@ -19,6 +20,14 @@ const Review = (props) => {
   };
 
   const [showImg, setShowImg] = useState(false);
+
+  const handleDelete = (e) => {
+    if (confirm("Are you sure you want to delete this review?")){
+      alert('deleted!')
+    }else {
+      alert('not deleted')
+    }
+  }
 
   return (
     <div key={review.id}>
@@ -66,6 +75,9 @@ const Review = (props) => {
               )}
               <br />
               <button className="button is-info">Helpful</button>
+              {isAdmin &&
+              <button className='button is-danger' onClick={()=> handleDelete()} >Delete</button>
+              }
             </div>
           </div>
         </div>
@@ -81,6 +93,7 @@ const Review = (props) => {
 const mapStateToProps = (globalState) => {
   return {
     reviews: globalState.reviews,
+    auth: globalState.auth
   };
 };
 
