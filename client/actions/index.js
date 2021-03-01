@@ -119,6 +119,6 @@ export function clearPropById() {
 export function filterByAvgScore () {
   return {
   type: FILTER_BY_AVGSCORE,
-  property: {}
+  property 
   }
 }

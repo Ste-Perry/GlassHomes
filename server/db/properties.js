@@ -39,6 +39,12 @@ function updateProperty (id, property, db = connection) {
   })
 }
 
+function getPropertysAvgScore (avg_score, db = connection) {
+  return db('properties')
+  .where('avg_score', avg_score)
+  .select()
+}
+
 
 module.exports = {
   getProperties,
@@ -46,6 +52,7 @@ module.exports = {
   getPropertyById,
   deleteProperty,
   updateProperty,
-  getPropertyByAddress
+  getPropertyByAddress,
+  getPropertysAvgScore
 
 }

@@ -49,7 +49,4 @@ export function addImageReview (formData) {
     })
 }
 
-export function getPropertyAvgScore (state){
-  return request.get(rootUrl + "/property/" + avg_score)
-  .then(res => res.body)
-}
+
