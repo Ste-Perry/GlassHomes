@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { fetchReviews, fetchReviewsByPropertyId, fetchReviewsWithOffsetAndLimit, reviewOffsetLimitAndId } from '../actions/reviews'
 import Review from './Review'
+import {Link} from 'react-router-dom'
 // import AddReview from './AddReview'
 import ReactPaginate from 'react-paginate'
 
@@ -63,6 +64,9 @@ function PropertyReviews(props) {
 				</label>
 				<input type="submit" value="submit"/>
 			</form>
+
+      {!props.auth.isAuthenticated && <p> <Link to="/login">Login </Link> or  <Link to='/register'>register</Link> to add a review</p> }
+
 			{props.paginationReviews.map((review) => {
 				return (
 					<div key={review.id} >
@@ -90,10 +94,11 @@ function PropertyReviews(props) {
 	)
 }
 
-const mapStateToProps = ({ reviewByProperty, paginationReviews }) => {
+const mapStateToProps = ({ reviewByProperty, paginationReviews, auth }) => {
 	return {
 		reviewByProperty,
-		paginationReviews
+    paginationReviews,
+    auth
 	}
 }
 

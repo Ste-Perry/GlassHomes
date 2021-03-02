@@ -34,7 +34,6 @@ router.post('/image', upload.single('img'), function (req, res, next) {
 router.get('/', (req, res) => {
   db.getProperties()
     .then(results => {
-
       res.json({ properties: results.map(property => property) })
 
       return null

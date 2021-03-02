@@ -86,8 +86,10 @@ function Search (props) {
                   : 'suggestion-item';
                 // inline style for demonstration purpose
                 const style = suggestion.active
-                  ? { backgroundColor: '#F8F8FF', cursor: 'pointer' ,color: 'black' }
-                  : { backgroundColor: '#87CEFA', cursor: 'pointer' ,color: 'black'}
+
+                  ? { backgroundColor: '#f2f3f4', cursor: 'pointer' ,color: 'black' }
+                  : { backgroundColor: '#C1E6FD', cursor: 'pointer' ,color: 'black'}
+
                 return (
                   <div key={count++}
                     {...getSuggestionItemProps(suggestion, {
