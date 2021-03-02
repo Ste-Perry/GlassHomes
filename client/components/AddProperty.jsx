@@ -76,9 +76,13 @@ e.target.blur()
 
     return(
         <>
-          <div className="column is-8 is-offset-2">
+        	<section className="hero is-info is-medium is-bold" id="hero-image">
+				<div className="hero-body"></div>
+			</section>
+          <section className="articles">
           <Adverts side="left" />
 					<Adverts side="right" />
+          <div className="column is-8 is-offset-2">
         <div className="container has-text-centered">
           <div className="card article">
             <div className="card-content"></div>
@@ -213,6 +217,7 @@ e.target.blur()
               </div>
               </div>
               </div>
+              </section>
         </>
     )
 

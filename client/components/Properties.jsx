@@ -67,7 +67,7 @@ function Properties(props) {
 			{/* <Link to='/addproperty'>Add new property</Link> */}
 
 			<ul>
-				<section className="articles">
+			<section className="articles">
 					<Adverts side="left" />
 					<Adverts side="right" />
 					<div className="column is-8 is-offset-2">
@@ -140,7 +140,7 @@ function Properties(props) {
 						<option value="Woodridge">Woodridge</option>
 					</select>
 				</label>
-				<input type="submit" value="submit" />
+				{/* <input type="submit" value="submit" /> */}
 			</form>
 			<br />
 
