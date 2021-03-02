@@ -15,6 +15,7 @@ function addReview (reviews, db = connection) {
   .insert(reviews)
   .then(ids => ids[0])
 }
+
 function getReviewById (id, db = connection) {
   return db('reviews')
   .where('id',id)

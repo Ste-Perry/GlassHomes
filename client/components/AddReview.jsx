@@ -57,6 +57,7 @@ function AddReview(props) {
     const formImage = new FormData()
 
     if(reviewImage == null) {
+      console.log("woohoo", props.auth.user.id)
       props.dispatch(addReviewWithDefaultImage({
         title: formData.title,
         comments: formData.comments,
@@ -66,6 +67,8 @@ function AddReview(props) {
         start_of_tenancy: formData.start_of_tenancy,
         end_of_tenancy: formData.end_of_tenancy,
         propsId,
+        user_ID: props.auth.user.id,
+        time: new Date()
       }))
       e.target.reset()
       props.dispatch(fetchReviewsWithOffsetAndLimit(props.setOffset.offset, props.setOffset.limit, props.setOffset.id))
@@ -83,6 +86,8 @@ function AddReview(props) {
         start_of_tenancy: formData.start_of_tenancy,
         end_of_tenancy: formData.end_of_tenancy,
         propsId,
+        user_ID: props.auth.user.id,
+        time: new Date()
       })
       )
       e.target.reset()
@@ -330,10 +335,11 @@ function AddReview(props) {
   );
 }
 
-const mapStateToProps = ({reviews, setOffset}) => {
+const mapStateToProps = ({reviews, setOffset, auth}) => {
   return {
     reviews,
     setOffset,
+    auth,
   }
 }
 
