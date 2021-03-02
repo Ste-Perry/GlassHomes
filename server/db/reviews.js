@@ -10,6 +10,11 @@ function getReviewsWithLimitAndOffset (limit, offset, id, db = connection) {
   .where("property_ID", id)
 }
 
+function getReviewsWithLimitForAdmin (limit, offset, db = connection) {
+  return db('reviews').select().limit(limit).offset(offset)
+}
+
+
 function addReview (reviews, db = connection) {
   return db('reviews')
   .insert(reviews)
@@ -51,5 +56,6 @@ module.exports = {
   deleteReview,
   getReviewByPropertyId,
   getReviewsWithLimitAndOffset,
+  getReviewsWithLimitForAdmin
   // increaseHelpfulScore
 }

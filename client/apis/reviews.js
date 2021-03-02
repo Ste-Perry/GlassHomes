@@ -55,6 +55,13 @@ export function getReviewsWithOffsetAndLimit(offset, limit, id) {
   .then(res => res.body)
 }
 
+
+export function getReviewsWithLimitForAdmin(offset, limit) {
+  return request.get(rootUrl + "property/" + limit + "/" + offset)
+  .then(res => res.body)
+}
+
+
 export function incrementHelpfulScore(score, id) {
   return request.patch(rootUrl + id)
   .send({helpful_score: score})
@@ -63,5 +70,6 @@ export function incrementHelpfulScore(score, id) {
   })
 
 }
+
 
 // reviews/property/:offset/:limit

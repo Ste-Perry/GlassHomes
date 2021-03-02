@@ -56,6 +56,7 @@ function App({ auth, dispatch }) {
         }
       </div>
       <div>
+        <Route exact path="/" component={Home} />
         <Route path='/property/:id' component={Property} />
         <Route path='/properties' component={Properties} />
         <Route path='/addreview' component={AddReview} />
