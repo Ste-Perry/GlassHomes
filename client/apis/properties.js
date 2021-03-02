@@ -51,6 +51,11 @@ export function getPropertyAvgScore (id){
 }
 
 
+export function getPropertyWithRating (sort){
+  return request.get(rootUrl + "/sort/" + sort)
+  .then(res => res.body)
+}
+
 // export function updatePropertyAvgScore (id, avg_score){
 //   return request.patch(rootUrl + "/property/" + id)
 //   .send(id, avg_score )
