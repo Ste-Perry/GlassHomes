@@ -50,7 +50,7 @@ function App({ auth, dispatch }) {
         {auth.isAuthenticated && isAdmin && (
           <>
           <Route path='/adminportal' component={AdminPortal} />
-          <Route  path="/" component={Home} />
+          <Route exact path="/" component={Home} />
           </>
         ) 
         }
