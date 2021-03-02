@@ -169,7 +169,7 @@ function Property(props) {
 
                       <div className="">
                         <span>
-                          <img
+                          <img className="logo"
                             src={singleProperty.img}
                             alt="image of property"
                           />
