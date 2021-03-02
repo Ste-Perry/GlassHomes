@@ -161,7 +161,7 @@ function Property(props) {
                 
                         return (<div className="icon-text">
                         <i style={{color: "gold"}} className="fa fa-star"></i>
-                        <span> Average Rating: {property.score.toFixed(2)}</span>
+                        <span> Average Rating: {property.score}</span>
                       </div>)
                           }
                       })}

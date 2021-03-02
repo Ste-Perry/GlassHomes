@@ -55,4 +55,10 @@ export function getReviewsWithOffsetAndLimit(offset, limit, id) {
   .then(res => res.body)
 }
 
+export function getReviewsWithLimitForAdmin(offset, limit) {
+  return request.get(rootUrl + "property/" + limit + "/" + offset)
+  .then(res => res.body)
+}
+
+
 // reviews/property/:offset/:limit

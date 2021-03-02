@@ -1,4 +1,4 @@
-import { deleteReview, getReviews, addReview, updateReview, getReviewByPropertyId, addImageReview, getReviewsWithOffsetAndLimit } from '../apis/reviews'
+import { deleteReview, getReviews, addReview, updateReview, getReviewByPropertyId, addImageReview, getReviewsWithOffsetAndLimit, getReviewsWithLimitForAdmin } from '../apis/reviews'
 
 export const SET_REVIEWS = 'SET_REVIEWS'
 export const SET_REVIEWS_BY_PROP_ID = 'SET_REVIEWS_BY_PROP_ID'
@@ -7,6 +7,7 @@ export const UPDATE_REVIEW = 'UPDATE_REVIEW'
 export const DELETE_REVIEW = 'DELETE_REVIEW'
 export const SET_SPECIFIC_REVIEWS = 'SET_SPECIFIC_REVIEWS'
 export const OFFSET_ID_LIMIT = 'OFFSET_ID_LIMIT'
+export const SET_ADMIN_REVIEWS = 'SET_ADMIN_REVIEWS'
 
 export function setReviews(reviews) {
   return {
@@ -35,6 +36,12 @@ export function setSpecificReviews(reviews) {
   }
 }
 
+export function setAdminReviews(reviews) {
+  return {
+    type: SET_ADMIN_REVIEWS,
+    reviews
+  }
+}
 
 export function fetchReviews() {
   return dispatch => {
@@ -123,6 +130,16 @@ export function fetchReviewsWithOffsetAndLimit(offset, limit, id) {
         return null
       })
     // })
+  }
+}
+
+export function fetchReviewsWithOffsetAndLimitAdmin(offset, limit) {
+  return dispatch => {
+    return getReviewsWithLimitForAdmin(offset, limit)
+      .then(reviews => {
+        dispatch(setAdminReviews(reviews))
+        return null
+      })
   }
 }
 

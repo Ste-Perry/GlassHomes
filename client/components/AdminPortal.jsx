@@ -1,21 +1,37 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect, useStore } from 'react-redux'
-import { fetchReviews } from '../actions/reviews'
+import { fetchReviews, fetchReviewsWithOffsetAndLimitAdmin } from '../actions/reviews'
+import { fetchPropertiesWithOffsetAndLimitAdmin } from '../actions'
 import { fetchUsers } from '../actions/users'
 
 function AdminPortal(props) {
-
-	useEffect(()=> {
-		props.dispatch(fetchReviews())
-		props.dispatch(fetchUsers())
-	},[])
 
 	const properties = props.properties
 	const reviews = props.reviews
 	const users = props.users
 
-	
+	const [limit, setLimit] = useState(5)
+	const [offsetReviews, setOffsetReviews] = useState(reviews.length - limit)
+	const [offsetProperties, setOffsetProperties] = useState(properties.length - limit)
+	// const offset = reviews.length - limit
+
+	useEffect(() => {
+		props.dispatch(fetchReviews())
+		props.dispatch(fetchUsers())
+		props.dispatch(fetchReviewsWithOffsetAndLimitAdmin(offsetReviews, limit))
+		props.dispatch(fetchPropertiesWithOffsetAndLimitAdmin(offsetProperties, limit))
+	}, [])
+
+	//map through reviews - looking at the review.time - convert to UTC then create new date and convert to utc 
+	// - then compare (new utc - review.time.utc) if number is less than 604800 (seconds) then its been within the last week
+
+	//use filter to return the object when the above works
+
+	if(reviews) {
+		let reviewsInLast7days
+	}
+
 
 	return (
 		<>
@@ -97,31 +113,18 @@ function AdminPortal(props) {
 							<div className="content">
 								<table className="table is-fullwidth is-striped">
 									<tbody>
-										<tr>
-											<td width="5%"><i className="fa fa-bell-o"></i></td>
-											<td>41 Placeholder Street</td>
-											<td className="level-right"><a className="button is-small is-success" href="#">Check</a></td>
-										</tr>
-										<tr>
-											<td width="5%"><i className="fa fa-bell-o"></i></td>
-											<td>42 Placeholder Street</td>
-											<td className="level-right"><a className="button is-small is-success" href="#">Check</a></td>
-										</tr>
-										<tr>
-											<td width="5%"><i className="fa fa-bell-o"></i></td>
-											<td>43 Placeholder Street</td>
-											<td className="level-right"><a className="button is-small is-success" href="#">Check</a></td>
-										</tr>
-										<tr>
-											<td width="5%"><i className="fa fa-bell-o"></i></td>
-											<td>44 Placeholder Street</td>
-											<td className="level-right"><a className="button is-small is-success" href="#">Check</a></td>
-										</tr>
-										<tr>
-											<td width="5%"><i className="fa fa-bell-o"></i></td>
-											<td>45 Placeholder Street</td>
-											<td className="level-right"><a className="button is-small is-success" href="#">Check</a></td>
-										</tr>
+										{props.adminReviews.map(
+											review => {
+												return (
+													<tr>
+														<td width="5%"><i className="fa fa-archive"></i></td>
+														<td>{review.title}</td>
+														<td className="level-right"><Link className="button is-small is-success" to={`/property/${review.property_ID}`} >Check</Link></td>
+													</tr>
+												)
+											}
+										)}
+
 									</tbody>
 								</table>
 							</div>
@@ -133,7 +136,7 @@ function AdminPortal(props) {
 				</div>
 
 
-{/* Latest Properties Summary */}
+				{/* Latest Properties Summary */}
 
 				<div className="column is-4">
 					<div className="card">
@@ -149,31 +152,17 @@ function AdminPortal(props) {
 							<div className="content">
 								<table className="table is-fullwidth is-striped">
 									<tbody>
-										<tr>
-											<td width="5%"><i className="fa fa-bell-o"></i></td>
-											<td>41 Placeholder Street</td>
-											<td className="level-right"><a className="button is-small is-success" href="#">Check</a></td>
-										</tr>
-										<tr>
-											<td width="5%"><i className="fa fa-bell-o"></i></td>
-											<td>42 Placeholder Street</td>
-											<td className="level-right"><a className="button is-small is-success" href="#">Check</a></td>
-										</tr>
-										<tr>
-											<td width="5%"><i className="fa fa-bell-o"></i></td>
-											<td>43 Placeholder Street</td>
-											<td className="level-right"><a className="button is-small is-success" href="#">Check</a></td>
-										</tr>
-										<tr>
-											<td width="5%"><i className="fa fa-bell-o"></i></td>
-											<td>44 Placeholder Street</td>
-											<td className="level-right"><a className="button is-small is-success" href="#">Check</a></td>
-										</tr>
-										<tr>
-											<td width="5%"><i className="fa fa-bell-o"></i></td>
-											<td>45 Placeholder Street</td>
-											<td className="level-right"><a className="button is-small is-success" href="#">Check</a></td>
-										</tr>
+										{props.adminProperties.map(
+											property => {
+												return (
+													<tr>
+														<td width="5%"><i className="fa fa-archive"></i></td>
+														<td>{property.address}</td>
+														<td className="level-right"><Link className="button is-small is-success" to={`/property/${property.id}`} >Check</Link></td>
+													</tr>
+												)
+											}
+										)}
 									</tbody>
 								</table>
 							</div>
@@ -183,7 +172,7 @@ function AdminPortal(props) {
 						</footer>
 					</div>
 				</div>
-				</div>
+			</div>
 		</>
 	)
 }
@@ -193,7 +182,9 @@ const mapStateToProps = (globalState) => {
 		auth: globalState.auth,
 		properties: globalState.properties,
 		users: globalState.users,
-		reviews: globalState.reviews
+		reviews: globalState.reviews,
+		adminReviews: globalState.adminReviews,
+		adminProperties: globalState.adminProperties
 	}
 }
 
