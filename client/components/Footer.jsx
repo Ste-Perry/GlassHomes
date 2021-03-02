@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {connect} from "react-redux"
+import AdvertsBottom from './AdvertsBottom'
 
 function Footer(props) {
 
@@ -13,6 +14,7 @@ function Footer(props) {
 					<p>
 						<strong>GlassHomes </strong> by Team Yeet . Developed at
       			<a href="https://devacademy.co.nz"> Dev Academy</a>.
+				  
    				</p>
 					<div>
 						<p >
@@ -25,6 +27,8 @@ function Footer(props) {
 							<a href="mailto:admin@glasshomes.co.nz"> Contact</a> 
 						</p>
 					</div>
+					
+				<AdvertsBottom side='bottom' />
 				</div>
 			</footer>
 		</>
