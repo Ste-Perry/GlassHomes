@@ -8,14 +8,7 @@ const Review = (props) => {
   const isAdmin = props.auth.user.is_admin
 
   const isUserId = props.auth.user.id
-  const isReviewUserId = props.reviewByProperty.map(
-    review => {
-        return review.user_ID
-      }
-  )
 
-  console.log('userid', isUserId)
-  console.log('reviewID', isReviewUserId)
 
   const stars = () => {
     let starArray = [];
@@ -37,10 +30,7 @@ const Review = (props) => {
 
   const handleUpdate = (id, e) => {
       e.preventDefault()
-      // props.dispatch(deleteReviews(id))
-      // props.dispatch(updateReviews(id)) DO THIS
       alert('Updated!')
-      // props.dispatch(fetchReviewsWithOffsetAndLimit(props.setOffset.offset, props.setOffset.limit, props.setOffset.id))
   }
 
    const handleDelete = (id, e) => {
@@ -82,6 +72,7 @@ const Review = (props) => {
               <p>{review.cons}</p>
               <br />
               <p className="comments">Comments: {review.comments}</p>
+              <p>{review.user_ID}</p>
               <br />
               Rating: {stars()}
               <br />
@@ -106,35 +97,13 @@ const Review = (props) => {
                 <button className='button is-danger' onClick={(e)=> handleDelete(reviewId, e)} >Delete</button>
               }
 
-
-
-   {/* Does not work */}
-              {/* {isUserId && isReviewUserId &&
-              <button className='button is-danger' onClick={(e)=> handleDelete(reviewId, e)} >Delete</button>
-              } */}
-
-     
-{/* 
-              {
-                props.reviewByProperty && props.reviewByProperty.map(review => {
-
-                console.log(review)
-                console.log("review.user_ID", review.user_ID)
-
-                 if(isUserId == review.user_ID){
-
-                   return (
+                { (isUserId == review.user_ID) && (
                      <>
                         <button className='button is-warning' onClick={(e)=> handleUpdate(reviewId, e)} >Update</button>
                         <button className='button is-danger' onClick={(e)=> handleDelete(reviewId, e)} >Delete</button>
                     </>
-                   )
-                   }
-                 }
-              )} */}
-
-
-
+                  )
+                }
             </div>
           </div>
         </div>
@@ -143,10 +112,8 @@ const Review = (props) => {
       <br></br>
     </div>
 
-    //   </section>
-    // </div>
-  );
-};
+  )
+}
 const mapStateToProps = (globalState) => {
   return {
     reviews: globalState.reviews,
