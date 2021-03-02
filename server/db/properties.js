@@ -7,9 +7,7 @@ function getProperties (db = connection) {
 }
 
 function getPropertiesWithRatings (sort, db = connection) {
-
-
-  return db('properties').join('reviews', 'reviews.property_ID', 'properties.id').groupBy('reviews.property_ID').select('properties.*', db.raw('AVG(reviews.rating) AS score')).orderBy(db.raw('AVG(reviews.rating)'), sort)
+  return db('properties').join('reviews', 'reviews.property_ID', 'properties.id').groupBy('properties.id').select('properties.*', db.raw('AVG(reviews.rating) AS score')).orderBy(db.raw('AVG(reviews.rating)'), sort)
 }
 
 function addProperty (property, db = connection) {
@@ -53,7 +51,7 @@ function getPropertysAvgScore (avg_score, db = connection) {
 
 
 module.exports = {
-  getProperties: getPropertiesWithRatings,
+  getProperties,
   getPropertiesWithRatings,
   addProperty,
   getPropertyById,
