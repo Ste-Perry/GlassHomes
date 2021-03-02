@@ -23,15 +23,17 @@
 @import "bulma/sass/layout/section.sass";
 
 
+
 html, 
 body {
   font-family: 'Montserrat', sans-serif;
 }
 
+@import "./AddReview.scss";
 @import "./Home.scss";
 @import "./Nav.scss";
 @import "./Login.scss";
 @import "./Register.scss";
 @import "./PropertyAndReview.scss";
 @import "./Review.scss";
-@import "./Global.scss"
+@import "./Global.scss";

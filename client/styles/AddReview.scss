@@ -1,0 +1,60 @@
+body {
+  margin: 40px;
+}
+
+.rating {
+  margin-top: 40px;
+  border: none;
+  float: left;
+}
+
+.rating > label {
+  color: #90A0A3;
+  float: right;
+}
+
+.rating > label:before {
+  margin: 5px;
+  font-size: 2em;
+  font-family: FontAwesome;
+  content: "\f005";
+  display: inline-block;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: orange;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+  color: gold;
+}
+
+.review-img {
+
+  height: 300px;
+
+}
+.checkboxtext {
+  font-size: 110%;
+  // display: inline;
+  width: 25px;
+        height: 15px;
+}
+.checkbox {
+  -ms-transform: scale(3);
+  -moz-transform: scale(1.5); 
+  -webkit-transform: scale(1.5); 
+  -o-transform: scale(1.5); 
+  transform: scale(1.5);
+  padding: 10px;
+  font-weight: bold;
+}

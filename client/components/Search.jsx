@@ -21,16 +21,21 @@ function Search (props) {
         if(property.address == addy) {
           setPropId(property.id)
           setPropRedirect(true)
+          setAddress("")
+          
         } else {
           setAddRedirect(true)
+          setAddress("")
         }
+
+        // setAddress("")
         return property
       })
     }
   },[address])
  
   const handleChange = (address) => {
-    // console.log(address)
+    // console.log('change', address)
     setAddress(address)
   };
   
@@ -38,12 +43,11 @@ function Search (props) {
     setAddress(a)
     // console.log(address)
     setBool(true)
-    
     geocodeByAddress(a)
     .then(results => getLatLng(results[0]))
     .then(latLng => console.log('Success', latLng))
-    .catch(error => console.error('Error', error));
-    
+    .then(() => {return (setBool(false), setAddRedirect(false), setPropRedirect(false))})
+    .catch(error => console.error('Error', error));    
   };
 
   const searchOptions = {
@@ -67,7 +71,7 @@ function Search (props) {
         searchOptions={searchOptions}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
+          <div className="searchbox">
             <input
               {...getInputProps({
                 placeholder: 'Search Places ...',
@@ -75,15 +79,17 @@ function Search (props) {
               })}
             />
             <div className="autocomplete-dropdown-container">
-              {loading && <div>Loading...</div>}
+              {/* {loading && <div className ="Loading">Loading...</div>} */}
               {suggestions.map(suggestion => {
                 const className = suggestion.active
                   ? 'suggestion-item--active'
                   : 'suggestion-item';
                 // inline style for demonstration purpose
                 const style = suggestion.active
-                  ? { backgroundColor: '#C0C0C0', cursor: 'pointer' ,color: 'black'}
-                  : { backgroundColor: '#C0C0C0', cursor: 'pointer' ,color: 'black'}
+
+                  ? { backgroundColor: '#f2f3f4', cursor: 'pointer' ,color: 'black' }
+                  : { backgroundColor: '#C1E6FD', cursor: 'pointer' ,color: 'black'}
+
                 return (
                   <div key={count++}
                     {...getSuggestionItemProps(suggestion, {
@@ -102,7 +108,7 @@ function Search (props) {
           </div>
         )}
       </PlacesAutocomplete>
-      {addRedirect && <Redirect to="/"/>}
+      {addRedirect && <Redirect to="/addproperty"/>}
       {propRedirect && <Redirect to={`/property/${propId}`}/>}
       </>
     );

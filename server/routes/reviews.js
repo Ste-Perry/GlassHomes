@@ -1,9 +1,36 @@
-const routes = require('authenticare/server/routes')
+// const routes = ('authenticare/server/routes')
 const express = require('express')
 
 const db = require('../db/reviews')
 
 const router = express.Router()
+
+const multer = require('multer')
+const multerS3 = require('multer-s3')
+const AWS = require('aws-sdk')
+
+// Amazon s3 config
+const s3 = new AWS.S3()
+AWS.config.update(
+  {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_ID
+  }
+)
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'glasshomes',
+    acl: 'public-read',
+    key: function (req, file, cb) {
+      cb(null, 'images/' + file.originalname)
+    }
+  })
+})
+
+router.post('/image', upload.single('img'), function (req, res, next) {
+  res.send(req.file.location)
+})
 
 router.get('/', (req, res) => {
   db.getReviews()
@@ -17,6 +44,17 @@ router.get('/', (req, res) => {
     })
 })
 
+
+router.get('/property/:limit/:offset/:id', (req, res) => {
+  let limit = req.params.limit
+  let offset = req.params.offset
+  let id = req.params.id
+  db.getReviewsWithLimitAndOffset(limit, offset, id)
+  .then(reviewsPage => {
+    res.json(reviewsPage)
+  })
+})
+
 router.get ('/property/:id', (req, res) =>{
   propertyId = req.params.id
   console.log(req.params.id)
@@ -25,7 +63,6 @@ router.get ('/property/:id', (req, res) =>{
     res.json (id)
     })
   })
-
 router.get ('/:id', (req, res) =>{
   reviewId = req.params.id
   db.getReviewById(reviewId)
@@ -42,13 +79,19 @@ router.post('/', (req,res) => {
     cons: req.body.cons,
     rating: req.body.rating,
     start_of_tenancy: req.body.start_of_tenancy,
-    end_of_tenancy: req.body.end_of_tenancy
+    end_of_tenancy: req.body.end_of_tenancy,
+    property_ID: req.body.propsId,
+    user_ID: req.body.user_ID,
+    img: req.body.image,
+    time: req.body.time
   }
+  
   db.addReview(review)
   .then(review => {
     res.json({ review: review })
   })
   .catch(err => {
+    console.log(review)
     console.log(err)
     res.status(500).json({ message: 'Post review broken' })
   })
