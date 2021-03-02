@@ -44,6 +44,19 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/sort/:sort', (req, res) => {
+
+  db.getPropertiesWithRatings(req.params.sort)
+    .then(results => {
+      res.json(results)
+      return null
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ message: 'Somthing went wrong' })
+    })
+})
+
 router.get ('/:id', (req, res) =>{
   propertyId = req.params.id
   db.getPropertyById(propertyId)
