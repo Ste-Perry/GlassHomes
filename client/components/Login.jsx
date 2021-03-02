@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { Link, Route, Redirect } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 
-import { loginUser, loginError } from '../actions/auth'
-import InvalidCredentials from './InvalidCredentials'
+import { loginUser } from '../actions/auth'
 
 function Login(props) {
 	const { auth } = props
@@ -23,6 +22,7 @@ function Login(props) {
 	}
 
 	const handleSubmit = (e) => {
+
 		e.preventDefault()
 		let { username, password } = formData
 		const confirmSuccess = () => {
@@ -30,7 +30,7 @@ function Login(props) {
 		}
 		props.dispatch(loginUser({ username, password }, confirmSuccess))
 	}
-
+	
 	return (
 		<>
 			<section className="hero is-info is-medium is-bold" id="hero-image">
@@ -101,16 +101,7 @@ function Login(props) {
 										<a href="mailto:admin@glasshomes.co.nz">Need Help?</a>
 									</p>
 								</div>
-								<div className=''>
-							{props.auth.isAuthenticated &&
-							<>
-							<br/>
-							<br/>
-							<Route path="/" component={InvalidCredentials} />
-							</>
-							}
-							</div>	
-			
+									
 							</div>
 						</div>
 					</div>
