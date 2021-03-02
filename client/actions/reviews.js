@@ -53,8 +53,9 @@ export function fetchReviews() {
   return dispatch => {
     return getReviews()
       .then(reviews => {
-        dispatch(setReviews(reviews))
-        return null
+        dispatch(fetchReviewsWithOffsetAndLimitAdmin(reviews.length - 5, 5))
+          dispatch(setReviews(reviews))
+          return null
       })
   }
 }
