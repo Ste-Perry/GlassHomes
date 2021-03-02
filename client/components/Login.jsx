@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Route, Redirect } from 'react-router-dom'
 
 import { loginUser, loginError } from '../actions/auth'
+import InvalidCredentials from './InvalidCredentials'
 
 function Login(props) {
 	const { auth } = props
@@ -100,11 +101,22 @@ function Login(props) {
 										<a href="mailto:admin@glasshomes.co.nz">Need Help?</a>
 									</p>
 								</div>
+								<div className=''>
+							{props.auth.isAuthenticated &&
+							<>
+							<br/>
+							<br/>
+							<Route path="/" component={InvalidCredentials} />
+							</>
+							}
+							</div>	
+			
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
+		
 		</>
 	)
 }
