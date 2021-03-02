@@ -26,8 +26,8 @@
 }
 
 .advert-banners {
-    border-style: solid;
-    background-color: lightgray;
+    // border-style: solid;
+    // background-color: lightgray;
     width: 300px;
     height: 447px;
     position: absolute;
@@ -60,26 +60,12 @@
         &.current {
             opacity: 1;
         }
-
-        &--bottom {
-            position: fixed;
-        // top: 0;
-        // left: 0;
-        // width: 100%;
-        max-height: 300px;
-        opacity: 0;
-        transition: 0.4s opacity;
-        &.current {
-            opacity: 1;
-        }
-
-        }
     }
 }
 
 @media screen and (max-width: 960px) {
     .advert-banner-left { display: none; }
-  .advert-banner-right { display: none; }
+    .advert-banner-right { display: none; }
     .advert-banners-bottom { display: none; }
   }
 .home-image {
