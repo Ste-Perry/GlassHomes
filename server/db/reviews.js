@@ -10,6 +10,11 @@ function getReviewsWithLimitAndOffset (limit, offset, id, db = connection) {
   .where("property_ID", id)
 }
 
+function getReviewsWithLimitForAdmin (limit, offset, db = connection) {
+  return db('reviews').select().limit(limit).offset(offset)
+}
+
+
 function addReview (reviews, db = connection) {
   return db('reviews')
   .insert(reviews)
@@ -37,6 +42,12 @@ function getReviewByPropertyId (id, db = connection) {
   .where('reviews.property_ID', id)
 }
 
+// function increaseHelpfulScore(id, score, db = connection) {
+//   return db('reviews')
+//   .where('id', id)
+//   .update(score)
+// }
+
 module.exports = {
   getReviews,
   addReview,
@@ -44,5 +55,7 @@ module.exports = {
   updateReview,
   deleteReview,
   getReviewByPropertyId,
-  getReviewsWithLimitAndOffset
+  getReviewsWithLimitAndOffset,
+  getReviewsWithLimitForAdmin
+  // increaseHelpfulScore
 }

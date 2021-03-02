@@ -1,4 +1,4 @@
-import { getProperties, getPropertyById, addProperty, deleteProperty, updateProperty, addImageProp, getPropertyWithRating } from '../apis/properties'
+import { getProperties, getPropertyById, addProperty, deleteProperty, updateProperty, addImageProp, getPropertyWithRating, getPropertiesWithLimitForAdmin } from '../apis/properties'
 
 export const SET_PROPERTIES = 'SET_PROPERTIES'
 export const ADD_PROPERTIES = 'ADD_PROPERTIES'
@@ -7,6 +7,7 @@ export const UPDATE_PROPERTIES = 'UPDATE_PROPERTIES'
 export const SET_PROPERTY_BY_PROP_ID = 'SET_PROPERTY_BY_PROP_ID'
 export const SET_PROPERTIES_EMPTY = 'SET_PROPERTIES_EMPTY'
 export const FILTER_BY_AVGSCORE = "FILTER_BY_AVGSCORE"
+export const SET_ADMIN_PROPERTIES = 'SET_ADMIN_PROPERTIES'
 
 
 export function setProperties (properties) {
@@ -27,6 +28,13 @@ export function setPropertyById (property) {
   return {
     type: SET_PROPERTY_BY_PROP_ID,
     property
+  }
+}
+
+export function setAdminProperties(properties) {
+  return {
+    type: SET_ADMIN_PROPERTIES,
+    properties
   }
 }
 
@@ -117,6 +125,16 @@ export function updateTheProperties(id, property) {
       dispatch(fetchProperties())
       return null
     })
+  }
+}
+
+export function fetchPropertiesWithOffsetAndLimitAdmin(offset, limit) {
+  return dispatch => {
+    return getPropertiesWithLimitForAdmin(offset, limit)
+      .then(properties => {
+        dispatch(setAdminProperties(properties))
+        return null
+      })
   }
 }
 

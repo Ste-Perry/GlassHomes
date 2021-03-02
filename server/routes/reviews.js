@@ -55,6 +55,17 @@ router.get('/property/:limit/:offset/:id', (req, res) => {
   })
 })
 
+router.get('/property/:limit/:offset', (req, res) => {
+  let limit = req.params.limit
+  let offset = req.params.offset
+  db.getReviewsWithLimitForAdmin(limit, offset)
+  .then(latestReviews => {
+    res.json(latestReviews)
+  })
+})
+
+
+
 router.get ('/property/:id', (req, res) =>{
   propertyId = req.params.id
   console.log(req.params.id)
@@ -119,6 +130,19 @@ router.patch('/:id',(req,res) => {
       res.status(500).json({message: "update review broken."})
     })
 })
+
+// router.patch('/:id', (req, res) =>{
+//   const id = req.params.id
+//   const score = req.body
+//   db.increaseHelpfulScore(id, score)
+//   .then(() => {
+//     res.sendStatus(200)
+//   })
+//   .catch(err => {
+//     console.log(err)
+//     res.status(500).json({message: "increment broken."})
+//   })
+// })
 
 
 

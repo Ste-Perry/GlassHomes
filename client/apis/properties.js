@@ -56,6 +56,11 @@ export function getPropertyWithRating (sort){
   .then(res => res.body)
 }
 
+export function getPropertiesWithLimitForAdmin(offset, limit) {
+  return request.get(rootUrl + "/property/" + limit + "/" + offset)
+  .then(res => res.body)
+}
+
 // export function updatePropertyAvgScore (id, avg_score){
 //   return request.patch(rootUrl + "/property/" + id)
 //   .send(id, avg_score )

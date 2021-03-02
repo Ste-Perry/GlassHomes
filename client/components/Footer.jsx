@@ -29,7 +29,9 @@ function Footer(props) {
 					</div>
 					<br/>
 					
+					{!isAdmin &&
 				<AdvertsBottom side='bottom' />
+					}
 				</div>
 			</footer>
 		</>
