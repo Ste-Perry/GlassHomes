@@ -74,6 +74,7 @@ useEffect(() => {
               <br/>
               <h3 className="title has-text-black">Add a Property</h3>
             <form onSubmit={handleSubmit}>
+
               <hr/>
             <div className="field">
                     <div className="control">
@@ -155,13 +156,16 @@ useEffect(() => {
                   </div>
                   
                
+
                 <label className="" htmlFor="img">
                   <span className="">Property image </span>
                    <input type="file" name="img" onChange={onChangeFile} />
                </label>
                <br/>
+
                <br/>
                 <button className="button is-medium is-info is-outlined" type='submit'>Add</button>
+
             </form>
             </div>
               }
