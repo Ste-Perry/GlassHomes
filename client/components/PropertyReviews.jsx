@@ -21,7 +21,7 @@ function PropertyReviews(props) {
 		props.dispatch(fetchReviewsByPropertyId(id))
 		props.dispatch(fetchReviewsWithOffsetAndLimit(offset, limit, id))
 		props.dispatch(reviewOffsetLimitAndId(offset, limit, id))
-	}, [offset])
+	}, [offset, id])
 
 	const refresh = () => {
 		props.dispatch(fetchReviewsByPropertyId(id))

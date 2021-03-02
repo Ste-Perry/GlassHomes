@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 
-import { loginUser, loginError } from '../actions/auth'
+import { loginUser } from '../actions/auth'
 
 function Login(props) {
 	const { auth } = props
@@ -22,6 +22,7 @@ function Login(props) {
 	}
 
 	const handleSubmit = (e) => {
+
 		e.preventDefault()
 		let { username, password } = formData
 		const confirmSuccess = () => {
@@ -29,7 +30,7 @@ function Login(props) {
 		}
 		props.dispatch(loginUser({ username, password }, confirmSuccess))
 	}
-
+	
 	return (
 		<>
 			<section className="hero is-info is-medium is-bold" id="hero-image">
@@ -100,11 +101,13 @@ function Login(props) {
 										<a href="mailto:admin@glasshomes.co.nz">Need Help?</a>
 									</p>
 								</div>
+									
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
+		
 		</>
 	)
 }
