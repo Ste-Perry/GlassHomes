@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
 const bottomAdverts = [
-    { url: '/images/goose-bottom-1.jpg', description: 'very nice goose'},
+    { url: '/images/goose-bottom-1-reworked.png', description: 'very nice goose'},
     { url: '/images/snag-1.jpg', description: 'snags for dayz'},
-    { url: '/images/boop-dog-1.png', description: 'heckin booped'},
+    { url: '/images/boop-dog-1-resized.png', description: 'boop pupper'},
 ]
 
 const AdvertsBottom = (props) => {
@@ -28,7 +28,7 @@ const AdvertsBottom = (props) => {
         <>
         <div className={`advert-banners advert-banners--${props.side}`}>
             { bottomAdverts.map((advert, i) => (
-               <img className='img-bottom'
+               <img 
                 key={i}
                 src={advert.url}
                 alt={advert.description}
@@ -39,7 +39,5 @@ const AdvertsBottom = (props) => {
         </>
     )
 }
-
-{/* <AdvertsBottom side='bottom' /> */}
 
 export default AdvertsBottom

@@ -27,6 +27,7 @@ function Footer(props) {
 							<a href="mailto:admin@glasshomes.co.nz"> Contact</a> 
 						</p>
 					</div>
+					<br/>
 					
 				<AdvertsBottom side='bottom' />
 				</div>
