@@ -24,14 +24,23 @@ function AdminPortal(props) {
 	}, [])
 
 	//map through reviews - looking at the review.time - convert to UTC then create new date and convert to utc 
-	// - then compare (new utc - review.time.utc) if number is less than 604800 (seconds) then its been within the last week
+	// - then compare (new utc - review.time.utc) if number is less than 604800 (seconds)  604800000 (milliseconds) then its been within the last week
 
 	//use filter to return the object when the above works
 
-	if(reviews) {
-		let reviewsInLast7days
-	}
+	// const[numberOfRecentReviews, setNumberOfRecentReviews] = useState(0)
 
+	// 1614724216153
+	
+	let reviewsInLast7days = []
+	if(reviews) {
+		let currentTime = Date.now()
+		reviewsInLast7days = reviews.filter(review => {
+			if((currentTime - review.time) <= 604800000) {
+				return review
+			}
+		})
+	}
 
 	return (
 		<>
@@ -83,8 +92,13 @@ function AdminPortal(props) {
 					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child box">
-							<p className="title">3.4k</p>
-							<p className="subtitle">New Reviews</p>
+							{/* {!numberOfRecentReviews == 0 && <> 
+								<p className="title">{numberOfRecentReviews}</p>
+								<p className="subtitle">New Reviews</p>
+							</>
+							} */}
+							<p className="title">{reviewsInLast7days.length}</p>
+								<p className="subtitle">New Reviews</p>
 						</article>
 					</div>
 					<div className="tile is-parent">
@@ -116,7 +130,7 @@ function AdminPortal(props) {
 										{props.adminReviews.map(
 											review => {
 												return (
-													<tr>
+													<tr key={review.id}>
 														<td width="5%"><i className="fa fa-archive"></i></td>
 														<td>{review.title}</td>
 														<td className="level-right"><Link className="button is-small is-success" to={`/property/${review.property_ID}`} >Check</Link></td>
@@ -130,7 +144,7 @@ function AdminPortal(props) {
 							</div>
 						</div>
 						<footer className="card-footer">
-							<a href="#" className="card-footer-item">View All</a>
+						<Link to="/reviews" className="card-footer-item">View All</Link>
 						</footer>
 					</div>
 				</div>
@@ -155,7 +169,7 @@ function AdminPortal(props) {
 										{props.adminProperties.map(
 											property => {
 												return (
-													<tr>
+													<tr key={property.id}>
 														<td width="5%"><i className="fa fa-archive"></i></td>
 														<td>{property.address}</td>
 														<td className="level-right"><Link className="button is-small is-success" to={`/property/${property.id}`} >Check</Link></td>
@@ -168,7 +182,7 @@ function AdminPortal(props) {
 							</div>
 						</div>
 						<footer className="card-footer">
-							<a href="#" className="card-footer-item">View All</a>
+							<Link to="/properties" className="card-footer-item">View All</Link>
 						</footer>
 					</div>
 				</div>

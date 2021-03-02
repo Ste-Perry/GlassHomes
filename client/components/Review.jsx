@@ -97,7 +97,7 @@ const Review = (props) => {
                 <button className='button is-danger' onClick={(e)=> handleDelete(reviewId, e)} >Delete</button>
               }
 
-                { (isUserId == review.user_ID) && (
+                { (isUserId == review.user_ID) && !isAdmin && (
                      <>
                         <button className='button is-warning' onClick={(e)=> handleUpdate(reviewId, e)} >Update</button>
                         <button className='button is-danger' onClick={(e)=> handleDelete(reviewId, e)} >Delete</button>
