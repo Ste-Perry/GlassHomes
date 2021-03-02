@@ -60,7 +60,22 @@ function Properties(props) {
 				<div className="hero-body"></div>
 			</section>
 			{/* <Link to='/addproperty'>Add new property</Link> */}
-			<form onSubmit={handleSuburbSubmit} >
+
+			
+			<ul>
+				<section className="articles">
+					<Adverts side="left" />
+					<Adverts side="right" />
+
+					<div className="column is-8 is-offset-2">
+						<div className="container has-text-centered">
+
+							<div className="card article">
+								<div className="card-content">
+									<div className="column is-12">
+										<h3 className="title has-text-black">Properties</h3>
+
+										<form onSubmit={handleSuburbSubmit} >
 				<label>
 					Search by suburb:
 				<select onChange={handleSuburbChange}>
@@ -122,18 +137,10 @@ function Properties(props) {
 				</label>
 				<input type="submit" value="submit" />
 			</form>
-			<ul>
-				<section className="articles">
-					<Adverts side="left" />
-					<Adverts side="right" />
+			<br />
+			
 
-					<div className="column is-8 is-offset-2">
-						<div className="container has-text-centered">
 
-							<div className="card article">
-								<div className="card-content">
-									<div className="column is-12">
-										<h3 className="title has-text-black">Properties</h3>
                     { sort == "ASC" ? 
 
                       <button class="button is-info is-light" onClick={()=> setSort('DESC')}>Sort by Descending Rating</button>
@@ -143,6 +150,8 @@ function Properties(props) {
 
                     }
 										<hr className="login-hr"></hr>
+
+										
   
 
 										<p className="subtitle has-text-black">Have a looksie.</p>
