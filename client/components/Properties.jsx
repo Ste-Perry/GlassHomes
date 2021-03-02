@@ -154,6 +154,8 @@ function Properties(props) {
 															</div>
 															<br></br>
 															<br></br>
+															</div>
+															</div>
 														</Link>
 													</>
 												)
@@ -177,6 +179,9 @@ function Properties(props) {
 																</div>
 																<br></br>
 																<br></br>
+																</div>
+																</div>
+																</div>
 															</Link>
 
 														</>
