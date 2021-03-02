@@ -7,7 +7,7 @@ exports.seed = function(knex) {
       return knex('reviews').insert([
         {id: 1, title: 'Good', user_ID: 2, property_ID: 3, comments: 'Awesome house',pros: 'Big Garden', 
         cons: 'Junk in Garage cannot use for parking', rating: 4, start_of_tenancy: 2015, end_of_tenancy: 2018, helpful_score: 2, img:"", time: "1614119400000"},
-        {id: 2, title: 'Moldy', user_ID: 1, property_ID: 4, comments: 'No windows open to air out the house',pros: 'Very quiet area', 
+        {id: 2, title: 'Moldy', user_ID: 1, property_ID: 20, comments: 'No windows open to air out the house',pros: 'Very quiet area', 
         cons: 'No sun in untill late evening ', rating: 2, start_of_tenancy: 2017, end_of_tenancy: 2018, helpful_score: 1, img:"", time: "1614119400000"},
         {id: 3, title: 'Sunny', user_ID: 2, property_ID: 2, comments: 'Good house',pros: 'Nice Neighbours', 
         cons: 'No big garden for kids', rating: 3, start_of_tenancy: 2016, end_of_tenancy: 2018, helpful_score: 4, img:"", time: "1614119400000"},
@@ -40,7 +40,7 @@ exports.seed = function(knex) {
         pros: 'Lots of privacy', cons: 'Someone had a fire under the house', rating: 2, start_of_tenancy: 1999, end_of_tenancy: 2002, helpful_score: 3, img:"", time: "1614119400000"},
         {id: 14, title: 'Hidey Hole', user_ID: 9, property_ID: 4, comments: 'Very private with tall fences, no one knew I was there',
         pros: 'Nice views & no Nissans on the street', cons: 'No Renaults either', rating: 3, start_of_tenancy: 2013,end_of_tenancy: 2013, helpful_score: 4, img:"", time: "1614119400000"},
-        {id: 15, title: 'Weird place', user_ID: 10, property_ID: 5, comments: 'Very strange locals - poorly dressed',
+        {id: 15, title: 'Weird place', user_ID: 10, property_ID: 20, comments: 'Very strange locals - poorly dressed',
         pros: 'High Ceilings', cons: 'weird flatmates', rating:1 , start_of_tenancy: 2017, end_of_tenancy: 2018, helpful_score: 3, img:"", time: "1614119400000"},
         {id: 16, title: 'Sunny House', user_ID: 3, property_ID: 2, comments: 'This place is very quiet',
         pros: 'Big rooms, spa bath, balcony, big garden, fancy kitchen', 
