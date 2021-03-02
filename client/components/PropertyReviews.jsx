@@ -22,7 +22,7 @@ function PropertyReviews(props) {
 		
 		props.dispatch(fetchReviewsWithOffsetAndLimit(offset, limit, id))
 		props.dispatch(reviewOffsetLimitAndId(offset, limit, id))
-	}, [offset])
+	}, [offset, id])
 
 
 	const handleLimitChange = (e) => {
