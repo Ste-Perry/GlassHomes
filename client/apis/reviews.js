@@ -55,4 +55,13 @@ export function getReviewsWithOffsetAndLimit(offset, limit, id) {
   .then(res => res.body)
 }
 
+export function incrementHelpfulScore(score, id) {
+  return request.patch(rootUrl + id)
+  .send({helpful_score: score})
+  .then(res => {
+    return res.body
+  })
+
+}
+
 // reviews/property/:offset/:limit
