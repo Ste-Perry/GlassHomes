@@ -7,6 +7,16 @@ const Review = (props) => {
   const reviewId = props.review.id
   const isAdmin = props.auth.user.is_admin
 
+  const isUserId = props.auth.user.id
+  const isReviewUserId = props.reviewByProperty.map(
+    review => {
+        return review.user_ID
+      }
+  )
+
+  console.log('userid', isUserId)
+  console.log('reviewID', isReviewUserId)
+
   const stars = () => {
     let starArray = [];
     let remainingStars = 5 - review.rating;
@@ -23,9 +33,17 @@ const Review = (props) => {
 
   const [showImg, setShowImg] = useState(false);
 
+  let count = 0
 
-  //refactor to use store
-  const handleDelete = (id, e) => {
+  const handleUpdate = (id, e) => {
+      e.preventDefault()
+      // props.dispatch(deleteReviews(id))
+      // props.dispatch(updateReviews(id)) DO THIS
+      alert('Updated!')
+      // props.dispatch(fetchReviewsWithOffsetAndLimit(props.setOffset.offset, props.setOffset.limit, props.setOffset.id))
+  }
+
+   const handleDelete = (id, e) => {
     if (confirm("Are you sure you want to delete this review?")){
       e.preventDefault()
       props.dispatch(
@@ -84,9 +102,39 @@ const Review = (props) => {
               )}
               <br />
               <button className="button is-info">Helpful</button>
-              {isAdmin &&
+              {isAdmin && 
                 <button className='button is-danger' onClick={(e)=> handleDelete(reviewId, e)} >Delete</button>
               }
+
+
+
+   {/* Does not work */}
+              {/* {isUserId && isReviewUserId &&
+              <button className='button is-danger' onClick={(e)=> handleDelete(reviewId, e)} >Delete</button>
+              } */}
+
+     
+{/* 
+              {
+                props.reviewByProperty && props.reviewByProperty.map(review => {
+
+                console.log(review)
+                console.log("review.user_ID", review.user_ID)
+
+                 if(isUserId == review.user_ID){
+
+                   return (
+                     <>
+                        <button className='button is-warning' onClick={(e)=> handleUpdate(reviewId, e)} >Update</button>
+                        <button className='button is-danger' onClick={(e)=> handleDelete(reviewId, e)} >Delete</button>
+                    </>
+                   )
+                   }
+                 }
+              )} */}
+
+
+
             </div>
           </div>
         </div>
@@ -103,7 +151,8 @@ const mapStateToProps = (globalState) => {
   return {
     reviews: globalState.reviews,
     auth: globalState.auth,
-    setOffset: globalState.setOffset
+    setOffset: globalState.setOffset,
+    reviewByProperty: globalState.reviewByProperty
   };
 };
 

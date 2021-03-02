@@ -10,30 +10,35 @@ import AdvertsBottom from './AdvertsBottom'
 
 function Properties(props) {
 
-  // let totalReviewScore = 0;
-  // let ratingLength = props.reviewByProperty.length;
+	// let totalReviewScore = 0;
+	// let ratingLength = props.reviewByProperty.length;
 
-  // console.log(ratingLength)
-  // const averageRatingCalc = props.reviewByProperty.map(
-  //   (review) => (totalReviewScore += review.rating)
-  // )
+	// console.log(ratingLength)
+	// const averageRatingCalc = props.reviewByProperty.map(
+	//   (review) => (totalReviewScore += review.rating)
+	// )
 
-  // let averageReviewScore = totalReviewScore/ratingLength
+	// let averageReviewScore = totalReviewScore/ratingLength
 
-  
-    const [sort, setSort] = useState('ASC')
-    console.log(sort)
 
-	useEffect(() => {
-    props.dispatch(fetchPropertiesWithSort(sort))
-  }, [sort])
-  
-
+	const [sort, setSort] = useState('ASC')
+	console.log(sort)
 
 	useEffect(() => {
-    props.dispatch(fetchReviewsByPropertyId())
-  }, [])
-  
+
+		// 		props.dispatch(fetchProperties())
+		// 	}, [])
+
+
+		props.dispatch(fetchPropertiesWithSort(sort))
+	}, [sort])
+
+
+
+	useEffect(() => {
+		props.dispatch(fetchReviewsByPropertyId())
+	}, [])
+
 
 	const [suburb, setSuburb] = useState("")
 
@@ -61,24 +66,24 @@ function Properties(props) {
 			</section>
 			{/* <Link to='/addproperty'>Add new property</Link> */}
 
-			
 			<ul>
 				<section className="articles">
 					<Adverts side="left" />
 					<Adverts side="right" />
-
 					<div className="column is-8 is-offset-2">
 						<div className="container has-text-centered">
 
-							<div className="card article">
-								<div className="card-content">
-									<div className="column is-12">
-										<h3 className="title has-text-black">Properties</h3>
+					<div className="card article">
+						<div className="card-content">
+							<div className="column is-12">
+								<h3 className="title has-text-black">Properties</h3>
 
-										<form onSubmit={handleSuburbSubmit} >
+								<form onSubmit={handleSuburbSubmit} >
 				<label>
 					Search by suburb:
 				<select onChange={handleSuburbChange}>
+						<option value="" disabled selected>Select a suburb</option>
+						<option value="all">all suburbs</option>
 						<option value="Aro Valley">Aro Valley</option>
 						<option value="Berhampore">Berhampore</option>
 						<option value="Broadmeadows">Broadmeadows</option>
@@ -137,85 +142,77 @@ function Properties(props) {
 				</label>
 				<input type="submit" value="submit" />
 			</form>
-			<br />
-			
+
+								{sort == "ASC" ?
+
+									<button class="button is-info is-light" onClick={() => setSort('DESC')}>Sort by Descending Rating</button>
+
+									:
+									<button class="button is-success is-light" onClick={() => setSort('ASC')}>Sort by Ascending Rating</button>
+
+								}
+								<hr className="login-hr"></hr>
 
 
-                    { sort == "ASC" ? 
 
-                      <button class="button is-info is-light" onClick={()=> setSort('DESC')}>Sort by Descending Rating</button>
 
-                      : 
-                      <button class="button is-success is-light"onClick={()=> setSort('ASC')}>Sort by Ascending Rating</button>
+								<p className="subtitle has-text-black">Have a looksie.</p>
 
-                    }
-										<hr className="login-hr"></hr>
+								{props.properties.map(prp => {
+									if (suburb == "" || suburb == "all") {
+										return (
+											<>
+												<Link key={prp.id} to={`/property/${prp.id}`}>
+													<div className="card article">
+														<div className="card-content">
+															<div className="media">
+																<div className="media-content has-text-centered">
 
-										
-  
+																	<p className="title article-title">{prp.address}</p>
+																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score.toFixed(2)}
 
-										<p className="subtitle has-text-black">Have a looksie.</p>
-
-										{props.properties.map(prp => {
-											if (suburb == "") {
-												return (
-													<>
+																	</li>
+																</div>
+															</div>
+														</div>
+													</div>
+												</Link>
+											</>
+										)
+									} else {
+										if (prp.suburb == suburb) {
+											return (
+												<>
 
 													<Link key={prp.id} to={`/property/${prp.id}`}>
-													<div className="card article">
-														<div className="card-content">
-															<div className="media">
-																<div className="media-content has-text-centered">
-	
-																	<p className="title article-title">{prp.address}</p>
-																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score.toFixed(2)}
-															
-																	</li>
-																</div>
-															</div>
-															<br></br>
-															<br></br>
-															</div>
-															</div>
-														</Link>
-													</>
-												)
-											} else {
-												if (prp.suburb == suburb) {
-													return (
-													<>
-													
-													<Link  key={prp.id} to={`/property/${prp.id}`}>
-													<div className="card article">
-														<div className="card-content">
-															<div className="media">
-																<div className="media-content has-text-centered">
-	
-																	<p className="title article-title">{prp.address}</p>
-																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score.toFixed(2)}
-															
-																	</li>
-																	
+														<div className="card article">
+															<div className="card-content">
+																<div className="media">
+																	<div className="media-content has-text-centered">
 
-																</div>
-																<br></br>
-																<br></br>
-																</div>
-																</div>
-																</div>
-															</Link>
+																		<p className="title article-title">{prp.address}</p>
+																		<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score.toFixed(2)}
 
-														</>
-													)
-												}
-											}
-										})}
-									</div>
-								</div>
+																		</li>
+
+																	</div>
+																	<br></br>
+																	<br></br>
+																</div>
+															</div>
+														</div>
+													</Link>
+
+												</>
+											)
+										}
+									}
+								})}
 							</div>
 						</div>
 					</div>
-
+					</div>
+					</div>
 
 				</section>
 
