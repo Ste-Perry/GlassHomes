@@ -1,4 +1,5 @@
 import { getProperties, getPropertyById, addProperty, deleteProperty, updateProperty, addImageProp, getPropertyWithRating, getPropertiesWithLimitForAdmin } from '../apis/properties'
+import { fetchReviewsWithOffsetAndLimitAdmin } from './reviews'
 
 export const SET_PROPERTIES = 'SET_PROPERTIES'
 export const ADD_PROPERTIES = 'ADD_PROPERTIES'
@@ -42,6 +43,7 @@ export function fetchProperties () {
   return dispatch => {
     return getProperties()
       .then(properties => {
+        dispatch(fetchPropertiesWithOffsetAndLimitAdmin(properties.length -5, 5))
         dispatch(setProperties(properties))
         return null
       })

@@ -14,19 +14,13 @@ function AdminPortal(props) {
 	const [limit, setLimit] = useState(5)
 	const [offsetReviews, setOffsetReviews] = useState(reviews.length - limit)
 	const [offsetProperties, setOffsetProperties] = useState(properties.length - limit)
-	// const offset = reviews.length - limit
 
 	useEffect(() => {
 		props.dispatch(fetchReviews())
 		props.dispatch(fetchUsers())
-		props.dispatch(fetchReviewsWithOffsetAndLimitAdmin(offsetReviews, limit))
-		props.dispatch(fetchPropertiesWithOffsetAndLimitAdmin(offsetProperties, limit))
 	}, [])
 
-	//map through reviews - looking at the review.time - convert to UTC then create new date and convert to utc 
-	// - then compare (new utc - review.time.utc) if number is less than 604800 (seconds)  604800000 (milliseconds) then its been within the last week
-
-	//use filter to return the object when the above works
+	
 
 	// const[numberOfRecentReviews, setNumberOfRecentReviews] = useState(0)
 
