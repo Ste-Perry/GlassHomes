@@ -69,22 +69,52 @@ useEffect(() => {
                 <label>
                   <br/>
                   <br/>
-
-                    <input className='form' type='text' name='address' placeholder='Address ' onChange={(e) => handleChange(e)}/>
-
-                    <input className='form' type='text' name='suburb' placeholder='Suburb ' onChange={(e) => handleChange(e)}/>
-
-                    <input className='form' type='text' name='bedrooms' placeholder='Bedrooms ' onChange={(e) => handleChange(e)}/>
-
-                    <input className='form' type='text' name='bathrooms' placeholder='Bathrooms ' onChange={(e) => handleChange(e)}/>
-
-                    <input className='form' type='text' name='parking' placeholder='Parking ' onChange={(e) => handleChange(e)}/>
-
+                  <div className="propertyadd">
+                    <label className="propertyform">
+                      Address
+                    <input className='form' 
+                    type='text' 
+                    name='address' 
+                    placeholder='Address ' 
+                    onChange={(e) => handleChange(e)}/>
+                  
+                    <br/>
+                  <br/>
+                  </label>
+                  </div>
+                    <input className='form' 
+                    type='text' name='suburb' 
+                    placeholder='Suburb ' 
+                    onChange={(e) => handleChange(e)}/>
+                    <br/>
+                    <br/>
+                    <input className='form' 
+                    type='text' name='bedrooms' 
+                    placeholder='Bedrooms ' 
+                    onChange={(e) => handleChange(e)}/>
+                    <br/>
+                    <br/>
+                    <input className='form' 
+                    type='text' 
+                    name='bathrooms' 
+                    placeholder='Bathrooms ' 
+                    onChange={(e) => handleChange(e)}/>
+                    <br/>
+                    <br/>
+                    <input className='form' 
+                    type='text' 
+                    name='parking' 
+                    placeholder='Parking ' 
+                    onChange={(e) => handleChange(e)}/>
+                    <br/>
+                    <br/>
                 </label>
                 <label className="" htmlFor="img">
                   <span className="">Property image </span>
                    <input type="file" name="img" onChange={onChangeFile} />
                </label>
+               <br/>
+                  <br/>
                 <button type='submit'>Add</button>
             </form>
               }
