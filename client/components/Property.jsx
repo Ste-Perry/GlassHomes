@@ -14,6 +14,7 @@ import PropertyReviews from "./PropertyReviews";
 import AddReview from "./AddReview";
 import {checkAuth} from "../actions/auth";
 import {GlobalAccelerator} from "aws-sdk";
+import Adverts from './Adverts'
 
 function Property(props) {
   const isAdmin = props.auth.user.is_admin;
@@ -121,6 +122,8 @@ function Property(props) {
           <section className="hero is-info is-medium is-bold" id="hero-image">
             <div className="hero-body"></div>
           </section>
+          <Adverts side="left" />
+					<Adverts side="right" />
 
           <div>
             <section className="articles">
