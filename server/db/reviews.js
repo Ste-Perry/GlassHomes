@@ -37,6 +37,12 @@ function getReviewByPropertyId (id, db = connection) {
   .where('reviews.property_ID', id)
 }
 
+// function increaseHelpfulScore(id, score, db = connection) {
+//   return db('reviews')
+//   .where('id', id)
+//   .update(score)
+// }
+
 module.exports = {
   getReviews,
   addReview,
@@ -44,5 +50,6 @@ module.exports = {
   updateReview,
   deleteReview,
   getReviewByPropertyId,
-  getReviewsWithLimitAndOffset
+  getReviewsWithLimitAndOffset,
+  // increaseHelpfulScore
 }
