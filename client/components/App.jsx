@@ -48,6 +48,7 @@ function App({ auth, dispatch }) {
         {/* <div className=''>
             {!auth.isAuthenticated && */}
         <Route path='/adminportal' component={AdminPortal} />
+        <Route exact path="/" component={Home} />
         {/* } */}
 
 
