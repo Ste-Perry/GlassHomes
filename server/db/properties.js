@@ -8,8 +8,11 @@ function getProperties (db = connection) {
 
 function getPropertiesWithRatings (sort, db = connection) {
 
-
-  return db('properties').join('reviews', 'reviews.property_ID', 'properties.id').groupBy('reviews.property_ID').select('properties.*', db.raw('AVG(reviews.rating) AS score')).orderBy(db.raw('AVG(reviews.rating)'), sort)
+  return db('properties').leftOuterJoin('reviews', 'reviews.property_ID', 'properties.id').groupBy('reviews.property_ID').select('properties.*', db.raw('AVG(reviews.rating) AS score')).orderBy(db.raw('AVG(reviews.rating)'), sort).then(properties => {
+    console.log(properties)
+    console.log(properties.length)
+    return properties
+  })
 }
 
 function addProperty (property, db = connection) {
