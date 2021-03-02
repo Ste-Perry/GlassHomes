@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchProperties, deleteTheProperties } from '../actions/index'
+import { fetchProperties, deleteTheProperties, fetchPropertiesWithSort } from '../actions/index'
 import { fetchReviewsByPropertyId } from '../actions/reviews';
 
 import Adverts from './Adverts'
@@ -18,12 +18,15 @@ function Properties(props) {
 
   // let averageReviewScore = totalReviewScore/ratingLength
 
+  
+    const [sort, setSort] = useState('ASC')
+    console.log(sort)
 
 	useEffect(() => {
-    props.dispatch(fetchProperties())
-  }, [])
+    props.dispatch(fetchPropertiesWithSort(sort))
+  }, [sort])
   
- 
+
 
 	useEffect(() => {
     props.dispatch(fetchReviewsByPropertyId())
@@ -47,6 +50,7 @@ function Properties(props) {
 	}
 
 	//dropdown to filter by suburb
+
 
 	return (
 		<>
@@ -125,11 +129,19 @@ function Properties(props) {
 
 							<div className="card article">
 								<div className="card-content">
-
-
 									<div className="column is-12">
 										<h3 className="title has-text-black">Properties</h3>
+                    { sort == "ASC" ? 
+
+                      <button class="button is-info is-light" onClick={()=> setSort('DESC')}>Sort by Descending Rating</button>
+
+                      : 
+                      <button class="button is-success is-light"onClick={()=> setSort('ASC')}>Sort by Ascending Rating</button>
+
+                    }
 										<hr className="login-hr"></hr>
+  
+
 										<p className="subtitle has-text-black">Have a looksie.</p>
 
 										{props.properties.map(prp => {
@@ -143,7 +155,7 @@ function Properties(props) {
 																<div className="media-content has-text-centered">
 	
 																	<p className="title article-title">{prp.address}</p>
-																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score}
+																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score.toFixed(2)}
 															
 																	</li>
 																	
@@ -168,7 +180,7 @@ function Properties(props) {
 																<div className="media-content has-text-centered">
 	
 																	<p className="title article-title">{prp.address}</p>
-																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} 
+																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score.toFixed(2)}
 															
 																	</li>
 																	
