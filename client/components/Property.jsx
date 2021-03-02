@@ -29,7 +29,10 @@ function Property(props) {
   useEffect(() => {
     const confirmSuccess = () => {};
     props.dispatch(checkAuth(confirmSuccess));
+    props.dispatch(fetchProperties())
   }, []);
+
+
 
   const handleDelete = (id, e) => {
     if (confirm("Are you sure you want to delete this property?")) {
@@ -52,7 +55,7 @@ function Property(props) {
         suburb: formData.suburb,
         bedrooms: formData.bedrooms,
         bathrooms: formData.bathrooms,
-        parking: formData.parking,
+        parking: formData.parking
       })
     );
     console.log("updated data");
@@ -75,8 +78,7 @@ function Property(props) {
   const findSingleProperty = () => {
     if (propertyId) {
       getPropertyById(propertyId).then((singProperty) => {
-        console.log(singProperty)
-        setSingleProperty(singProperty);
+                setSingleProperty(singProperty);
       });
     }
   };
@@ -152,11 +154,18 @@ function Property(props) {
                         <i style={{color: "grey"}} className="fa fa-bath"></i>
                         <span> Bathrooms: {singleProperty.bathrooms}</span>
                       </div>
-
-                      <div className="icon-text">
+                      
+                      {props.properties.map(property => {
+                          
+                          if (property.id == singleProperty.id) {
+                
+                        return (<div className="icon-text">
                         <i style={{color: "gold"}} className="fa fa-star"></i>
-                        <span> Average Rating: {singleProperty.score}</span>
-                      </div>
+                        <span> Average Rating: {property.score.toFixed(2)}</span>
+                      </div>)
+                          }
+                      })}
+
 
                       <div className="">
                         <span>

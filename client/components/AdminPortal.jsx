@@ -1,8 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect, useStore } from 'react-redux'
+import { fetchReviews } from '../actions/reviews'
+import { fetchUsers } from '../actions/users'
 
 function AdminPortal(props) {
+
+	useEffect(()=> {
+		props.dispatch(fetchReviews())
+		props.dispatch(fetchUsers())
+	},[])
 
 	const propertyCount = props.properties
 
@@ -178,6 +185,8 @@ const mapStateToProps = (globalState) => {
 	return {
 		auth: globalState.auth,
 		properties: globalState.properties,
+		users: globalState.users,
+		reviews: globalState.reviews
 	}
 }
 
