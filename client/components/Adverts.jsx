@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
 const adverts = [
+    { url: '/images/good-dog-1.jpg', description: 'bestest dog' },
+    // { url: '/images/partstrader-ad-1.png', description: 'ya boi'},
     { url: '/images/Cat-ad-1.jpg', description: 'Chonker cat'},
     { url: '/images/goose-ad-1-reworked.jpg', description: 'Pet a goose'},
     { url: '/images/garageimg-2-reworked.jpg', description: 'Family home'},
-    { url: '/images/scoots-ad-2.jpg', description: 'Jeffmobile'}
+    { url: '/images/scoots-ad-2.jpg', description: 'Jeffmobile'},
 ]
 
 const Advert = (props) => {

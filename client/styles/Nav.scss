@@ -11,6 +11,8 @@
   position: fixed;
   background-color: #edededeb;
   width: 100%;
+  font-family: Georgia, serif;
+  
 }
 
 .navbar-item {
@@ -36,8 +38,6 @@
 
 .Loading {
   background-color: rgba(27, 163, 209, 0.801);
- 
-
 }
 
 .searchbox {
@@ -45,5 +45,4 @@
   font-weight: bold;
   text-align: center;
   white-space: normal;
-
 }
