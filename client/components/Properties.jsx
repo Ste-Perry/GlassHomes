@@ -143,6 +143,7 @@ function Properties(props) {
 				</label>
 				<input type="submit" value="submit" />
 			</form>
+			<br />
 
 								{sort == "ASC" ?
 
