@@ -42,6 +42,26 @@ function AdminPortal(props) {
 		})
 	}
 
+	let propertiesInLast7days = []
+	if(properties) {
+		let currentTime = Date.now()
+		propertiesInLast7days = properties.filter(property => {
+			if((currentTime - property.time) <= 604800000) {
+				return property
+			}
+		})
+	}
+
+	let usersInLast7days = []
+	if(users) {
+		let currentTime = Date.now()
+		usersInLast7days = users.filter(user => {
+			if((currentTime - user.time) <= 604800000) {
+				return user
+			}
+		})
+	}
+
 	return (
 		<>
 			{/* ADMIN BANNER */}
@@ -69,25 +89,25 @@ function AdminPortal(props) {
 					<div className="tile is-parent">
 						<article className="tile is-child box">
 							<p className="title">{users.length}</p>
-							<p className="subtitle">Users</p>
+							<p className="subtitle">Total Users</p>
 						</article>
 					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child box">
 							<p className="title">{reviews.length}</p>
-							<p className="subtitle">Reviews</p>
+							<p className="subtitle">Total Reviews</p>
 						</article>
 					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child box">
 							<p className="title">{properties.length}</p>
-							<p className="subtitle">properties</p>
+							<p className="subtitle">Total properties</p>
 						</article>
 					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child box">
-							<p className="title">19</p>
-							<p className="subtitle">New Users</p>
+							<p className="title">{usersInLast7days.length}</p>
+							<p className="subtitle">New Users This Week</p>
 						</article>
 					</div>
 					<div className="tile is-parent">
@@ -98,13 +118,13 @@ function AdminPortal(props) {
 							</>
 							} */}
 							<p className="title">{reviewsInLast7days.length}</p>
-								<p className="subtitle">New Reviews</p>
+								<p className="subtitle">New Reviews This Week</p>
 						</article>
 					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child box">
-							<p className="title">19</p>
-							<p className="subtitle">New Properties</p>
+							<p className="title">{propertiesInLast7days.length}</p>
+							<p className="subtitle">New Properties This Week</p>
 						</article>
 					</div>
 				</div>

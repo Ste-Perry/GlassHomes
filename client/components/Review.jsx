@@ -92,7 +92,9 @@ const Review = (props) => {
                 <img className="review-img" alt="uh oh!" src={review.img} />
               )}
               <br />
+             { (isUserId !== review.user_ID) &&
               <button className="button is-info">Helpful</button>
+             }
               {isAdmin && 
                 <button className='button is-danger' onClick={(e)=> handleDelete(reviewId, e)} >Delete</button>
               }
