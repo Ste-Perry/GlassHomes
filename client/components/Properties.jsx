@@ -10,30 +10,35 @@ import AdvertsBottom from './AdvertsBottom'
 
 function Properties(props) {
 
-  // let totalReviewScore = 0;
-  // let ratingLength = props.reviewByProperty.length;
+	// let totalReviewScore = 0;
+	// let ratingLength = props.reviewByProperty.length;
 
-  // console.log(ratingLength)
-  // const averageRatingCalc = props.reviewByProperty.map(
-  //   (review) => (totalReviewScore += review.rating)
-  // )
+	// console.log(ratingLength)
+	// const averageRatingCalc = props.reviewByProperty.map(
+	//   (review) => (totalReviewScore += review.rating)
+	// )
 
-  // let averageReviewScore = totalReviewScore/ratingLength
+	// let averageReviewScore = totalReviewScore/ratingLength
 
   
     const [sort, setSort] = useState('ASC')
     console.log(sort)
 
 	useEffect(() => {
+
+// 		props.dispatch(fetchProperties())
+// 	}, [])
+
+
     props.dispatch(fetchPropertiesWithSort(sort))
   }, [sort])
   
 
 
 	useEffect(() => {
-    props.dispatch(fetchReviewsByPropertyId())
-  }, [])
-  
+		props.dispatch(fetchReviewsByPropertyId())
+	}, [])
+
 
 	const [suburb, setSuburb] = useState("")
 
@@ -60,6 +65,7 @@ function Properties(props) {
 				<div className="hero-body"></div>
 			</section>
 			{/* <Link to='/addproperty'>Add new property</Link> */}
+
 			<form onSubmit={handleSuburbSubmit} >
 				<label>
 					Search by suburb:
@@ -124,6 +130,7 @@ function Properties(props) {
 				</label>
 				<input type="submit" value="submit" />
 			</form>
+
 			<ul>
 				<section className="articles">
 					<Adverts side="left" />
@@ -136,6 +143,7 @@ function Properties(props) {
 								<div className="card-content">
 									<div className="column is-12">
 										<h3 className="title has-text-black">Properties</h3>
+
                     { sort == "ASC" ? 
 
                       <button class="button is-info is-light" onClick={()=> setSort('DESC')}>Sort by Descending Rating</button>
@@ -153,7 +161,6 @@ function Properties(props) {
 											if (suburb == "" || suburb == "all") {
 												return (
 													<>
-
 													<Link key={prp.id} to={`/property/${prp.id}`}>
 													<div className="card article">
 														<div className="card-content">
@@ -165,10 +172,6 @@ function Properties(props) {
 															
 																	</li>
 																</div>
-															</div>
-															<br></br>
-															<br></br>
-															</div>
 															</div>
 														</Link>
 													</>
@@ -190,11 +193,23 @@ function Properties(props) {
 																	</li>
 																	
 
-																</div>
-																<br></br>
-																<br></br>
-																</div>
-																</div>
+															<Link key={prp.id} to={`/property/${prp.id}`}>
+																<div className="card article">
+																	<div className="card-content">
+																		<div className="media">
+																			<div className="media-content has-text-centered">
+
+																				<p className="title article-title">{prp.address}</p>
+																				<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking}
+
+																				</li>
+
+
+																			</div>
+																			<br></br>
+																			<br></br>
+																		</div>
+																	</div>
 																</div>
 															</Link>
 
