@@ -64,6 +64,8 @@ function Properties(props) {
 				<label>
 					Search by suburb:
 				<select onChange={handleSuburbChange}>
+						<option value="" disabled selected>Select a suburb</option>
+						<option value="all">all suburbs</option>
 						<option value="Aro Valley">Aro Valley</option>
 						<option value="Berhampore">Berhampore</option>
 						<option value="Broadmeadows">Broadmeadows</option>
@@ -148,7 +150,7 @@ function Properties(props) {
 										<p className="subtitle has-text-black">Have a looksie.</p>
 
 										{props.properties.map(prp => {
-											if (suburb == "") {
+											if (suburb == "" || suburb == "all") {
 												return (
 													<>
 
