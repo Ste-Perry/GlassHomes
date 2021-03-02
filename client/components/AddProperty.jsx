@@ -62,31 +62,108 @@ useEffect(() => {
 
     return(
         <>
+          <div className="column is-8 is-offset-2">
+        <div className="container has-text-centered">
+          <div className="card article">
+            <div className="card-content"></div>
             <Link to='/properties'>back</Link>
-            <div className=''>
+            
+            <div className='property-page'>
             {props.auth.isAuthenticated &&
+            <div>
+              <br/>
+              <h3 className="title has-text-black">Add a Property</h3>
             <form onSubmit={handleSubmit}>
-                <label>
-                  <br/>
-                  <br/>
+              <hr/>
+            <div className="field">
+                    <div className="control">
+                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
+                        Address
+                        <br/>
+                        <input
+                          required
+                          className="input is-large has-text-centered is-fullwidth"
+                          placeholder="Address"
+                          type="text"
+                          name="address"
+                          onChange={(e) => handleChange(e)}/>
+                      </label>
+                    </div>
+                  </div>
+                <div className="field">
+                    <div className="control">
+                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
+                        Suburb
+                        <br/>
+                        <input
+                          required
+                          className="input is-large has-text-centered is-fullwidth"
+                          placeholder="Suburb"
+                          type="text"
+                          name="suburb"
+                          onChange={(e) => handleChange(e)}/>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="field">
+                    <div className="control">
+                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
+                        Bedrooms
+                        <br/>
+                        <input
+                          required
+                          className="input is-large has-text-centered is-fullwidth"
+                          placeholder="Bedrooms"
+                          type="number"
+                          name="bedrooms"
+                          onChange={(e) => handleChange(e)}/>
+                      </label>
+                    </div>
+                  </div>
 
-                    <input className='form' type='text' name='address' placeholder='Address ' onChange={(e) => handleChange(e)}/>
-
-                    <input className='form' type='text' name='suburb' placeholder='Suburb ' onChange={(e) => handleChange(e)}/>
-
-                    <input className='form' type='text' name='bedrooms' placeholder='Bedrooms ' onChange={(e) => handleChange(e)}/>
-
-                    <input className='form' type='text' name='bathrooms' placeholder='Bathrooms ' onChange={(e) => handleChange(e)}/>
-
-                    <input className='form' type='text' name='parking' placeholder='Parking ' onChange={(e) => handleChange(e)}/>
-
-                </label>
+                  <div className="field">
+                    <div className="control">
+                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
+                        Bathrooms
+                        <br/>
+                        <input
+                          required
+                          className="input is-large has-text-centered is-fullwidth"
+                          placeholder="Bathrooms"
+                          type="number"
+                          name="bathrooms"
+                          onChange={(e) => handleChange(e)}/>
+                      </label>
+                    </div>
+                  </div>
+               
+               
+                <div className="field">
+                    <div className="control">
+                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
+                        Parking
+                        <br/>
+                        <input
+                          required
+                          className="input is-large has-text-centered is-fullwidth"
+                          placeholder="Parking"
+                          type="number"
+                          name="parking"
+                          onChange={(e) => handleChange(e)}/>
+                      </label>
+                    </div>
+                  </div>
+                  
+               
                 <label className="" htmlFor="img">
                   <span className="">Property image </span>
                    <input type="file" name="img" onChange={onChangeFile} />
                </label>
-                <button type='submit'>Add</button>
+               <br/>
+               <br/>
+                <button className="button is-medium is-info is-outlined" type='submit'>Add</button>
             </form>
+            </div>
               }
               </div>
               <div className=''>
@@ -101,6 +178,11 @@ useEffect(() => {
             {props.propertyById.id && (
                 <Redirect to={`/property/${props.propertyById.id}`} />
               )}
+              <br/>
+              <br/>
+              </div>
+              </div>
+              </div>
         </>
     )
 
