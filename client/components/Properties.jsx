@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchProperties, deleteTheProperties } from '../actions/index'
+import { fetchReviewsByPropertyId } from '../actions/reviews';
 
 import Adverts from './Adverts'
 import AdvertsBottom from './AdvertsBottom'
@@ -9,9 +10,27 @@ import AdvertsBottom from './AdvertsBottom'
 
 function Properties(props) {
 
+  // let totalReviewScore = 0;
+  // let ratingLength = props.reviewByProperty.length;
+
+  // console.log(ratingLength)
+  // const averageRatingCalc = props.reviewByProperty.map(
+  //   (review) => (totalReviewScore += review.rating)
+  // )
+
+  // let averageReviewScore = totalReviewScore/ratingLength
+
+
 	useEffect(() => {
-		props.dispatch(fetchProperties())
-	}, [])
+    props.dispatch(fetchProperties())
+  }, [])
+  
+ 
+
+	useEffect(() => {
+    props.dispatch(fetchReviewsByPropertyId())
+  }, [])
+  
 
 	const [suburb, setSuburb] = useState("")
 
@@ -120,19 +139,17 @@ function Properties(props) {
 											if (suburb == "") {
 												return (
 													<>
-														<Link key={prp.id} to={`/property/${prp.id}`}>
-															<div className="card article">
-																<div className="card-content">
-																	<div className="media">
-																		<div className="media-content has-text-centered">
 
-																			<p className="title article-title">{prp.address}</p>
-																			<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking}
-
-																			</li>
-
-																		</div>
-																	</div>
+													<Link key={prp.id} to={`/property/${prp.id}`}>
+													<div className="card article">
+														<div className="card-content">
+															<div className="media">
+																<div className="media-content has-text-centered">
+	
+																	<p className="title article-title">{prp.address}</p>
+																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score}
+															
+																	</li>
 																</div>
 															</div>
 															<br></br>
@@ -143,22 +160,20 @@ function Properties(props) {
 											} else {
 												if (prp.suburb == suburb) {
 													return (
-														<>
+													<>
+													
+													<Link  key={prp.id} to={`/property/${prp.id}`}>
+													<div className="card article">
+														<div className="card-content">
+															<div className="media">
+																<div className="media-content has-text-centered">
+	
+																	<p className="title article-title">{prp.address}</p>
+																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} 
+															
+																	</li>
+																	
 
-															<Link key={prp.id} to={`/property/${prp.id}`}>
-																<div className="card article">
-																	<div className="card-content">
-																		<div className="media">
-																			<div className="media-content has-text-centered">
-
-																				<p className="title article-title">{prp.address}</p>
-																				<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking}
-
-																				</li>
-
-																			</div>
-																		</div>
-																	</div>
 																</div>
 																<br></br>
 																<br></br>
@@ -180,9 +195,6 @@ function Properties(props) {
 
 
 			</ul>
-
-			{/* <AdvertsBottom side='bottom' /> */}
-
 
 		</>
 	)

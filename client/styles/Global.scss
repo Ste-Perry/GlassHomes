@@ -79,9 +79,11 @@
 
 @media screen and (max-width: 960px) {
     .advert-banner-left { display: none; }
-    .advert-banner-right { display: none; }
+  .advert-banner-right { display: none; }
     .advert-banners-bottom { display: none; }
   }
+
+}
 .home-image {
     object-fit: cover;
 }
