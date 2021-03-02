@@ -1,9 +1,13 @@
-import { getProperties, getPropertyById, addProperty, deleteProperty, updateProperty, addImageProp } from '../apis/properties'
+import { getProperties, getPropertyById, addProperty, deleteProperty, updateProperty, addImageProp, getPropertyWithRating } from '../apis/properties'
 
 export const SET_PROPERTIES = 'SET_PROPERTIES'
 export const ADD_PROPERTIES = 'ADD_PROPERTIES'
 export const DELETE_PROPERTIES = 'DELETE_PROPERTIES'
 export const UPDATE_PROPERTIES = 'UPDATE_PROPERTIES'
+export const SET_PROPERTY_BY_PROP_ID = 'SET_PROPERTY_BY_PROP_ID'
+export const SET_PROPERTIES_EMPTY = 'SET_PROPERTIES_EMPTY'
+export const FILTER_BY_AVGSCORE = "FILTER_BY_AVGSCORE"
+
 
 export function setProperties (properties) {
   return {
@@ -19,9 +23,27 @@ export function addProperties (properties) {
   }
 }
 
+export function setPropertyById (property) {
+  return {
+    type: SET_PROPERTY_BY_PROP_ID,
+    property
+  }
+}
+
 export function fetchProperties () {
   return dispatch => {
     return getProperties()
+      .then(properties => {
+        dispatch(setProperties(properties))
+        return null
+      })
+  }
+}
+
+
+export function fetchPropertiesWithSort (sort) {
+  return dispatch => {
+    return getPropertyWithRating(sort)
       .then(properties => {
         dispatch(setProperties(properties))
         return null
@@ -64,6 +86,20 @@ export function addPropertiesWithImage(image, property) {
   }
 }
 
+export function addPropertiesWithDefaultImage(property) {
+  return dispatch => {
+        property.img = './images/default-monochrome.svg'
+        return addProperty(property)
+          .then(propId => {
+            dispatch(fetchPropertyById(propId))
+            // dispatch(fetchProperties())
+            return null
+          })
+  }
+}
+
+
+
 export function deleteTheProperties(id) {
   return dispatch => {
     return deleteProperty(id)
@@ -84,3 +120,16 @@ export function updateTheProperties(id, property) {
   }
 }
 
+export function clearPropById() {
+  return {
+    type: SET_PROPERTIES_EMPTY,
+    property: {}
+  }
+}
+
+export function filterByAvgScore () {
+  return {
+  type: FILTER_BY_AVGSCORE,
+  property 
+  }
+}

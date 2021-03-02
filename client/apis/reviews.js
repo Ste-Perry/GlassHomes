@@ -30,21 +30,29 @@ export function updateReview(id, review){
 }
 
 
-export function deleteReview(){
-  return request.delete(rootUrl)
+export function deleteReview(id){
+  return request.delete(rootUrl + '/' + id)
   .then(res => {
+    console.log(res.body)
     return res.body})
 }
 
 export function getReviewByPropertyId(id){
-  return request.get(rootUrl + "/property/" + id)
+  return request.get(rootUrl + "property/" + id)
   .then(res => res.body)
 }
 
 export function addImageReview (formData) {
-  return request.post(rootUrl + '/image')
+  return request.post(rootUrl + 'image')
     .send(formData)
     .then(res => {
       return res.text
     })
 }
+
+export function getReviewsWithOffsetAndLimit(offset, limit, id) {
+  return request.get(rootUrl + "property/" + limit + "/" + offset + "/" + id)
+  .then(res => res.body)
+}
+
+// reviews/property/:offset/:limit

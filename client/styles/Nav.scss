@@ -11,7 +11,15 @@
   position: fixed;
   background-color: #edededeb;
   width: 100%;
+  font-family: Georgia, serif;
+  
 }
+
+.navbar-item {
+  font-family: Georgia, serif;
+  color: black;
+}
+
 
 .location-search-input {
   font-size: large;
@@ -24,8 +32,17 @@
 .autocomplete-dropdown-container {
   position: fixed;
   width: 400px;
+
+  
 }
 
 .Loading {
   background-color: rgba(27, 163, 209, 0.801);
+}
+
+.searchbox {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  white-space: normal;
 }

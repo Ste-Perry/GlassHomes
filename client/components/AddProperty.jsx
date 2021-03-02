@@ -1,7 +1,10 @@
 import React, {useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchProperties, addTheProperties, addPropertiesWithImage } from '../actions/index'
+import { fetchProperties, addTheProperties, addPropertiesWithImage, addPropertiesWithDefaultImage } from '../actions/index'
+import { checkAuth } from '../actions/auth'
+import AddPropertyModal from './AddPropertyModalBulma'
+
 
 function AddProperty (props) {
 
@@ -20,6 +23,7 @@ function AddProperty (props) {
     parking: ''
   })
 
+
   const onChangeFile = (e) => {
     setPropImage(e.target.files[0])
   }
@@ -30,18 +34,24 @@ function AddProperty (props) {
 
     //for adding image
     const formImage = new FormData()
-    formImage.append('img', propImage)
-    props.dispatch(addPropertiesWithImage(formImage, {address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, bathrooms: formData.bathrooms, parking: formData.parking}))
 
-    // props.dispatch(addTheProperties({address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, bathrooms: formData.bathrooms, parking: formData.parking}))
-    console.log('Data sent')
-    e.target.reset()
-    props.history.push('/properties')
+    if(propImage == null) {
+        props.dispatch(addPropertiesWithDefaultImage({
+          address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, 
+          bathrooms: formData.bathrooms, parking: formData.parking, time: new Date()}))
+          e.target.reset()
+      } else {
+      formImage.append('img', propImage)
+      props.dispatch(addPropertiesWithImage(formImage,{
+          address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, 
+          bathrooms: formData.bathrooms, parking: formData.parking, time: new Date()}))
+          e.target.reset()
+    }
   }
 
   const handleChange = (e) => {
     setFormData(currentFormData => {
-        console.log(e)
+        // console.log(e)
         return {
             ...currentFormData,
             [e.target.name]: e.target.value
@@ -49,39 +59,148 @@ function AddProperty (props) {
     })
 }
 
+useEffect(() => {
+  const confirmSuccess = () => { }
+  props.dispatch(checkAuth(confirmSuccess))
+}, [])
+
     return(
         <>
+          <div className="column is-8 is-offset-2">
+        <div className="container has-text-centered">
+          <div className="card article">
+            <div className="card-content"></div>
             <Link to='/properties'>back</Link>
-            <h1>More Cheese</h1>
+            
+            <div className='property-page'>
+            {props.auth.isAuthenticated &&
+            <div>
+              <br/>
+              <h3 className="title has-text-black">Add a Property</h3>
             <form onSubmit={handleSubmit}>
-                <label>
 
-                    <input className='form' type='text' name='address' placeholder='Address ' onChange={(e) => handleChange(e)}/>
+              <hr/>
+            <div className="field">
+                    <div className="control">
+                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
+                        Address
+                        <br/>
+                        <input
+                          required
+                          className="input is-large has-text-centered is-fullwidth"
+                          placeholder="Address"
+                          type="text"
+                          name="address"
+                          onChange={(e) => handleChange(e)}/>
+                      </label>
+                    </div>
+                  </div>
+                <div className="field">
+                    <div className="control">
+                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
+                        Suburb
+                        <br/>
+                        <input
+                          required
+                          className="input is-large has-text-centered is-fullwidth"
+                          placeholder="Suburb"
+                          type="text"
+                          name="suburb"
+                          onChange={(e) => handleChange(e)}/>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="field">
+                    <div className="control">
+                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
+                        Bedrooms
+                        <br/>
+                        <input
+                          required
+                          className="input is-large has-text-centered is-fullwidth"
+                          placeholder="Bedrooms"
+                          type="number"
+                          name="bedrooms"
+                          onChange={(e) => handleChange(e)}/>
+                      </label>
+                    </div>
+                  </div>
 
-                    <input className='form' type='text' name='suburb' placeholder='Suburb ' onChange={(e) => handleChange(e)}/>
+                  <div className="field">
+                    <div className="control">
+                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
+                        Bathrooms
+                        <br/>
+                        <input
+                          required
+                          className="input is-large has-text-centered is-fullwidth"
+                          placeholder="Bathrooms"
+                          type="number"
+                          name="bathrooms"
+                          onChange={(e) => handleChange(e)}/>
+                      </label>
+                    </div>
+                  </div>
+               
+               
+                <div className="field">
+                    <div className="control">
+                      <label className="column is-6 label is-offset-3 label is-large has-text-centered">
+                        Parking
+                        <br/>
+                        <input
+                          required
+                          className="input is-large has-text-centered is-fullwidth"
+                          placeholder="Parking"
+                          type="number"
+                          name="parking"
+                          onChange={(e) => handleChange(e)}/>
+                      </label>
+                    </div>
+                  </div>
+                  
+               
 
-                    <input className='form' type='text' name='bedrooms' placeholder='Bedrooms ' onChange={(e) => handleChange(e)}/>
-
-                    <input className='form' type='text' name='bathrooms' placeholder='Bathrooms ' onChange={(e) => handleChange(e)}/>
-
-                    <input className='form' type='text' name='parking' placeholder='Parking ' onChange={(e) => handleChange(e)}/>
-
-                </label>
                 <label className="" htmlFor="img">
                   <span className="">Property image </span>
                    <input type="file" name="img" onChange={onChangeFile} />
                </label>
-                <button type='submit'>Add</button>
+               <br/>
+
+               <br/>
+                <button className="button is-medium is-info is-outlined" type='submit'>Add</button>
+
             </form>
-            
+            </div>
+              }
+              </div>
+              <div className=''>
+              {!props.auth.isAuthenticated &&
+              <>
+              <br/>
+              <br/>
+              <Route path="/" component={AddPropertyModal} />
+              </>
+              }
+            </div>
+            {props.propertyById.id && (
+                <Redirect to={`/property/${props.propertyById.id}`} />
+              )}
+              <br/>
+              <br/>
+              </div>
+              </div>
+              </div>
         </>
     )
 
 }
 
-  const mapStateToProps = ({properties}) => {
+  const mapStateToProps = (globalState) => {
     return {
-      properties
+      properties: globalState.properties,
+      auth: globalState.auth,
+      propertyById: globalState.propertyById
     }
   }
 

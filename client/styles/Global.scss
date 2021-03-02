@@ -9,7 +9,65 @@
     padding-bottom: 150px;
 }
 
+#hero-admin {
+    background-image: url('../../server/public/images/admin.jpg');
+    background-size: cover;
+    background-position: center center;
+    padding-bottom: 150px;
+}
+
 .home-image {
     object-fit: cover;
 }
 
+#welcome-admin {
+    background: rgb(0,64,105);
+    background: linear-gradient(90deg, rgba(0,64,105,1) 0%, rgba(2,105,138,1) 20%, rgba(0,212,255,1) 81%);
+}
+
+.advert-banners {
+    // border-style: solid;
+    // background-color: lightgray;
+    width: 300px;
+    height: 447px;
+    position: absolute;
+    top: 60%;
+    object-fit: cover;
+
+    &--left {
+        left: 1%;
+    }
+
+    &--right {
+        right: 1%;
+    }
+
+    &--bottom {
+        position: relative;
+        margin: 0 auto;
+        width: 760px;
+        height: 300px;
+    }
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        opacity: 0;
+        transition: 0.4s opacity;
+        &.current {
+            opacity: 1;
+        }
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .advert-banner-left { display: none; }
+    .advert-banner-right { display: none; }
+    .advert-banners-bottom { display: none; }
+  }
+.home-image {
+    object-fit: cover;
+}

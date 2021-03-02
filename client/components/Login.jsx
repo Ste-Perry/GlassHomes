@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { loginUser, loginError } from '../actions/auth'
 
@@ -31,8 +32,6 @@ function Login(props) {
 
 	return (
 		<>
-
-
 			<section className="hero is-info is-medium is-bold" id="hero-image">
 
 				<div className="hero-body"></div>
@@ -96,9 +95,9 @@ function Login(props) {
 									</form>
 
 									<p className="has-text-grey">
-										<a href="../">Sign Up</a> &nbsp;·&nbsp;
+										<Link to="/register">Sign Up</Link> &nbsp;·&nbsp;
 										<a href="../">Forgot Password</a> &nbsp;·&nbsp;
-										<a href="../">Need Help?</a>
+										<a href="mailto:admin@glasshomes.co.nz">Need Help?</a>
 									</p>
 								</div>
 							</div>

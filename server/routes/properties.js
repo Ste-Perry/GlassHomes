@@ -34,9 +34,21 @@ router.post('/image', upload.single('img'), function (req, res, next) {
 router.get('/', (req, res) => {
   db.getProperties()
     .then(results => {
-
       res.json({ properties: results.map(property => property) })
 
+      return null
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ message: 'Somthing went wrong' })
+    })
+})
+
+router.get('/sort/:sort', (req, res) => {
+
+  db.getPropertiesWithRatings(req.params.sort)
+    .then(results => {
+      res.json(results)
       return null
     })
     .catch(err => {
@@ -51,10 +63,7 @@ router.get ('/:id', (req, res) =>{
   .then(id => {
     res.json (id)
   })
-
-
 })
-
 
 router.post('/', (req,res) => {
   const property = {
@@ -68,9 +77,9 @@ router.post('/', (req,res) => {
   }
   console.log(req.body.img)
   console.log(req.body)
-  db.addProperty(property)
-  .then(property => {
-    res.json({ property: property })
+  db.addProperty(req.body)
+  .then(id => {
+    res.json(id)
   })
   .catch(err => {
     console.log(err)
@@ -106,7 +115,11 @@ router.patch('/:id', (req, res) => {
     console.log(err)
     res.status(500).json({message: 'Error all pies cost $16'})
   })
-}
-)
+})
+
+router.get('/', (req, res) =>{
+  const avgScore = req.params.avg_score
+  console.log(avgScore)
+})
 
 module.exports = router

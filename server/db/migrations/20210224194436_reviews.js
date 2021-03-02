@@ -9,9 +9,10 @@ exports.up = function (knex) {
       table.text('cons') 
       table.integer('rating')
       table.integer('start_of_tenancy')
-      table.integer('end_of_tenancy')
+      table.string('end_of_tenancy')
       table.integer('helpful_score')
       table.string('img')
+      table.timestamp('time')
     })
   }
   

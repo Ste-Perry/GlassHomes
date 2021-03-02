@@ -1,33 +1,42 @@
-import { deleteReview, getReviews, addReview, updateReview, getReviewByPropertyId, addImageReview} from '../apis/reviews'
+import { deleteReview, getReviews, addReview, updateReview, getReviewByPropertyId, addImageReview, getReviewsWithOffsetAndLimit } from '../apis/reviews'
 
 export const SET_REVIEWS = 'SET_REVIEWS'
 export const SET_REVIEWS_BY_PROP_ID = 'SET_REVIEWS_BY_PROP_ID'
 export const ADD_NEW_REVIEW = 'ADD_NEW_REVIEW'
 export const UPDATE_REVIEW = 'UPDATE_REVIEW'
 export const DELETE_REVIEW = 'DELETE_REVIEW'
+export const SET_SPECIFIC_REVIEWS = 'SET_SPECIFIC_REVIEWS'
+export const OFFSET_ID_LIMIT = 'OFFSET_ID_LIMIT'
 
-export function setReviews (reviews) {
+export function setReviews(reviews) {
   return {
     type: SET_REVIEWS,
     reviews
   }
 }
 
-export function setReviewsByPropId (reviews) {
+export function setReviewsByPropId(reviews) {
   return {
     type: SET_REVIEWS_BY_PROP_ID,
     reviews
   }
 }
-export function addNewReview (reviews) {
+export function addNewReview(reviews) {
   return {
     type: ADD_NEW_REVIEW,
     reviews
   }
 }
 
+export function setSpecificReviews(reviews) {
+  return {
+    type: SET_SPECIFIC_REVIEWS,
+    reviews
+  }
+}
 
-export function fetchReviews () {
+
+export function fetchReviews() {
   return dispatch => {
     return getReviews()
       .then(reviews => {
@@ -37,7 +46,7 @@ export function fetchReviews () {
   }
 }
 
-export function deleteReviews (id) {
+export function deleteReviews(id) {
   return dispatch => {
     return deleteReview(id)
       .then(() => {
@@ -47,11 +56,11 @@ export function deleteReviews (id) {
   }
 }
 
-export function addReviewAction (review) {
+export function addReviewAction(review) {
   return dispatch => {
     return addReview(review)
       .then(() => {
-        dispatch(fetchReviews())
+        dispatch(fetchReviewsByPropertyId(review.propsId))
         return null
       })
   }
@@ -64,14 +73,27 @@ export function addReviewWithImage(image, review) {
       .then(fileUrl => {
         review.image = fileUrl
         return addReview(review)
-          .then(propId => {
-            dispatch(fetchReviews())
+          .then(reviewId => {
+            dispatch(fetchReviewsByPropertyId(review.propsId))
             return null
           })
       })
   }
 }
-export function updateReviewAction (review) {
+
+export function addReviewWithDefaultImage(review) {
+  return dispatch => {
+    review.img = ''
+    return addReview(review)
+      .then(reviewId => {
+        dispatch(fetchReviewsByPropertyId(review.propsId))
+        // dispatch(fetchProperties())
+        return null
+      })
+  }
+}
+
+export function updateReviewAction(review) {
   return dispatch => {
     return updateReview(review)
       .then(() => {
@@ -81,12 +103,38 @@ export function updateReviewAction (review) {
   }
 }
 
-export function fetchReviewsByPropertyId (id) {
+export function fetchReviewsByPropertyId(id) {
   return dispatch => {
     return getReviewByPropertyId(id)
       .then(reviews => {
         dispatch(setReviewsByPropId(reviews))
         return null
       })
+  }
+}
+
+export function fetchReviewsWithOffsetAndLimit(offset, limit, id) {
+  return dispatch => {
+    // return fetchReviewsByPropertyId(id)
+    // .then(reviews=> {
+    return getReviewsWithOffsetAndLimit(offset, limit, id)
+      .then(reviews => {
+        dispatch(setSpecificReviews(reviews))
+        return null
+      })
+    // })
+  }
+}
+
+
+export function reviewOffsetLimitAndId(offset, limit, id) {
+  return {
+    type: OFFSET_ID_LIMIT,
+    offLimId: {
+      offset,
+      limit,
+      id,
+    }
+
   }
 }

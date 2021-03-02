@@ -6,6 +6,12 @@ function getProperties (db = connection) {
   return db('properties').select()
 }
 
+function getPropertiesWithRatings (sort, db = connection) {
+
+
+  return db('properties').join('reviews', 'reviews.property_ID', 'properties.id').groupBy('reviews.property_ID').select('properties.*', db.raw('AVG(reviews.rating) AS score')).orderBy(db.raw('AVG(reviews.rating)'), sort)
+}
+
 function addProperty (property, db = connection) {
   return db('properties')
   .insert(property, 'id')
@@ -39,13 +45,21 @@ function updateProperty (id, property, db = connection) {
   })
 }
 
+function getPropertysAvgScore (avg_score, db = connection) {
+  return db('properties')
+  .where('avg_score', avg_score)
+  .select()
+}
+
 
 module.exports = {
-  getProperties,
+  getProperties: getPropertiesWithRatings,
+  getPropertiesWithRatings,
   addProperty,
   getPropertyById,
   deleteProperty,
   updateProperty,
-  getPropertyByAddress
+  getPropertyByAddress,
+  getPropertysAvgScore
 
 }
