@@ -8,14 +8,14 @@ const Review = (props) => {
   const isAdmin = props.auth.user.is_admin
 
   const isUserId = props.auth.user.id
-  // const isReviewUserId = props.reviewByProperty.map(
-  //   review => {
-  //     if(review.user_ID == isUserId){
-  //       return review
-  //     }
-  //   }
-  // )
+  const isReviewUserId = props.reviewByProperty.map(
+    review => {
+        return review.user_ID
+      }
+  )
 
+  console.log('userid', isUserId)
+  console.log('reviewID', isReviewUserId)
 
   const stars = () => {
     let starArray = [];
@@ -106,16 +106,22 @@ const Review = (props) => {
                 <button className='button is-danger' onClick={(e)=> handleDelete(reviewId, e)} >Delete</button>
               }
 
-            {/* Does not work */}
 
 
+   {/* Does not work */}
+              {/* {isUserId && isReviewUserId &&
+              <button className='button is-danger' onClick={(e)=> handleDelete(reviewId, e)} >Delete</button>
+              } */}
+
+     
+{/* 
               {
-                props.reviewByProperty.map(review => {
+                props.reviewByProperty && props.reviewByProperty.map(review => {
 
                 console.log(review)
                 console.log("review.user_ID", review.user_ID)
 
-                 if(review.user_ID === isUserId ){
+                 if(isUserId == review.user_ID){
 
                    return (
                      <>
@@ -125,7 +131,7 @@ const Review = (props) => {
                    )
                    }
                  }
-              )}
+              )} */}
 
 
 
