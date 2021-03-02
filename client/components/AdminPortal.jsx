@@ -58,7 +58,13 @@ function AdminPortal(props) {
 							<p className="title">{properties.length}</p>
 							<p className="subtitle">properties</p>
 						</article>
-					</div>'
+					</div>
+					<div className="tile is-parent">
+						<article className="tile is-child box">
+							<p className="title">19</p>
+							<p className="subtitle">New Users</p>
+						</article>
+					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child box">
 							<p className="title">3.4k</p>
