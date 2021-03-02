@@ -169,7 +169,7 @@ function Properties(props) {
 																<div className="media-content has-text-centered">
 
 																	<p className="title article-title">{prp.address}</p>
-																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score.toFixed(2)}
+																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score}
 
 																	</li>
 																</div>
@@ -191,7 +191,7 @@ function Properties(props) {
 																	<div className="media-content has-text-centered">
 
 																		<p className="title article-title">{prp.address}</p>
-																		<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score.toFixed(2)}
+																		<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score}
 
 																		</li>
 
