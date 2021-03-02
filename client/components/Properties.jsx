@@ -25,13 +25,14 @@ function Properties(props) {
 	console.log(sort)
 
 	useEffect(() => {
-
-		// 		props.dispatch(fetchProperties())
-		// 	}, [])
-
-
 		props.dispatch(fetchPropertiesWithSort(sort))
 	}, [sort])
+
+
+
+// useEffect(() => {
+// 	props.dispatch(fetchProperties())
+// }, [])
 
 
 

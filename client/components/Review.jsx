@@ -55,6 +55,7 @@ const Review = (props) => {
   }
 
 
+
   // const [helpfulScore, setHelpfulScore] = useState(0)
   const handleHelpfulButtonClick = () => {
     console.log(review)
@@ -75,26 +76,33 @@ return (
               Years of tenancy: {review.start_of_tenancy} -{" "}
               {review.end_of_tenancy}
             </p>
-            <br />
-            <div className="icon-text has-text-success">
-              <i className="fa fa-check-square"></i>
-              <span> Pros:</span>
-            </div>
-            <p>{review.pros}</p>
-            <br />
-            <div className="icon-text has-text-danger">
-              <i className="fa fa-ban"></i>
-              <span> Cons:</span>
-            </div>
-            <p>{review.cons}</p>
-            <br />
-            <p className="comments">Comments: {review.comments}</p>
-            <br />
-              Rating: {stars()}
-
-            <br />
-            <br />
-            
+              <br />
+              <div className="icon-text has-text-success">
+                <i className="fa fa-check-square"></i>
+                <span> Pros:</span>
+              </div>
+              <p>{review.pros}</p>
+              <br />
+              <div className="icon-text has-text-danger">
+                <i className="fa fa-ban"></i>
+                <span> Cons:</span>
+              </div>
+              <p>{review.cons}</p>
+              <br />
+              <div className="icon-text has-text-info">
+                <i className="fa fa-info-circle"></i>
+              <span> Comments:</span> 
+              </div>
+              <p>{review.comments}</p>
+              {/* <p>{review.user_ID}</p> */}
+              <br />
+              <div className="icon-text has-text" >
+              <i className="fa fa-star-half"></i>
+             <span> Rating: </span> 
+             <p>{stars()}</p>
+             </div>
+              <br />
+              <br />
             {review.img && (
               <button
                 onClick={() => setShowImg(!showImg)}
