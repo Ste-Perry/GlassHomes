@@ -81,7 +81,7 @@ function Properties(props) {
 								<form onSubmit={handleSuburbSubmit} >
 				<label>
 					Search by suburb:
-				<select onChange={handleSuburbChange}>
+						<select onChange={handleSuburbChange}>
 						<option value="" disabled selected>Select a suburb</option>
 						<option value="all">all suburbs</option>
 						<option value="Aro Valley">Aro Valley</option>
@@ -146,10 +146,10 @@ function Properties(props) {
 
 								{sort == "ASC" ?
 
-									<button class="button is-info is-light" onClick={() => setSort('DESC')}>Sort by Descending Rating</button>
+									<button className="button is-info is-light" onClick={() => setSort('DESC')}>Sort by Descending Rating</button>
 
 									:
-									<button class="button is-success is-light" onClick={() => setSort('ASC')}>Sort by Ascending Rating</button>
+									<button className="button is-success is-light" onClick={() => setSort('ASC')}>Sort by Ascending Rating</button>
 
 								}
 								<hr className="login-hr"></hr>
@@ -170,7 +170,7 @@ function Properties(props) {
 																<div className="media-content has-text-centered">
 
 																	<p className="title article-title">{prp.address}</p>
-																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score.toFixed(2)}
+																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score}
 
 																	</li>
 																</div>
@@ -192,7 +192,7 @@ function Properties(props) {
 																	<div className="media-content has-text-centered">
 
 																		<p className="title article-title">{prp.address}</p>
-																		<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score.toFixed(2)}
+																		<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score}
 
 																		</li>
 

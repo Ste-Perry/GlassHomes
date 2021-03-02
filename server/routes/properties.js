@@ -44,6 +44,15 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/property/:limit/:offset', (req, res) => {
+  let limit = req.params.limit
+  let offset = req.params.offset
+  db.getPropertiesWithLimitForAdmin(limit, offset)
+  .then(latestProperties => {
+    res.json(latestProperties)
+  })
+})
+
 router.get('/sort/:sort', (req, res) => {
 
   db.getPropertiesWithRatings(req.params.sort)
@@ -116,6 +125,8 @@ router.patch('/:id', (req, res) => {
     res.status(500).json({message: 'Error all pies cost $16'})
   })
 })
+
+
 
 router.get('/', (req, res) =>{
   const avgScore = req.params.avg_score

@@ -83,7 +83,7 @@ function AddReview(props) {
         end_of_tenancy: formData.end_of_tenancy,
         propsId,
         user_ID: props.auth.user.id,
-        time: new Date()
+        time: Date.now()
       }))
       e.target.reset()
       props.dispatch(fetchReviewsWithOffsetAndLimit(props.setOffset.offset, props.setOffset.limit, props.setOffset.id))
@@ -102,7 +102,7 @@ function AddReview(props) {
         end_of_tenancy: formData.end_of_tenancy,
         propsId,
         user_ID: props.auth.user.id,
-        time: new Date()
+        time: Date.now()
       })
       )
       e.target.reset()

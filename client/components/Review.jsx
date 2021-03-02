@@ -91,6 +91,7 @@ return (
             <p className="comments">Comments: {review.comments}</p>
             <br />
               Rating: {stars()}
+
             <br />
             <br />
             
@@ -108,8 +109,12 @@ return (
               <img className="review-img" alt="uh oh!" src={review.img} />
             )}
             <br />
+              { (isUserId !== review.user_ID) &&
             <button onClick={() => handleHelpfulButtonClick(review.helpful_score)} className="button is-info">Helpful</button>
+                }
             <p className=''>Helpful Score: {review.helpful_score}</p>
+
+
             {isAdmin &&
               <button className='button is-danger' onClick={(e) => handleDelete(reviewId, e)} >Delete</button>
             }

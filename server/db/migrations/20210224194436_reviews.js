@@ -12,7 +12,7 @@ exports.up = function (knex) {
       table.string('end_of_tenancy')
       table.integer('helpful_score')
       table.string('img')
-      table.timestamp('time')
+      table.bigint('time')
     })
   }
   

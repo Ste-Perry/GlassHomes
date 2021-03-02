@@ -55,6 +55,17 @@ router.get('/property/:limit/:offset/:id', (req, res) => {
   })
 })
 
+router.get('/property/:limit/:offset', (req, res) => {
+  let limit = req.params.limit
+  let offset = req.params.offset
+  db.getReviewsWithLimitForAdmin(limit, offset)
+  .then(latestReviews => {
+    res.json(latestReviews)
+  })
+})
+
+
+
 router.get ('/property/:id', (req, res) =>{
   propertyId = req.params.id
   console.log(req.params.id)

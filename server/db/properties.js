@@ -6,6 +6,11 @@ function getProperties (db = connection) {
   return db('properties').select()
 }
 
+function getPropertiesWithLimitForAdmin (limit, offset, db = connection) {
+  return db('properties').select().limit(limit).offset(offset)
+}
+
+
 function getPropertiesWithRatings (sort, db = connection) {
 
 
@@ -53,13 +58,13 @@ function getPropertysAvgScore (avg_score, db = connection) {
 
 
 module.exports = {
-  getProperties: getPropertiesWithRatings,
+  getProperties,
   getPropertiesWithRatings,
   addProperty,
   getPropertyById,
   deleteProperty,
   updateProperty,
   getPropertyByAddress,
-  getPropertysAvgScore
-
+  getPropertysAvgScore,
+  getPropertiesWithLimitForAdmin
 }
