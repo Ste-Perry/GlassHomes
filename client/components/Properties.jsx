@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchProperties, deleteTheProperties } from '../actions/index'
 
+import Adverts from './Adverts'
+
 function Properties(props) {
 
 	useEffect(() => {
@@ -97,10 +99,14 @@ function Properties(props) {
 			</form>
 			<ul>
 				<section className="articles">
+					<Adverts side="left" />
+					<Adverts side="right" />
 					<div className="column is-8 is-offset-2">
 						<div className="container has-text-centered">
+
 							<div className="card article">
 								<div className="card-content">
+
 
 									<div className="column is-12">
 										<h3 className="title has-text-black">Properties</h3>
@@ -111,7 +117,6 @@ function Properties(props) {
 											if(suburb == "") {
 												return (
 													<>
-													
 													<Link key={prp.id} to={`/property/${prp.id}`}>
 													<div className="card article">
 														<div className="card-content">
@@ -155,6 +160,7 @@ function Properties(props) {
 													<br></br>
 													<br></br>
 												</Link>
+
 												</>
 													)
 												}
