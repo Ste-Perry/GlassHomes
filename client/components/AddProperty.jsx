@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { fetchProperties, addTheProperties, addPropertiesWithImage, addPropertiesWithDefaultImage } from '../actions/index'
 import { checkAuth } from '../actions/auth'
 import AddPropertyModal from './AddPropertyModalBulma'
+import Adverts from './Adverts'
 
 
 function AddProperty (props) {
@@ -67,6 +68,8 @@ useEffect(() => {
     return(
         <>
           <div className="column is-8 is-offset-2">
+          <Adverts side="left" />
+					<Adverts side="right" />
         <div className="container has-text-centered">
           <div className="card article">
             <div className="card-content"></div>
