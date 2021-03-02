@@ -11,10 +11,11 @@ function AdminPortal(props) {
 		props.dispatch(fetchUsers())
 	},[])
 
-	const propertyCount = props.properties
+	const properties = props.properties
+	const reviews = props.reviews
+	const users = props.users
 
-	const lastestPropertListings = (propertyCount.length - 5)
-	console.log(lastestPropertListings)
+	
 
 	return (
 		<>
@@ -42,22 +43,28 @@ function AdminPortal(props) {
 				<div className="tile is-ancestor has-text-centered">
 					<div className="tile is-parent">
 						<article className="tile is-child box">
-							<p className="title">439k</p>
+							<p className="title">{users.length}</p>
 							<p className="subtitle">Users</p>
 						</article>
 					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child box">
-							<p className="title">59k</p>
+							<p className="title">{reviews.length}</p>
 							<p className="subtitle">Reviews</p>
 						</article>
 					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child box">
-							<p className="title">{propertyCount.length}</p>
+							<p className="title">{properties.length}</p>
 							<p className="subtitle">properties</p>
 						</article>
-					</div>'
+					</div>
+					<div className="tile is-parent">
+						<article className="tile is-child box">
+							<p className="title">19</p>
+							<p className="subtitle">New Users</p>
+						</article>
+					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child box">
 							<p className="title">3.4k</p>

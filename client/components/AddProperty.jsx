@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { fetchProperties, addTheProperties, addPropertiesWithImage, addPropertiesWithDefaultImage } from '../actions/index'
 import { checkAuth } from '../actions/auth'
 import AddPropertyModal from './AddPropertyModalBulma'
+import Adverts from './Adverts'
 
 
 function AddProperty (props) {
@@ -36,12 +37,16 @@ function AddProperty (props) {
     const formImage = new FormData()
 
     if(propImage == null) {
-        props.dispatch(addPropertiesWithDefaultImage({address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, bathrooms: formData.bathrooms, parking: formData.parking}))
-        e.target.reset()
+        props.dispatch(addPropertiesWithDefaultImage({
+          address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, 
+          bathrooms: formData.bathrooms, parking: formData.parking, time: new Date()}))
+          e.target.reset()
       } else {
       formImage.append('img', propImage)
-      props.dispatch(addPropertiesWithImage(formImage, {address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, bathrooms: formData.bathrooms, parking: formData.parking}))
-      e.target.reset()
+      props.dispatch(addPropertiesWithImage(formImage,{
+          address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, 
+          bathrooms: formData.bathrooms, parking: formData.parking, time: new Date()}))
+          e.target.reset()
     }
   }
 
@@ -63,6 +68,8 @@ useEffect(() => {
     return(
         <>
           <div className="column is-8 is-offset-2">
+          <Adverts side="left" />
+					<Adverts side="right" />
         <div className="container has-text-centered">
           <div className="card article">
             <div className="card-content"></div>

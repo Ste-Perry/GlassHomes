@@ -26,8 +26,8 @@
 }
 
 .advert-banners {
-    border-style: solid;
-    background-color: lightgray;
+    // border-style: solid;
+    // background-color: lightgray;
     width: 300px;
     height: 447px;
     position: absolute;
@@ -40,6 +40,13 @@
 
     &--right {
         right: 1%;
+    }
+
+    &--bottom {
+        position: relative;
+        margin: 0 auto;
+        width: 760px;
+        height: 300px;
     }
 
     img {
@@ -56,13 +63,11 @@
     }
 }
 
-
-
-
 @media screen and (max-width: 960px) {
     .advert-banner-left { display: none; }
     .advert-banner-right { display: none; }
-}
+    .advert-banners-bottom { display: none; }
+  }
 .home-image {
     object-fit: cover;
 }

@@ -81,7 +81,9 @@ router.post('/', (req,res) => {
     start_of_tenancy: req.body.start_of_tenancy,
     end_of_tenancy: req.body.end_of_tenancy,
     property_ID: req.body.propsId,
-    img: req.body.image
+    user_ID: req.body.user_ID,
+    img: req.body.image,
+    time: req.body.time
   }
   
   db.addReview(review)
@@ -89,6 +91,7 @@ router.post('/', (req,res) => {
     res.json({ review: review })
   })
   .catch(err => {
+    console.log(review)
     console.log(err)
     res.status(500).json({ message: 'Post review broken' })
   })
