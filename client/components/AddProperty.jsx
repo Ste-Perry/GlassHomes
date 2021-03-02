@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { fetchProperties, addTheProperties, addPropertiesWithImage, addPropertiesWithDefaultImage } from '../actions/index'
 import { checkAuth } from '../actions/auth'
 import AddPropertyModal from './AddPropertyModalBulma'
+import Adverts from './Adverts'
 
 
 function AddProperty (props) {
@@ -64,9 +65,20 @@ useEffect(() => {
   props.dispatch(checkAuth(confirmSuccess))
 }, [])
 
+
+const handleWheel = (e) => {
+e.target.blur()
+  console.log("scrolling")
+  
+  // inputRef.current.blur();
+
+}
+
     return(
         <>
           <div className="column is-8 is-offset-2">
+          <Adverts side="left" />
+					<Adverts side="right" />
         <div className="container has-text-centered">
           <div className="card article">
             <div className="card-content"></div>
@@ -117,10 +129,13 @@ useEffect(() => {
                         <br/>
                         <input
                           required
+                          min="0"
+                          max="10"
                           className="input is-large has-text-centered is-fullwidth"
                           placeholder="Bedrooms"
                           type="number"
                           name="bedrooms"
+                          onWheel={handleWheel}
                           onChange={(e) => handleChange(e)}/>
                       </label>
                     </div>
@@ -133,10 +148,14 @@ useEffect(() => {
                         <br/>
                         <input
                           required
+                          min="0"
+                          max="5"
                           className="input is-large has-text-centered is-fullwidth"
                           placeholder="Bathrooms"
                           type="number"
                           name="bathrooms"
+                          
+                          onWheel={handleWheel}
                           onChange={(e) => handleChange(e)}/>
                       </label>
                     </div>
@@ -150,7 +169,10 @@ useEffect(() => {
                         <br/>
                         <input
                           required
+                          min="0"
+                          max="5"
                           className="input is-large has-text-centered is-fullwidth"
+                          onWheel={handleWheel}
                           placeholder="Parking"
                           type="number"
                           name="parking"

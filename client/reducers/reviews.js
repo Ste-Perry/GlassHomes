@@ -1,4 +1,4 @@
-import { ADD_NEW_REVIEW, SET_REVIEWS, DELETE_REVIEW, UPDATE_REVIEW } from '../actions/reviews'
+import { ADD_NEW_REVIEW, SET_REVIEWS, DELETE_REVIEW, UPDATE_REVIEW, INCREMENT_HELPFUL_SCORE } from '../actions/reviews'
 
 const initialState = []
 
@@ -12,6 +12,18 @@ const reducer = (state = initialState, action) => {
       return state.filter(review => review.id !== action.id)
     case UPDATE_REVIEW:
       return state.map(review => review.id === action.id)
+    case INCREMENT_HELPFUL_SCORE:
+      return state.map(score => {
+        if(score.id == action.id) {
+          score.quantity++
+          helpfulScore = true
+          if(helpfulScore){
+            return state
+          } else {
+            return [...state, {id: action.id, score: action.score}]
+          }
+        }
+      })
     default:
       return state
   }

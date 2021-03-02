@@ -131,6 +131,19 @@ router.patch('/:id',(req,res) => {
     })
 })
 
+// router.patch('/:id', (req, res) =>{
+//   const id = req.params.id
+//   const score = req.body
+//   db.increaseHelpfulScore(id, score)
+//   .then(() => {
+//     res.sendStatus(200)
+//   })
+//   .catch(err => {
+//     console.log(err)
+//     res.status(500).json({message: "increment broken."})
+//   })
+// })
+
 
 
 
