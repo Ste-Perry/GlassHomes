@@ -1,10 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { connect, useStore } from 'react-redux'
+import { fetchReviews } from '../actions/reviews'
+import { fetchUsers } from '../actions/users'
 
-function AdminPortal() {
+function AdminPortal(props) {
 
-	const isAdmin = props.auth.user.is_admin
+	useEffect(()=> {
+		props.dispatch(fetchReviews())
+		props.dispatch(fetchUsers())
+	},[])
+
+	const properties = props.properties
+	const reviews = props.reviews
+	const users = props.users
+
+	
 
 	return (
 		<>
@@ -32,22 +43,28 @@ function AdminPortal() {
 				<div className="tile is-ancestor has-text-centered">
 					<div className="tile is-parent">
 						<article className="tile is-child box">
-							<p className="title">439k</p>
+							<p className="title">{users.length}</p>
 							<p className="subtitle">Users</p>
 						</article>
 					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child box">
-							<p className="title">59k</p>
+							<p className="title">{reviews.length}</p>
 							<p className="subtitle">Reviews</p>
 						</article>
 					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child box">
-							<p className="title">69k</p>
+							<p className="title">{properties.length}</p>
 							<p className="subtitle">properties</p>
 						</article>
-					</div>'
+					</div>
+					<div className="tile is-parent">
+						<article className="tile is-child box">
+							<p className="title">19</p>
+							<p className="subtitle">New Users</p>
+						</article>
+					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child box">
 							<p className="title">3.4k</p>
@@ -173,7 +190,10 @@ function AdminPortal() {
 
 const mapStateToProps = (globalState) => {
 	return {
-		auth: globalState.auth
+		auth: globalState.auth,
+		properties: globalState.properties,
+		users: globalState.users,
+		reviews: globalState.reviews
 	}
 }
 

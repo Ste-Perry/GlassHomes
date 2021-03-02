@@ -1,24 +1,35 @@
-
-import React, {useEffect, useState} from "react";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from "react"
+import {connect} from "react-redux"
 import {
   addReviewAction,
   addReviewWithImage,
   fetchReviews,
   fetchReviewsByPropertyId,
-} from "../actions/reviews";
+  addReviewWithDefaultImage,
+  fetchReviewsWithOffsetAndLimit
+} from "../actions/reviews"
 
 function AddReview(props) {
   const propsId = props.propsId;
 
   useEffect(() => {
-    fetchReviews();
-  }, []);
+    fetchReviews()
+    props.dispatch(fetchReviewsByPropertyId(propsId))
+  }, [])
 
-  const added = () => {
-    props.dispatch(fetchReviewsByPropertyId(propsId));
-  };
+  
+  let totalReviewScore = 0;
+  let ratingLength = props.reviewByProperty.length;
+
+  // console.log(ratingLength)
+  const averageRatingCalc = props.reviewByProperty.map(
+    (review) => (totalReviewScore += review.rating)
+  )
+
+  let averageReviewScore = totalReviewScore/ratingLength
+  
+  console.log(averageReviewScore)
+
 
   const [reviewImage, setReviewImage] = useState(null);
 
@@ -30,20 +41,20 @@ function AddReview(props) {
     rating: "",
     stat_of_tenancy: "",
     end_of_tenancy: "",
-  });
+  })
 
   const onChangeFile = (e) => {
     setReviewImage(e.target.files[0]);
-  };
+  }
 
   const handleChange = (e) => {
     setFormData((currentFormData) => {
       return {
         ...currentFormData,
         [e.target.name]: e.target.value,
-      };
-    });
-  };
+      }
+    })
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,25 +66,31 @@ function AddReview(props) {
       rating,
       start_of_tenancy,
       end_of_tenancy,
-    } = formData;
+    } = formData   
 
 
-    
-    props.dispatch(
-      addReviewAction({
-        title,
-        comments,
-        pros,
-        cons,
-        rating,
-        start_of_tenancy,
-        end_of_tenancy,
+    const formImage = new FormData()
+
+    if(reviewImage == null) {
+      console.log("woohoo", props.auth.user.id)
+      props.dispatch(addReviewWithDefaultImage({
+        title: formData.title,
+        comments: formData.comments,
+        pros: formData.pros,
+        cons: formData.cons,
+        rating: formData.rating,
+        start_of_tenancy: formData.start_of_tenancy,
+        end_of_tenancy: formData.end_of_tenancy,
         propsId,
-      })
-    )
+        user_ID: props.auth.user.id,
+        time: new Date()
+      }))
+      e.target.reset()
+      props.dispatch(fetchReviewsWithOffsetAndLimit(props.setOffset.offset, props.setOffset.limit, props.setOffset.id))
+      props.setShowState(!props.showState)
 
-    const formImage = new FormData();
-    formImage.append("img", reviewImage);
+    } else {
+    formImage.append("img", reviewImage)
     props.dispatch(
       addReviewWithImage(formImage, {
         title: formData.title,
@@ -84,31 +101,25 @@ function AddReview(props) {
         start_of_tenancy: formData.start_of_tenancy,
         end_of_tenancy: formData.end_of_tenancy,
         propsId,
+        user_ID: props.auth.user.id,
+        time: new Date()
       })
-    )
-    
+      )
+      e.target.reset()
+      props.dispatch(fetchReviewsWithOffsetAndLimit(props.setOffset.offset, props.setOffset.limit, props.setOffset.id))
+      props.setShowState(!props.showState)
+    }
 
-
-    e.target.reset();
-
-    // added()
-
-    props.setShowState(!props.showState);
-
-    // props.history.push(`/property/${propsId}`);
     }
     const handleCheck = (e) => {
       e.target.checked ? setFormData({...formData, end_of_tenancy: "ongoing"}) : setFormData({...formData, end_of_tenancy: ""})
       setOngoing(!ongoing)
-
     }
   
-
   const handleClick = (e) => {
-    setFormData({...formData, rating: e.target.value});
+    setFormData({...formData, rating: e.target.value})
   }
   const year = new Date().getFullYear();
-
 
   const [ongoing, setOngoing] = useState(false)
 
@@ -179,9 +190,9 @@ function AddReview(props) {
 													value={formData.end_of_tenancy}
 												/>
 											</label>)}
-											<label className="column is-6 label is-offset-3 label is-large has-text-centered">
+											<label className="checkbox">
 												Ongoing  
-												<input
+												<input className="checkboxtext"
 													onChange={handleCheck}
                           type="checkbox"
                           name="end_of_tenancy"
@@ -263,7 +274,7 @@ function AddReview(props) {
                     />
                     <label
                       className="star"
-                      for="star5"
+                      htmlFor="star5"
                       title="Amazing"
                       aria-hidden="true"
                     ></label>
@@ -276,7 +287,7 @@ function AddReview(props) {
                     />
                     <label
                       className="star"
-                      for="star4"
+                      htmlFor="star4"
                       title="Good"
                       aria-hidden="true"
                     ></label>
@@ -289,7 +300,7 @@ function AddReview(props) {
                     />
                     <label
                       className="star"
-                      for="star3"
+                      htmlFor="star3"
                       title="Ok"
                       aria-hidden="true"
                     ></label>
@@ -302,7 +313,7 @@ function AddReview(props) {
                     />
                     <label
                       className="star"
-                      for="star2"
+                      htmlFor="star2"
                       title="Bad"
                       aria-hidden="true"
                     ></label>
@@ -315,7 +326,7 @@ function AddReview(props) {
                     />
                     <label
                       className="star"
-                      for="star1"
+                      htmlFor="star1"
                       title="Terrible"
                       aria-hidden="true"
                     ></label>
@@ -339,10 +350,14 @@ function AddReview(props) {
   );
 }
 
-const mapStateToProps = ({reviews}) => {
+
+const mapStateToProps = ({reviews, setOffset, reviewByProperty, auth}) => {
   return {
     reviews,
-  };
-};
+    setOffset,
+    reviewByProperty,
+    auth
+  }
+}
 
 export default connect(mapStateToProps)(AddReview);

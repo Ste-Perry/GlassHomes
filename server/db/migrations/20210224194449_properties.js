@@ -8,6 +8,7 @@ exports.up = function (knex) {
       table.integer('parking')
       table.integer('avg_score')
       table.string('img') 
+      table.timestamp('time')
     })
   }
   

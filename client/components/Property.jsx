@@ -1,15 +1,23 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {clearPropById, fetchProperties, updateTheProperties} from "../actions/index";
+import {
+  clearPropById,
+  fetchProperties,
+  updateTheProperties,
+  deleteTheProperties,
+  fetchReviewsByPropertyId,
+} from "../actions/index";
 import {getPropertyById} from "../apis/properties";
 import Reviews from "./Reviews";
 import PropertyReviews from "./PropertyReviews";
-import AddReview from './AddReview'
-import { checkAuth } from '../actions/auth'
-import { GlobalAccelerator } from "aws-sdk";
+import AddReview from "./AddReview";
+import {checkAuth} from "../actions/auth";
+import {GlobalAccelerator} from "aws-sdk";
 
 function Property(props) {
+  const isAdmin = props.auth.user.is_admin;
+
   const [formData, setFormData] = useState({
     address: "",
     suburb: "",
@@ -19,10 +27,24 @@ function Property(props) {
   });
 
   useEffect(() => {
-    const confirmSuccess = () => { }
-    props.dispatch(checkAuth(confirmSuccess))
-  }, [])
-  
+    const confirmSuccess = () => {};
+    props.dispatch(checkAuth(confirmSuccess));
+    props.dispatch(fetchProperties())
+  }, []);
+
+
+
+  const handleDelete = (id, e) => {
+    if (confirm("Are you sure you want to delete this property?")) {
+      e.preventDefault();
+      props.dispatch(deleteTheProperties(id));
+      alert("Deleted!");
+
+      props.history.push("/properties");
+    } else {
+      alert("Not deleted");
+    }
+  };
 
   const handleUpdateSubmit = (id, e) => {
     e.preventDefault();
@@ -33,7 +55,7 @@ function Property(props) {
         suburb: formData.suburb,
         bedrooms: formData.bedrooms,
         bathrooms: formData.bathrooms,
-        parking: formData.parking,
+        parking: formData.parking
       })
     );
     console.log("updated data");
@@ -56,21 +78,39 @@ function Property(props) {
   const findSingleProperty = () => {
     if (propertyId) {
       getPropertyById(propertyId).then((singProperty) => {
-        setSingleProperty(singProperty);
+                setSingleProperty(singProperty);
       });
     }
   };
 
+  // console.log(props.reviewByProperty)
+
+  //refactor to use store
   useEffect(() => {
     findSingleProperty();
-    props.dispatch(clearPropById())
-  }, [props.match.params.id]);
+    props.dispatch(clearPropById());
+  }, [props.match.params.id, props.properties]);
 
   useEffect(() => {
     findSingleProperty();
   }, [JSON.stringify(props.properties)]);
 
-  const [show, setShow] = useState(false)
+
+
+
+  // let totalReviewScore = 0;
+  // let ratingLength = props.reviewByProperty.length;
+
+  // const averageRatingCalc = props.reviewByProperty.map(
+  //   (review) => (totalReviewScore += review.rating)
+  // )
+
+  // let averageReviewScore = totalReviewScore/ratingLength
+
+  // console.log(averageReviewScore)
+
+
+  const [show, setShow] = useState(false);
 
   return (
     <>
@@ -114,86 +154,121 @@ function Property(props) {
                         <i style={{color: "grey"}} className="fa fa-bath"></i>
                         <span> Bathrooms: {singleProperty.bathrooms}</span>
                       </div>
-    												<div className=""><span><img src={singleProperty.img} alt="image of property"/></span></div>
-
-
-                      <form onSubmit={(e) => handleUpdateSubmit(propertyId, e)}>
-                        <label>
-                          <input
-                            className="form"
-                            type="text"
-                            name="address"
-                            placeholder="Address"
-                            onChange={(e) => {
-                              handleUpdateChange(e);
-                            }}
-                          />
-
-                          <input
-                            className="form"
-                            type="text"
-                            name="suburb"
-                            placeholder="Suburb"
-                            onChange={(e) => {
-                              handleUpdateChange(e);
-                            }}
-                          />
-                          <input
-                            className="form"
-                            type="text"
-                            name="bedrooms"
-                            placeholder="Bedrooms"
-                            onChange={(e) => {
-                              handleUpdateChange(e);
-                            }}
-                          />
-
-                          <input
-                            className="form"
-                            type="text"
-                            name="bathrooms"
-                            placeholder="Bathrooms"
-                            onChange={(e) => {
-                              handleUpdateChange(e);
-                            }}
-                          />
-
-                          <input
-                            className="form"
-                            type="text"
-                            name="parking"
-                            placeholder="Parking"
-                            onChange={(e) => {
-                              handleUpdateChange(e);
-                            }}
-                          />
-                        </label>
-                        <button type="submit">Update</button>
-                      </form>
-
-
                       
+                      {props.properties.map(property => {
+                          
+                          if (property.id == singleProperty.id) {
+                
+                        return (<div className="icon-text">
+                        <i style={{color: "gold"}} className="fa fa-star"></i>
+                        <span> Average Rating: {property.score.toFixed(2)}</span>
+                      </div>)
+                          }
+                      })}
+
+
+                      <div className="">
+                        <span>
+                          <img className="logo"
+                            src={singleProperty.img}
+                            alt="image of property"
+                          />
+                        </span>
+                      </div>
+
+                      {isAdmin && (
+                        <>
+                          <br />
+                          <form
+                            onSubmit={(e) => handleUpdateSubmit(propertyId, e)}
+                          >
+                            <label>
+                              <input
+                                className="form"
+                                type="text"
+                                name="address"
+                                placeholder="Address"
+                                onChange={(e) => {
+                                  handleUpdateChange(e);
+                                }}
+                              />
+
+                              <input
+                                className="form"
+                                type="text"
+                                name="suburb"
+                                placeholder="Suburb"
+                                onChange={(e) => {
+                                  handleUpdateChange(e);
+                                }}
+                              />
+                              <input
+                                className="form"
+                                type="text"
+                                name="bedrooms"
+                                placeholder="Bedrooms"
+                                onChange={(e) => {
+                                  handleUpdateChange(e);
+                                }}
+                              />
+
+                              <input
+                                className="form"
+                                type="text"
+                                name="bathrooms"
+                                placeholder="Bathrooms"
+                                onChange={(e) => {
+                                  handleUpdateChange(e);
+                                }}
+                              />
+
+                              <input
+                                className="form"
+                                type="text"
+                                name="parking"
+                                placeholder="Parking"
+                                onChange={(e) => {
+                                  handleUpdateChange(e);
+                                }}
+                              />
+                            </label>
+                            <button type="submit">Update</button>
+                          </form>
+
+                          <button
+                            className="button is-small is-danger"
+                            onClick={(e) => handleDelete(propertyId, e)}
+                          >
+                            Delete
+                          </button>
+                        </>
+                      )}
+
                       <h3 className="has-text-centered">Reviews</h3>
 
                       <div>
-                        <div className='box has-text-centered'>
-                        {props.auth.isAuthenticated &&
-                        <>
-                        <button  className="button is-medium is-info is-outlined" onClick={() => setShow(!show)}>Add Review</button>
-                        {
-                        show && (
-                            <AddReview showState={show} setShowState={setShow}  propsId={singleProperty.id} />
-                        
-                        )}
-                          </>
-                          }
-                          </div>
+                        <div className="box has-text-centered">
+                          {props.auth.isAuthenticated && (
+                            <>
+                              <button
+                                className="button is-medium is-info is-outlined"
+                                onClick={() => setShow(!show)}
+                              >
+                                Add Review
+                              </button>
+                              {show && (
+                                <AddReview
+                                  showState={show}
+                                  setShowState={setShow}
+                                  propsId={singleProperty.id}
+                                />
+                              )}
+                            </>
+                          )}
+                        </div>
                       </div>
 
                       <PropertyReviews propertyId={singleProperty.id} />
-             
-
-
                     </div>
                   </div>
                 </div>
@@ -209,7 +284,8 @@ function Property(props) {
 const mapStateToProps = (globalState) => {
   return {
     properties: globalState.properties,
-    auth: globalState.auth
+    auth: globalState.auth,
+    reviewByProperty: globalState.reviewByProperty,
   };
 };
 

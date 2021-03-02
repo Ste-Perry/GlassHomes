@@ -22,6 +22,8 @@ import AddPropertyModal from './AddPropertyModalBulma'
 
 function App({ auth, dispatch }) {
 
+  const isAdmin = auth.user.is_admin
+  
   useEffect(() => {
 
     const confirmSuccess = () => { }
@@ -42,17 +44,16 @@ function App({ auth, dispatch }) {
         <Route path="/register" component={Register} />
         <Route path="/home" component={Home} />
 
-        <Route path='/loginadmin' component={LoginAdmin} />
+        {/* <Route path='/loginadmin' component={LoginAdmin} /> */}
 
 
-        {/* <div className=''>
-            {!auth.isAuthenticated && */}
-        <Route path='/adminportal' component={AdminPortal} />
-        <Route exact path="/" component={Home} />
-        {/* } */}
-
-
-
+        {auth.isAuthenticated && isAdmin && (
+          <>
+          <Route path='/adminportal' component={AdminPortal} />
+          <Route exact path="/" component={Home} />
+          </>
+        ) 
+        }
       </div>
       <div>
         <Route path='/property/:id' component={Property} />

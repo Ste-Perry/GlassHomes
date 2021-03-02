@@ -31,7 +31,7 @@ function getUserByUsername (username, db = connection) {
         user.hash = user.password
         delete user.password
 
-        user.is_admin = user.username == 'admin'
+        user.is_admin = user.admin == '1'
       }
       return user
     })

@@ -34,7 +34,7 @@ function Register(props) {
     let { username, password, confirm_password, first_name, last_name } = formData
     if (confirm_password != password) return props.dispatch(loginError("Passwords don't match"))
     const confirmSuccess = () => { props.history.push('/home') }
-    props.dispatch(registerUserRequest({ username, password, first_name, last_name }, confirmSuccess))
+    props.dispatch(registerUserRequest({ username, password, first_name, last_name, time: new Date() }, confirmSuccess))
   }
 
   return (

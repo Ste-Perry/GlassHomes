@@ -24,7 +24,7 @@ function Nav({ auth, logout, fetchHouses }) {
     <div className="container">
       <div className="navbar-brand">
         
-      <div class="navbar-item">
+      <div className="navbar-item">
       <img src='/images/default-monochrome.svg' width='200' height="28" />
       </div>
         <span onClick={toggleBurger} className={`navbar-burger burger ${burgerVisible ? 'is-active' : ''}`} data-target="navbarMenuHeroA">
@@ -59,8 +59,13 @@ function Nav({ auth, logout, fetchHouses }) {
             )
           }
           <PlacesAutocomplete />
-
+          {auth.isAuthenticated &&      <p className="navbar-item">User: {auth.user.username}</p> }
+     
+          
         </div>
+
+
+        
       </div>
     </div>
   </nav>
