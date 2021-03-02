@@ -71,10 +71,18 @@ const Review = (props) => {
               </div>
               <p>{review.cons}</p>
               <br />
-              <p className="comments">Comments: {review.comments}</p>
-              <p>{review.user_ID}</p>
+              <div className="icon-text has-text-info">
+                <i className="fa fa-info-circle"></i>
+              <span> Comments:</span> 
+              </div>
+              <p>{review.comments}</p>
+              {/* <p>{review.user_ID}</p> */}
               <br />
-              Rating: {stars()}
+              <div className="icon-text has-text" >
+              <i className="fa fa-star-half"></i>
+             <span> Rating: </span> 
+             <p>{stars()}</p>
+             </div>
               <br />
               <br />
 
