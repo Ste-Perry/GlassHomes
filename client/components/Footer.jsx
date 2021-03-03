@@ -13,7 +13,7 @@ function Footer(props) {
 				<div className="content has-text-centered">
 					<p>
 						<strong>GlassHomes </strong> by Team HandUP . Developed at
-      			<a href="https://devacademy.co.nz"> Dev Academy</a>.
+      			<a href="https://devacademy.co.nz" target="_blank"> Dev Academy</a>.
 				  
    				</p>
 					<div>

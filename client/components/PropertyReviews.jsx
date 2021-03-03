@@ -92,6 +92,9 @@ function PropertyReviews(props) {
 					)
 				})}
 
+<div className="">
+	<br />
+	<p className="is-large is-capitalized has-text-weight-semibold">
 				<ReactPaginate
 					previousLabel={'previous'}
 					nextLabel={'next'}
@@ -105,6 +108,9 @@ function PropertyReviews(props) {
 					subContainerClassName={'pages pagination'}
 					activeClassName={'active'}
 				/>
+				</p>
+</div>
+
 
 				{/* {console.log(count)} */}
 			</div>

@@ -208,7 +208,8 @@ function Property(props) {
                                     className="input is-small has-text-centered is-one-quarter mb-3"
                                     type="text"
                                     name="suburb"
-                                    placeholder="Suburb"
+																		placeholder="Suburb"
+																		required
                                     onChange={(e) => {
                                       handleUpdateChange(e);
                                     }}
@@ -217,7 +218,8 @@ function Property(props) {
                                     className="input is-small has-text-centered is-one-quarter mb-3"
                                     type="text"
                                     name="address"
-                                    placeholder="Address"
+																		placeholder="Address"
+																		required
                                     onChange={(e) => {
                                       handleUpdateChange(e);
                                     }}
@@ -227,7 +229,8 @@ function Property(props) {
                                     className="input is-small has-text-centered is-one-quarter mb-3"
                                     type="text"
                                     name="bedrooms"
-                                    placeholder="Bedrooms"
+																		placeholder="Bedrooms"
+																		required
                                     onChange={(e) => {
                                       handleUpdateChange(e);
                                     }}
@@ -237,7 +240,8 @@ function Property(props) {
                                     className="input is-small has-text-centered is-one-quarter mb-3"
                                     type="text"
                                     name="bathrooms"
-                                    placeholder="Bathrooms"
+																		placeholder="Bathrooms"
+																		required
                                     onChange={(e) => {
                                       handleUpdateChange(e);
                                     }}
@@ -247,7 +251,8 @@ function Property(props) {
                                     className="input is-small has-text-centered is-one-quarter mb-3"
                                     type="text"
                                     name="parking"
-                                    placeholder="Parking"
+																		placeholder="Parking"
+																		required
                                     onChange={(e) => {
                                       handleUpdateChange(e);
                                     }}
