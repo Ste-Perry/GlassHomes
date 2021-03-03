@@ -24,8 +24,11 @@ function Nav({ auth, logout, fetchHouses }) {
     <div className="container">
       <div className="navbar-brand">
         
-      <div className="navbar-item">
-      <img src='/images/default-monochrome.svg' width='200' height="28" />
+      <div className="navbar-item" >
+      <Link to="/home">
+      <img src='/images/default-monochrome.svg' width='200' height="28" href='/home'/>
+      </Link>
+      
       </div>
         <span onClick={toggleBurger} className={`navbar-burger burger ${burgerVisible ? 'is-active' : ''}`} data-target="navbarMenuHeroA">
           <span></span>
