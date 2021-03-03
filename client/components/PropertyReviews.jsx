@@ -63,7 +63,7 @@ function PropertyReviews(props) {
 				<form onSubmit={handleLimitSubmit} >
 					<label className="column is-12 is-medium">
 						Reviews per page:
-				<select className="is-medium" onChange={handleLimitChange}>
+				<select className="select is-small is-info" onChange={handleLimitChange}>
 							<option value="3">3</option>
 							<option value="5">5</option>
 							<option value="10">10</option>

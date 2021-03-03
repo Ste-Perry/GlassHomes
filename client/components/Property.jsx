@@ -269,6 +269,8 @@ function Property(props) {
                       )}
 										</div>
 										</div>
+										{isAdmin && (
+											<>
 										<br />
 										<div className="has-text-centered">
 										<button
@@ -278,7 +280,8 @@ function Property(props) {
                             Delete
                           </button>			
 													</div>	
-
+													</>
+										)}
 																		</div>
 
                       <hr className="login-hr"></hr>
