@@ -341,7 +341,7 @@ function AddReview(props) {
                   <br></br>
                   <br></br>
                   <input
-                    className="button is-success is-large is-half"
+                    className="button is-info is-large is-half"
                     value="Submit"
                     type="submit"
                   />
