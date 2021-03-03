@@ -62,7 +62,7 @@ function Nav({ auth, logout, fetchHouses }) {
             )
           }
           <PlacesAutocomplete />
-          {auth.isAuthenticated &&      <p className="navbar-item">User: {auth.user.username}</p> }
+          {auth.isAuthenticated &&      <p className="navbar-item">Kia Ora, {auth.user.username}</p> }
      
           
         </div>
