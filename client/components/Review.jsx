@@ -152,6 +152,7 @@ const Review = (props) => {
         </div>
       </div>
     </div>
+    </div>
   ) : (
     <div className="card article">
       <UpdateReview key={review.id} review={review} editing={editing} setEditing={setEditing} />

@@ -6,7 +6,7 @@ exports.up = function (knex) {
       table.string('last_name')
       table.string('password')
       table.boolean('admin')
-      table.timestamp('time')
+      table.bigint('time')
     })
   }
   
