@@ -17,7 +17,7 @@ function getReviewsWithLimitForAdmin (limit, offset, db = connection) {
 
 function addReview (reviews, db = connection) {
   return db('reviews')
-  .insert(reviews)
+  .insert(reviews, 'id')
   .then(ids => ids[0])
 }
 
