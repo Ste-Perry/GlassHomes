@@ -132,9 +132,6 @@ function AdminPortal(props) {
 						<header className="card-header">
 							<p className="card-header-title">Latest Reviews</p>
 							<a href="#" className="card-header-icon" aria-label="more options">
-								<span className="icon">
-									<i className="fa fa-angle-down" aria-hidden="true"></i>
-								</span>
 							</a>
 						</header>
 						<div className="card-table">
@@ -145,7 +142,7 @@ function AdminPortal(props) {
 											review => {
 												return (
 													<tr key={review.id}>
-														<td width="5%"><i className="fa fa-archive"></i></td>
+														<td width="5%"><i className="fa fa-angellist"></i></td>
 														<td>{review.title}</td>
 														<td className="level-right"><Link className="button is-small is-success" to={`/property/${review.property_ID}`} >Check</Link></td>
 													</tr>
@@ -171,10 +168,7 @@ function AdminPortal(props) {
 						<header className="card-header">
 							<p className="card-header-title">Latest Property Listings</p>
 							<a href="#" className="card-header-icon" aria-label="more options">
-								<span className="icon">
-									<i className="fa fa-angle-down" aria-hidden="true"></i>
-								</span>
-							</a>
+								</a>
 						</header>
 						<div className="card-table">
 							<div className="content">
@@ -184,7 +178,7 @@ function AdminPortal(props) {
 											property => {
 												return (
 													<tr key={property.id}>
-														<td width="5%"><i className="fa fa-archive"></i></td>
+														<td width="5%"><i className="fa fa-home"></i></td>
 														<td>{property.address}</td>
 														<td className="level-right"><Link className="button is-small is-success" to={`/property/${property.id}`} >Check</Link></td>
 													</tr>

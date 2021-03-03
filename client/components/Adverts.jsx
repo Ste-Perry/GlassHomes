@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 const adverts = [
+    { url: '/images/kea-ad-1.jpg', description: 'bestest dird' },
     { url: '/images/good-dog-1.jpg', description: 'bestest dog' },
     // { url: '/images/partstrader-ad-1.png', description: 'ya boi'},
     { url: '/images/Cat-ad-1.jpg', description: 'Chonker cat'},

@@ -107,9 +107,11 @@ export function addReviewWithDefaultImage(review) {
   }
 }
 
-export function updateReviewAction(review) {
+export function updateReviewAction(id, review) {
+  console.log("id",id)
+  console.log("review",review)
   return dispatch => {
-    return updateReview(review)
+    return updateReview(id, review)
       .then(() => {
         dispatch(fetchReviews())
         return null
