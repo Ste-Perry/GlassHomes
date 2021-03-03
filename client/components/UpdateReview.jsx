@@ -14,7 +14,7 @@ function updateReview(props) {
     rating: review.rating,
     start_of_tenancy: review.start_of_tenancy,
     end_of_tenancy: review.end_of_tenancy,
-    property_ID: review.property_ID,
+    propId: review.property_ID,
     user_ID: props.auth.user.id,
     time: Date.now()
   });
