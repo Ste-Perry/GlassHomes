@@ -10,6 +10,7 @@ function Reviews(props) {
   }, []);
 
 
+
   
   return (
     <>
@@ -42,9 +43,7 @@ function Reviews(props) {
            </div>
            </div>
             </div>
-
          </section>
-
       </ul>
        </>
 

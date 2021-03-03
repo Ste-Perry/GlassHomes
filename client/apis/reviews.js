@@ -23,7 +23,7 @@ export function addReview (reviews){
 }
 
 export function updateReview(id, review){
-  return request.patch(baseUrl + id)
+  return request.patch(rootUrl + id)
       .send(review)
       .then(res => {
         return res.body})

@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+
+import React, {useEffect, useState} from "react";
+import {connect} from "react-redux";
+import UpdateReview from "./UpdateReview";
 import { deleteReviews, fetchReviewsWithOffsetAndLimit } from '../actions/reviews'
 import { incrementingTheHelpfulScore } from '../actions/reviews'
 import {checkAuth} from "../actions/auth";
 
 const Review = (props) => {
   const review = props.review;
-  const reviewId = props.review.id
-  const isAdmin = props.auth.user.is_admin
-
-  const isUserId = props.auth.user.id
-
-  const isReviewUserId = props.reviewByProperty.map(
-    review => {
-      return review.user_ID
-    }
-  )
+  const reviewId = props.review.id;
+  const isAdmin = props.auth.user.is_admin;
+  const isUserId = props.auth.user.id;
 
   const stars = () => {
     let starArray = [];
     let remainingStars = 5 - review.rating;
     for (let i = 0; i < review.rating; i++) {
       starArray.push(
-        <span style={{ color: "gold" }} className="fa fa-star"></span>
+        <span style={{color: "gold"}} className="fa fa-star"></span>
       );
     }
     for (let i = 0; i < remainingStars; i++) {
@@ -33,50 +28,61 @@ const Review = (props) => {
 
   const [showImg, setShowImg] = useState(false);
 
-  let count = 0
-
-  const handleUpdate = (id, e) => {
-
-      e.preventDefault()
-      alert('Updated!')
-
-  }
+  let count = 0;
 
   const handleDelete = (id, e) => {
     if (confirm("Are you sure you want to delete this review?")) {
-      e.preventDefault()
+      e.preventDefault();
+      props.dispatch(deleteReviews(id));
+      alert("Deleted!");
       props.dispatch(
-        deleteReviews(id)
-      )
-      alert('Deleted!')
-      props.dispatch(fetchReviewsWithOffsetAndLimit(props.setOffset.offset, props.setOffset.limit, props.setOffset.id))
+        fetchReviewsWithOffsetAndLimit(
+          props.setOffset.offset,
+          props.setOffset.limit,
+          props.setOffset.id
+        )
+      );
     } else {
-      alert('Not deleted')
+      alert("Not deleted");
     }
-  }
+  };
 
+  const [editing, setEditing] = useState(false);
 
+  const handleUpdate = (id, e) => {
+    setEditing(!editing);
+    // e.preventDefault()
+    // props.dispatch(
+    // updateReview(id)
+    // )
+    // props.dispatch(fetchReviewsWithOffsetAndLimit(props.setOffset.offset, props.setOffset.limit, props.setOffset.id))
+  };
 
   // const [helpfulScore, setHelpfulScore] = useState(0)
   const handleHelpfulButtonClick = () => {
-    console.log(review)
-    props.dispatch(incrementingTheHelpfulScore(review.helpful_score + 1, review.id, review.property_ID))
-    props.refresh()
-}
+    console.log(review);
+    props.dispatch(
+      incrementingTheHelpfulScore(
+        review.helpful_score + 1,
+        review.id,
+        review.property_ID
+      )
+    );
+    props.refresh();
+  };
 
-return (
-
-  <div key={review.id}>
-    <div className="card article">
-      <div className="card-content">
-        <div className="media">
-          <div className="media-content has-text-centered">
-            <p className="title article-title">{review.title}</p>
-            <br />
-            <p className="years_of_tenancy">
-              Years of tenancy: {review.start_of_tenancy} -{" "}
-              {review.end_of_tenancy}
-            </p>
+  return !editing ? (
+    <div key={review.id}>
+      <div className="card article">
+        <div className="card-content">
+          <div className="media">
+            <div className="media-content has-text-centered">
+              <p className="title article-title">{review.title}</p>
+              <br />
+              <p className="years_of_tenancy">
+                Years of tenancy: {review.start_of_tenancy} -{" "}
+                {review.end_of_tenancy}
+              </p>
               <br />
               <div className="icon-text has-text-success">
                 <i className="fa fa-check-square"></i>
@@ -92,16 +98,16 @@ return (
               <br />
               <div className="icon-text has-text-info">
                 <i className="fa fa-info-circle"></i>
-              <span> Comments:</span> 
+                <span> Comments:</span>
               </div>
               <p>{review.comments}</p>
               {/* <p>{review.user_ID}</p> */}
               <br />
-              <div className="icon-text has-text" >
-              <i className="fa fa-star"></i>
-             <span> Rating: </span> 
-             <p>{stars()}</p>
-             </div>
+              <div className="icon-text has-text">
+                <i className="fa fa-star"></i>
+                <span> Rating: </span>
+                <p>{stars()}</p>
+              </div>
               <br />
 
             {review.img && (
@@ -142,28 +148,38 @@ return (
                   )
                 }
             
-
           </div>
         </div>
       </div>
     </div>
-    <br></br>
-    <br></br>
-  </div>
+  ) : (
+    <div className="card article">
+      <UpdateReview key={review.id} review={review} editing={editing} setEditing={setEditing} />
+      <div className="media-content has-text-centered">
+        <button
+          className="button is-warning"
+          onClick={(e) => handleUpdate(reviewId, e)}
+        >
+          Update
+        </button>
+        <button
+          className="button is-danger"
+          onClick={(e) => handleDelete(reviewId, e)}
+        >
+          Delete
+        </button>
+      </div>
+      <br />
+    </div>
+  );
+};
 
-
-
-)
-
-  
-
-}
 const mapStateToProps = (globalState) => {
   return {
     reviews: globalState.reviews,
     auth: globalState.auth,
     setOffset: globalState.setOffset,
-    reviewByProperty: globalState.reviewByProperty
+    reviewByProperty: globalState.reviewByProperty,
   };
 };
 
