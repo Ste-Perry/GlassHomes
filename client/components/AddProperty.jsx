@@ -69,9 +69,7 @@ useEffect(() => {
 const handleWheel = (e) => {
 e.target.blur()
   console.log("scrolling")
-  
   // inputRef.current.blur();
-
 }
 
     return(
