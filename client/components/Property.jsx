@@ -166,10 +166,17 @@ function Property(props) {
                         <i style={{ color: "grey" }} className="fa fa-bath"></i>
                         <span> Bathrooms: {singleProperty.bathrooms}</span>
                       </div>
+											<div className="icon-text is-size-5 ml-5 pb-2">
+                        <i style={{ color: "grey" }} className="fa fa-car"></i>
+                        <span> Parking: {singleProperty.parking}</span>
+                      </div>
+
 
                       {props.properties.map((property) => {
                         if (property.id == singleProperty.id) {
                           return (
+														<>
+														<br />
                             <div className="icon-text is-size-5 ml-5 pb-2">
                               <i
                                 style={{ color: "gold" }}
@@ -178,6 +185,7 @@ function Property(props) {
                               <span> Average Rating: {property.score}</span>
                               <br />
                             </div>
+														</>
                           );
                         }
                       })}
@@ -300,7 +308,9 @@ function Property(props) {
                         </div>
                       </div>
                       <br />
+
                       <PropertyReviews propertyId={singleProperty.id} />
+											
                     </div>
                   </div>
                 </div>

@@ -61,9 +61,9 @@ function PropertyReviews(props) {
 		<>
 			<div className="has-text-centered">
 				<form onSubmit={handleLimitSubmit} >
-					<label>
+					<label className="column is-12 is-medium">
 						Reviews per page:
-				<select onChange={handleLimitChange}>
+				<select className="is-medium" onChange={handleLimitChange}>
 							<option value="3">3</option>
 							<option value="5">5</option>
 							<option value="10">10</option>
@@ -71,6 +71,7 @@ function PropertyReviews(props) {
 					</label>
 					<input type="submit" value="submit" />
 				</form>
+				<br />
 
 				{!props.auth.isAuthenticated &&
 					<>
