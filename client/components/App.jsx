@@ -38,7 +38,7 @@ function App({ auth, dispatch }) {
 
       <div className=''>
         {!auth.isAuthenticated &&
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" exact component={Home} />
         }
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
@@ -50,13 +50,12 @@ function App({ auth, dispatch }) {
         {auth.isAuthenticated && isAdmin && (
           <>
           <Route path='/adminportal' component={AdminPortal} />
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" exact component={Home} />
           </>
         ) 
         }
       </div>
       <div>
-        <Route exact path="/" component={Home} />
         <Route path='/property/:id' component={Property} />
         <Route path='/properties' component={Properties} />
         <Route path='/addreview' component={AddReview} />
