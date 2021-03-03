@@ -1,10 +1,10 @@
+
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
-import {
-  deleteReviews,
-  fetchReviewsWithOffsetAndLimit,
-} from "../actions/reviews";
 import UpdateReview from "./UpdateReview";
+import { deleteReviews, fetchReviewsWithOffsetAndLimit } from '../actions/reviews'
+import { incrementingTheHelpfulScore } from '../actions/reviews'
+import {checkAuth} from "../actions/auth";
 
 const Review = (props) => {
   const review = props.review;
@@ -109,57 +109,45 @@ const Review = (props) => {
                 <p>{stars()}</p>
               </div>
               <br />
-              <br />
-              {review.img && (
-                <button
-                  onClick={() => setShowImg(!showImg)}
-                  className="button is-success"
-                >
-                  See Home Pics
-                </button>
-              )}
-              <br />
-              <br />
-              {showImg && (
-                <img className="review-img" alt="uh oh!" src={review.img} />
-              )}
-              <br />
-              {isUserId !== review.user_ID && (
-                <button
-                  onClick={() => handleHelpfulButtonClick(review.helpful_score)}
-                  className="button is-info"
-                >
-                  Helpful
-                </button>
-              )}
-              <p className="">Helpful Score: {review.helpful_score}</p>
 
-              {isAdmin && (
-                <button
-                  className="button is-danger"
-                  onClick={(e) => handleDelete(reviewId, e)}
-                >
-                  Delete
-                </button>
-              )}
+            {review.img && (
+              <>
+                            <br />
+              <button
+                onClick={() => setShowImg(!showImg)}
+                className="button is-success"
+              >
+                See Home Pics
+              </button>
+              <br />
+              </>
+            )}
 
-              {isUserId == review.user_ID && !isAdmin && (
-                <>
-                  <button
-                    className="button is-warning"
-                    onClick={(e) => handleUpdate(reviewId, e)}
-                  >
-                    Update
-                  </button>
-                  <button
-                    className="button is-danger"
-                    onClick={(e) => handleDelete(reviewId, e)}
-                  >
-                    Delete
-                  </button>
-                </>
-              )}
-            </div>
+            {showImg && (
+              <img className="review-img" alt="uh oh!" src={review.img} />
+            )}
+            <br />
+						
+              { props.auth.isAuthenticated && (isUserId !== review.user_ID) &&
+						<button onClick={() => handleHelpfulButtonClick(review.helpful_score)} className="button is-info">Helpful</button>	
+                }
+            <p className='has-text-weight-bold'>Helpful Score: {review.helpful_score}</p>
+
+
+            {isAdmin &&
+              <button className='button is-danger' onClick={(e) => handleDelete(reviewId, e)} >Delete</button>
+            }
+
+             { (isUserId == review.user_ID) && !isAdmin && (
+                     <div className=" is-flex-direction-row">
+                        <button className='button is-warning mx-2' onClick={(e)=> handleUpdate(reviewId, e)} >Update</button>
+                        {/* <div><br/></div> */}
+                        <button className='button is-danger mx-2' onClick={(e)=> handleDelete(reviewId, e)} >Delete</button>
+                    </div>
+
+                  )
+                }
+            
           </div>
         </div>
       </div>

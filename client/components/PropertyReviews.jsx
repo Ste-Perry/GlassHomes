@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { fetchReviews, fetchReviewsByPropertyId, fetchReviewsWithOffsetAndLimit, reviewOffsetLimitAndId } from '../actions/reviews'
 import Review from './Review'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // import AddReview from './AddReview'
 import ReactPaginate from 'react-paginate'
 
@@ -42,9 +42,9 @@ function PropertyReviews(props) {
 		props.dispatch(reviewOffsetLimitAndId(offset, limit, id))
 
 		// setLimit(e.target.value)
-		
+
 	}
-	
+
 	// let limitPerPage = 3
 
 	const handlePageClick = (data) => {
@@ -53,49 +53,54 @@ function PropertyReviews(props) {
 		// props.dispatch(fetchReviewsWithOffsetAndLimit(offset, limit, id))
 
 	}
-	
-	let totalPages = Math.ceil(props.reviewByProperty.length/limit)
+
+	let totalPages = Math.ceil(props.reviewByProperty.length / limit)
 
 	return (
-			
+
 		<>
-			<form onSubmit={handleLimitSubmit} >
-				<label>
-				Reviews per page:
+			<div className="has-text-centered">
+				<form onSubmit={handleLimitSubmit} >
+					<label>
+						Reviews per page:
 				<select onChange={handleLimitChange}>
-				<option value="3">3</option>
-				<option value="5">5</option>
-				<option value="10">10</option>
-				</select>
-				</label>
-				<input type="submit" value="submit"/>
-			</form>
+							<option value="3">3</option>
+							<option value="5">5</option>
+							<option value="10">10</option>
+						</select>
+					</label>
+					<input type="submit" value="submit" />
+				</form>
 
-      {!props.auth.isAuthenticated && <p> <Link to="/login">Login </Link> or  <Link to='/register'>register</Link> to add a review</p> }
+				{!props.auth.isAuthenticated &&
+					<>
+						<br /><p> <Link to="/login">Login </Link> or  <Link to='/register'>Register</Link> to add a review</p>
+					</>
+				}
+				{props.paginationReviews.map((review) => {
+					return (
+						<div key={review.id} >
+							<Review key={review.id} review={review} refresh={refresh} />
+						</div>
+					)
+				})}
 
-			{props.paginationReviews.map((review) => {
-				return (
-					<div key={review.id} >
-						<Review key={review.id} review={review} refresh={refresh} />
-					</div>
-				)
-			})}
-			
-			<ReactPaginate
-          				previousLabel={'previous'}
-          				nextLabel={'next'}
-          				breakLabel={'...'}
-          				breakClassName={'break-me'}
-          				pageCount={totalPages}
-          				// marginPagesDisplayed={2}
-          				// pageRangeDisplayed={5}
-          				onPageChange={handlePageClick}
-          				containerClassName={'pagination'}
-          				subContainerClassName={'pages pagination'}
-          				activeClassName={'active'}
-       					 />
-			
-			{/* {console.log(count)} */}
+				<ReactPaginate
+					previousLabel={'previous'}
+					nextLabel={'next'}
+					breakLabel={'...'}
+					breakClassName={'break-me'}
+					pageCount={totalPages}
+					// marginPagesDisplayed={2}
+					// pageRangeDisplayed={5}
+					onPageChange={handlePageClick}
+					containerClassName={'pagination'}
+					subContainerClassName={'pages pagination'}
+					activeClassName={'active'}
+				/>
+
+				{/* {console.log(count)} */}
+			</div>
 		</>
 	)
 }
@@ -103,8 +108,8 @@ function PropertyReviews(props) {
 const mapStateToProps = ({ reviewByProperty, paginationReviews, auth }) => {
 	return {
 		reviewByProperty,
-    paginationReviews,
-    auth
+		paginationReviews,
+		auth
 	}
 }
 
