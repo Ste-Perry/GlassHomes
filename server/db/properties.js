@@ -6,31 +6,25 @@ function getProperties (db = connection) {
   return db('properties').select()
 }
 
+
 function getPropertiesWithLimitForAdmin (limit, offset, db = connection) {
   return db('properties').select().limit(limit).offset(offset)
 }
 
 
-// function getPropertiesWithRatings (sort, db = connection) {
 
-//   return db('properties').leftOuterJoin('reviews', 'reviews.property_ID', 'properties.id').groupBy('reviews.property_ID').select('properties.*', db.raw('AVG(reviews.rating) AS score')).orderBy(db.raw('AVG(reviews.rating)'), sort).then(properties => { 
-//     console.log(properties)
-//     console.log(properties.length)
-//     return properties
-//   })
-// }
-
-function getPropertiesWithRatings (sort, db = connection) {
-
-  return db('properties').leftOuterJoin('reviews', 'reviews.property_ID', 'properties.id').groupBy('properties.id').select('properties.*', db.raw('AVG(reviews.rating) AS score')).orderBy(db.raw('AVG(reviews.rating)'), sort)
+  return db('properties').leftOuterJoin('reviews', 'reviews.property_ID', 'properties.id')
+  groupBy('properties.id')
+  .select('properties.*', db.raw('AVG(reviews.rating) AS score'))
+  .orderBy(db.raw('AVG(reviews.rating)'), sort)
   //It works
   
-  
+
 }
 
 function addProperty (property, db = connection) {
   return db('properties')
-  .insert(property)
+  .insert(property, 'id')
   .then(ids => ids[0])
 }
 
