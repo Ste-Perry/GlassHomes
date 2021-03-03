@@ -7,8 +7,9 @@ import {
 	updateTheProperties,
 	deleteTheProperties,
 	fetchReviewsByPropertyId,
+	fetchPropertiesWithSort
 } from "../actions/index";
-import { getPropertyById } from "../apis/properties";
+import { getPropertyById , } from "../apis/properties";
 import Reviews from "./Reviews";
 import PropertyReviews from "./PropertyReviews";
 import AddReview from "./AddReview";
@@ -31,6 +32,7 @@ function Property(props) {
 		const confirmSuccess = () => { };
 		props.dispatch(checkAuth(confirmSuccess));
 		props.dispatch(fetchProperties())
+		props.dispatch(fetchPropertiesWithSort("ASC"))
 	}, []);
 
 
