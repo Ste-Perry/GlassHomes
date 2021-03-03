@@ -97,7 +97,7 @@ return (
               {/* <p>{review.user_ID}</p> */}
               <br />
               <div className="icon-text has-text" >
-              <i className="fa fa-star-half"></i>
+              <i className="fa fa-star"></i>
              <span> Rating: </span> 
              <p>{stars()}</p>
              </div>
