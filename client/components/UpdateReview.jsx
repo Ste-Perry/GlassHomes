@@ -16,6 +16,7 @@ function updateReview(props) {
     end_of_tenancy: review.end_of_tenancy,
     property_ID: review.property_ID,
     user_ID: props.auth.user.id,
+    img: review.img,
     time: Date.now()
   });
   
