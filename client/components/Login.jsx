@@ -97,7 +97,7 @@ function Login(props) {
 
 									<p className="has-text-grey">
 										<Link to="/register">Sign Up</Link> &nbsp;·&nbsp;
-										<a href="../">Forgot Password</a> &nbsp;·&nbsp;
+										<a href="https://thatsthefinger.com/">Forgot Password</a> &nbsp;·&nbsp;
 										<a href="mailto:admin@glasshomes.co.nz">Need Help?</a>
 									</p>
 								</div>
