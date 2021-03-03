@@ -11,8 +11,14 @@ function getPropertiesWithLimitForAdmin (limit, offset, db = connection) {
   return db('properties').select().limit(limit).offset(offset)
 }
 
-function getPropertiesWithRatings (sort, db = connection) {
-  return db('properties').join('reviews', 'reviews.property_ID', 'properties.id').groupBy('properties.id').select('properties.*', db.raw('AVG(reviews.rating) AS score')).orderBy(db.raw('AVG(reviews.rating)'), sort)
+
+
+  return db('properties').leftOuterJoin('reviews', 'reviews.property_ID', 'properties.id')
+  groupBy('properties.id')
+  .select('properties.*', db.raw('AVG(reviews.rating) AS score'))
+  .orderBy(db.raw('AVG(reviews.rating)'), sort)
+  //It works
+  
 
 }
 
