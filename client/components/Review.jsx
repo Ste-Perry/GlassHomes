@@ -102,17 +102,20 @@ return (
              <p>{stars()}</p>
              </div>
               <br />
-              <br />
+
             {review.img && (
+              <>
+                            <br />
               <button
                 onClick={() => setShowImg(!showImg)}
                 className="button is-success"
               >
                 See Home Pics
               </button>
+              <br />
+              </>
             )}
-            <br />
-            <br />
+
             {showImg && (
               <img className="review-img" alt="uh oh!" src={review.img} />
             )}
@@ -120,7 +123,7 @@ return (
               { (isUserId !== review.user_ID) &&
             <button onClick={() => handleHelpfulButtonClick(review.helpful_score)} className="button is-info">Helpful</button>
                 }
-            <p className=''>Helpful Score: {review.helpful_score}</p>
+            <p className='has-text-weight-bold'>Helpful Score: {review.helpful_score}</p>
 
 
             {isAdmin &&
@@ -128,10 +131,11 @@ return (
             }
 
              { (isUserId == review.user_ID) && !isAdmin && (
-                     <>
-                        <button className='button is-warning' onClick={(e)=> handleUpdate(reviewId, e)} >Update</button>
-                        <button className='button is-danger' onClick={(e)=> handleDelete(reviewId, e)} >Delete</button>
-                    </>
+                     <div className=" is-flex-direction-row">
+                        <button className='button is-warning mx-2' onClick={(e)=> handleUpdate(reviewId, e)} >Update</button>
+                        {/* <div><br/></div> */}
+                        <button className='button is-danger mx-2' onClick={(e)=> handleDelete(reviewId, e)} >Delete</button>
+                    </div>
 
                   )
                 }

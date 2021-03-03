@@ -139,22 +139,22 @@ function Property(props) {
 										</div>
 										<div className="content article-body ">
 											<br />
-											<div className="icon-text is-size-5">
+											<div className="icon-text is-size-5 ml-5 pb-2">
 												<i
 													style={{ color: "grey" }}
 													className="fa fa-map-marker"
 												></i>
 												<span> Suburb: {singleProperty.suburb}</span>
 											</div>
-											<div className="icon-text is-size-5">
+											<div className="icon-text is-size-5 ml-5 pb-2">
 												<i style={{ color: "grey" }} className="fa fa-home"></i>
 												<span> Address: {singleProperty.address}</span>
 											</div>
-											<div className="icon-text is-size-5">
+											<div className="icon-text is-size-5 ml-5 pb-2">
 												<i style={{ color: "grey" }} className="fa fa-bed"></i>
 												<span>Bedrooms: {singleProperty.bedrooms}</span>
 											</div>
-											<div className="icon-text is-size-5">
+											<div className="icon-text is-size-5 ml-5 pb-2">
 												<i style={{ color: "grey" }} className="fa fa-bath"></i>
 												<span> Bathrooms: {singleProperty.bathrooms}</span>
 											</div>
@@ -163,7 +163,7 @@ function Property(props) {
 
 												if (property.id == singleProperty.id) {
 
-													return (<div className="icon-text is-size-5">
+													return (<div className="icon-text is-size-5 ml-5 pb-2">
 														<i style={{ color: "gold" }} className="fa fa-star"></i>
 														<span> Average Rating: {property.score}</span>
 														<br />
@@ -261,11 +261,12 @@ function Property(props) {
 																	propsId={singleProperty.id}
 																/>
 															)}
+															
 														</>
 													)}
 												</div>
 											</div>
-
+											<br />
 											<PropertyReviews propertyId={singleProperty.id} />
 										</div>
 									</div>
