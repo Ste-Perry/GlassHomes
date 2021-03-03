@@ -6,8 +6,14 @@ function getProperties (db = connection) {
   return db('properties').select()
 }
 
+
+function getPropertiesWithLimitForAdmin (limit, offset, db = connection) {
+  return db('properties').select().limit(limit).offset(offset)
+}
+
 function getPropertiesWithRatings (sort, db = connection) {
   return db('properties').join('reviews', 'reviews.property_ID', 'properties.id').groupBy('properties.id').select('properties.*', db.raw('AVG(reviews.rating) AS score')).orderBy(db.raw('AVG(reviews.rating)'), sort)
+
 }
 
 function addProperty (property, db = connection) {
@@ -58,6 +64,6 @@ module.exports = {
   deleteProperty,
   updateProperty,
   getPropertyByAddress,
-  getPropertysAvgScore
-
+  getPropertysAvgScore,
+  getPropertiesWithLimitForAdmin
 }

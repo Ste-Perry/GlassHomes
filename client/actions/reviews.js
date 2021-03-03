@@ -1,4 +1,6 @@
-import { deleteReview, getReviews, addReview, updateReview, getReviewByPropertyId, addImageReview, getReviewsWithOffsetAndLimit } from '../apis/reviews'
+
+import { deleteReview, getReviews, addReview, updateReview, getReviewByPropertyId, addImageReview, getReviewsWithOffsetAndLimit, getReviewsWithLimitForAdmin, incrementHelpfulScore } from '../apis/reviews'
+
 
 export const SET_REVIEWS = 'SET_REVIEWS'
 export const SET_REVIEWS_BY_PROP_ID = 'SET_REVIEWS_BY_PROP_ID'
@@ -7,6 +9,11 @@ export const UPDATE_REVIEW = 'UPDATE_REVIEW'
 export const DELETE_REVIEW = 'DELETE_REVIEW'
 export const SET_SPECIFIC_REVIEWS = 'SET_SPECIFIC_REVIEWS'
 export const OFFSET_ID_LIMIT = 'OFFSET_ID_LIMIT'
+
+export const SET_ADMIN_REVIEWS = 'SET_ADMIN_REVIEWS'
+
+export const INCREMENT_HELPFUL_SCORE = 'INCREMENT_HELPFUL_SCORE'
+
 
 export function setReviews(reviews) {
   return {
@@ -35,13 +42,20 @@ export function setSpecificReviews(reviews) {
   }
 }
 
+export function setAdminReviews(reviews) {
+  return {
+    type: SET_ADMIN_REVIEWS,
+    reviews
+  }
+}
 
 export function fetchReviews() {
   return dispatch => {
     return getReviews()
       .then(reviews => {
-        dispatch(setReviews(reviews))
-        return null
+        dispatch(fetchReviewsWithOffsetAndLimitAdmin(reviews.length - 5, 5))
+          dispatch(setReviews(reviews))
+          return null
       })
   }
 }
@@ -126,6 +140,16 @@ export function fetchReviewsWithOffsetAndLimit(offset, limit, id) {
   }
 }
 
+export function fetchReviewsWithOffsetAndLimitAdmin(offset, limit) {
+  return dispatch => {
+    return getReviewsWithLimitForAdmin(offset, limit)
+      .then(reviews => {
+        dispatch(setAdminReviews(reviews))
+        return null
+      })
+  }
+}
+
 
 export function reviewOffsetLimitAndId(offset, limit, id) {
   return {
@@ -136,5 +160,23 @@ export function reviewOffsetLimitAndId(offset, limit, id) {
       id,
     }
 
+  }
+}
+
+export function incrementTheHelpfulScore(score, id){
+  return {
+    type: INCREMENT_HELPFUL_SCORE,
+    score: score,
+    id: id
+  }
+}
+
+export function incrementingTheHelpfulScore(score, id, propertyId) {
+  return dispatch => {
+    return incrementHelpfulScore(score, id)
+    .then(() => {
+      dispatch(fetchReviewsByPropertyId(propertyId))
+      return null
+    })
   }
 }

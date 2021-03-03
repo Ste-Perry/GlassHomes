@@ -83,7 +83,7 @@ function AddReview(props) {
         end_of_tenancy: formData.end_of_tenancy,
         propsId,
         user_ID: props.auth.user.id,
-        time: new Date()
+        time: Date.now()
       }))
       e.target.reset()
       props.dispatch(fetchReviewsWithOffsetAndLimit(props.setOffset.offset, props.setOffset.limit, props.setOffset.id))
@@ -102,7 +102,7 @@ function AddReview(props) {
         end_of_tenancy: formData.end_of_tenancy,
         propsId,
         user_ID: props.auth.user.id,
-        time: new Date()
+        time: Date.now()
       })
       )
       e.target.reset()
@@ -115,6 +115,11 @@ function AddReview(props) {
       e.target.checked ? setFormData({...formData, end_of_tenancy: "ongoing"}) : setFormData({...formData, end_of_tenancy: ""})
       setOngoing(!ongoing)
     }
+
+    const handleWheel = (e) => {
+      e.target.blur()
+        console.log("scrolling")
+      }
   
   const handleClick = (e) => {
     setFormData({...formData, rating: e.target.value})
@@ -163,7 +168,8 @@ function AddReview(props) {
 													placeholder="2020"
 													type="number"
 													name="start_of_tenancy"
-													autoComplete="start_of_tenancy"
+                          autoComplete="start_of_tenancy"
+                          onWheel={handleWheel}
 													onChange={handleChange}
 													value={formData.start_of_tenancy}
 												/>
@@ -185,7 +191,8 @@ function AddReview(props) {
 													placeholder="2020"
 													type="number"
 													name="end_of_tenancy"
-													autoComplete="end_of_tenancy"
+                          autoComplete="end_of_tenancy"
+                          onWheel={handleWheel}
 													onChange={handleChange}
 													value={formData.end_of_tenancy}
 												/>

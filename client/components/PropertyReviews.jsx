@@ -19,11 +19,15 @@ function PropertyReviews(props) {
 	//refactor to use store
 	useEffect(() => {
 		props.dispatch(fetchReviewsByPropertyId(id))
-		
 		props.dispatch(fetchReviewsWithOffsetAndLimit(offset, limit, id))
 		props.dispatch(reviewOffsetLimitAndId(offset, limit, id))
-	}, [offset])
+	}, [offset, id])
 
+	const refresh = () => {
+		props.dispatch(fetchReviewsByPropertyId(id))
+		props.dispatch(fetchReviewsWithOffsetAndLimit(offset, limit, id))
+		props.dispatch(reviewOffsetLimitAndId(offset, limit, id))
+	}
 
 	const handleLimitChange = (e) => {
 		// console.log("handleChange",e.target.value)
@@ -70,7 +74,7 @@ function PropertyReviews(props) {
 			{props.paginationReviews.map((review) => {
 				return (
 					<div key={review.id} >
-						<Review key={review.id} review={review} />
+						<Review key={review.id} review={review} refresh={refresh} />
 					</div>
 				)
 			})}

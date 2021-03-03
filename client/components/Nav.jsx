@@ -53,7 +53,7 @@ function Nav({ auth, logout, fetchHouses }) {
                 <Link onClick={toggleBurger} className="navbar-item is-large" to='/login'>Login</Link>
                 <Link onClick={toggleBurger} className="navbar-item" to='/register'>Register</Link>
                 <Link onClick={toggleBurger} className="navbar-item" to='/properties'>Properties</Link>
-                <Link onClick={toggleBurger} className="navbar-item" to='/reviews'>Reviews</Link>
+                {/* <Link onClick={toggleBurger} className="navbar-item" to='/reviews'>Reviews</Link> */}
 
               </>
             )

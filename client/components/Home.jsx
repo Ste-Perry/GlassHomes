@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchProperties } from '../actions'
+// import { fetchProperties } from '../actions'
 import { checkAuth } from '../actions/auth'
+import { logoutUser } from '../actions/auth'
+
 
 const Home = (props) => {
   // useEffect(() => {
@@ -10,9 +12,14 @@ const Home = (props) => {
   // }, [])
 
   useEffect(() => {
-    const confirmSuccess = () => { }
-    props.dispatch(checkAuth(confirmSuccess))
+    // const confirmSuccess = () => { }
+    // props.dispatch(checkAuth(confirmSuccess))
   }, [])
+
+  const logout = () => {
+    const confirmSuccess = () => props.ownProps.history.push('/')
+    props.dispatch(logoutUser(confirmSuccess))
+  }
 
   return (
     <div >
@@ -38,7 +45,7 @@ const Home = (props) => {
                   <>
                   <p className='has-text-centered'><Link className="button is-medium is-info is-outlined" to='/properties'>Properties</Link></p>
                   <br/>
-                    <p className='has-text-centered'><Link className="button is-medium is-info is-outlined" to='/reviews'>Reviews</Link></p>
+                  <p className='has-text-centered'><Link to='/' className="button is-medium is-info is-outlined" onClick={() => logout()}>Logout</Link></p>
                   </>
                   }
                 </div>
@@ -46,11 +53,11 @@ const Home = (props) => {
                   {!props.auth.isAuthenticated &&
                   <>
                 <p className="has-text-centered">
-                  <Link className="button is-medium is-info is-outlined" to='/login'>Sign in</Link>
+                  <Link className="button is-medium is-info is-outlined" to='/login'>Login</Link>
                 </p>
                 <br></br>
                 <p className="has-text-centered">
-                  <Link className="button is-medium is-info is-outlined" to='/register'>Sign up</Link>
+                  <Link className="button is-medium is-info is-outlined" to='/register'>Register</Link>
                 </p>
                 </>
                   }
@@ -64,6 +71,8 @@ const Home = (props) => {
 
   )
 }
+
+
 const mapStateToProps = (globalState) => {
   return {
     properties: globalState.properties,
