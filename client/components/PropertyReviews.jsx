@@ -61,15 +61,21 @@ function PropertyReviews(props) {
 		<>
 			<div className="has-text-centered">
 				<form onSubmit={handleLimitSubmit} >
-					<label className="column is-12 is-medium">
+					<label className="column is-12 has-text-weight-semibold subtitle mb-5">
 						Reviews per page:
-				<select className="select is-small is-info" onChange={handleLimitChange}>
+						<br />
+						<div className="select is-medium is-success">
+	
+				<select onChange={handleLimitChange}>
 							<option value="3">3</option>
 							<option value="5">5</option>
 							<option value="10">10</option>
 						</select>
+						</div>
+					<br />
+						<input className="button is-success my-2" type="submit" value="submit" />
 					</label>
-					<input type="submit" value="submit" />
+					
 				</form>
 				<br />
 
