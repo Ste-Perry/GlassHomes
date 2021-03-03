@@ -37,7 +37,7 @@ function updateReview(props) {
   };
 
   const handleClick = (e) => {
-    setFormData({...formData, rating: e.target.value});
+    setFormData({...formData, rating: Number(e.target.value)});
   };
 
   const [ongoing, setOngoing] = useState(false);
