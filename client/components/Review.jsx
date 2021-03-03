@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { deleteReviews, fetchReviewsWithOffsetAndLimit } from '../actions/reviews'
 import { incrementingTheHelpfulScore } from '../actions/reviews'
+import {checkAuth} from "../actions/auth";
 
 const Review = (props) => {
   const review = props.review;
@@ -117,8 +118,9 @@ return (
               <img className="review-img" alt="uh oh!" src={review.img} />
             )}
             <br />
-              { (isUserId !== review.user_ID) &&
-            <button onClick={() => handleHelpfulButtonClick(review.helpful_score)} className="button is-info">Helpful</button>
+						
+              { props.auth.isAuthenticated && (isUserId !== review.user_ID) &&
+						<button onClick={() => handleHelpfulButtonClick(review.helpful_score)} className="button is-info">Helpful</button>	
                 }
             <p className=''>Helpful Score: {review.helpful_score}</p>
 
