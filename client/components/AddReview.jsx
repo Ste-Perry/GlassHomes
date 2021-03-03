@@ -124,7 +124,7 @@ function AddReview(props) {
   const handleClick = (e) => {
     setFormData({...formData, rating: e.target.value})
   }
-  
+  propsId
   const year = new Date().getFullYear();
 
   const [ongoing, setOngoing] = useState(false)

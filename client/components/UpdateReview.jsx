@@ -16,6 +16,7 @@ function updateReview(props) {
     end_of_tenancy: review.end_of_tenancy,
     property_ID: review.property_ID,
     user_ID: props.auth.user.id,
+    img: review.img,
     time: Date.now()
   });
   
@@ -37,7 +38,7 @@ function updateReview(props) {
   };
 
   const handleClick = (e) => {
-    setFormData({...formData, rating: e.target.value});
+    setFormData({...formData, rating: Number(e.target.value)});
   };
 
   const [ongoing, setOngoing] = useState(false);

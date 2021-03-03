@@ -20,7 +20,6 @@ function getPropertiesWithLimitForAdmin (limit, offset, db = connection) {
  }
   //It works
 
-
 function addProperty (property, db = connection) {
   return db('properties')
   .insert(property, 'id')
@@ -31,7 +30,7 @@ function getPropertyById (id, db = connection) {
   return db('properties')
   .where('id',id)
   .first()
-}
+} 
 function getPropertyByAddress (address, db = connection) {
   return db('properties')
   .where('address',address)

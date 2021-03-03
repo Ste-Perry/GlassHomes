@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
-  clearPropById,
-  fetchProperties,
-  updateTheProperties,
-  deleteTheProperties,
-  fetchReviewsByPropertyId,
+	clearPropById,
+	fetchProperties,
+	updateTheProperties,
+	deleteTheProperties,
+	fetchReviewsByPropertyId,
+	fetchPropertiesWithSort
 } from "../actions/index";
-import { getPropertyById } from "../apis/properties";
+import { getPropertyById , } from "../apis/properties";
 import Reviews from "./Reviews";
 import PropertyReviews from "./PropertyReviews";
 import AddReview from "./AddReview";
@@ -17,108 +18,101 @@ import { GlobalAccelerator } from "aws-sdk";
 import Adverts from "./Adverts";
 
 function Property(props) {
-  const isAdmin = props.auth.user.is_admin;
 
-  const [formData, setFormData] = useState({
-    address: "",
-    suburb: "",
-    bedrooms: "",
-    bathrooms: "",
-    parking: "",
-  });
+	const isAdmin = props.auth.user.is_admin;
 
-  useEffect(() => {
-    const confirmSuccess = () => {};
-    props.dispatch(checkAuth(confirmSuccess));
-    props.dispatch(fetchProperties());
-  }, []);
+	const [formData, setFormData] = useState({
+		address: "",
+		suburb: "",
+		bedrooms: "",
+		bathrooms: "",
+		parking: "",
+	});
 
-  const handleDelete = (id, e) => {
-    if (confirm("Are you sure you want to delete this property?")) {
-      e.preventDefault();
-      props.dispatch(deleteTheProperties(id));
-      alert("Deleted!");
+	useEffect(() => {
+		const confirmSuccess = () => { };
+		props.dispatch(checkAuth(confirmSuccess));
+		props.dispatch(fetchProperties())
+		props.dispatch(fetchPropertiesWithSort("ASC"))
+	}, []);
 
-      props.history.push("/properties");
-    } else {
-      alert("Not deleted");
-    }
-  };
 
-  const handleUpdateSubmit = (id, e) => {
-    e.preventDefault();
-    console.log(e);
-    props.dispatch(
-      updateTheProperties(id, {
-        address: formData.address,
-        suburb: formData.suburb,
-        bedrooms: formData.bedrooms,
-        bathrooms: formData.bathrooms,
-        parking: formData.parking,
-      })
-    );
-    console.log("updated data");
-  };
 
-  const handleUpdateChange = (e) => {
-    setFormData((currentFormData) => {
-      console.log(e);
-      return {
-        ...currentFormData,
-        [e.target.name]: e.target.value,
-      };
-    });
-  };
+	const handleDelete = (id, e) => {
+		if (confirm("Are you sure you want to delete this property?")) {
+			e.preventDefault();
+			props.dispatch(deleteTheProperties(id));
+			alert("Deleted!");
 
-  const [singleProperty, setSingleProperty] = useState(null);
+			props.history.push("/properties");
+		} else {
+			alert("Not deleted");
+		}
+	};
 
-  const propertyId = props.match.params.id;
 
-  const findSingleProperty = () => {
-    if (propertyId) {
-      getPropertyById(propertyId).then((singProperty) => {
-        setSingleProperty(singProperty);
-      });
-    }
-  };
+	const handleUpdateSubmit = (id, e) => {
+		e.preventDefault();
+		console.log(e);
+		props.dispatch(
+			updateTheProperties(id, {
+				address: formData.address,
+				suburb: formData.suburb,
+				bedrooms: formData.bedrooms,
+				bathrooms: formData.bathrooms,
+				parking: formData.parking
+			})
+		);
+		console.log("updated data");
+	};
+ 
 
-  // console.log(props.reviewByProperty)
+	const handleUpdateChange = (e) => {
+		setFormData((currentFormData) => {
+			console.log(e);
+			return {
+				...currentFormData,
+				[e.target.name]: e.target.value,
+			};
+		});
+	};
 
-  //refactor to use store
-  useEffect(() => {
-    findSingleProperty();
-    props.dispatch(clearPropById());
-  }, [props.match.params.id, props.properties]);
+	const [singleProperty, setSingleProperty] = useState(null);
 
-  useEffect(() => {
-    findSingleProperty();
-  }, [JSON.stringify(props.properties)]);
+	const propertyId = props.match.params.id;
 
-  // let totalReviewScore = 0;
-  // let ratingLength = props.reviewByProperty.length;
+	const findSingleProperty = () => {
+		if (propertyId) {
+			getPropertyById(propertyId).then((singProperty) => {
+				setSingleProperty(singProperty);
+			});
+		}
+	};
 
-  // const averageRatingCalc = props.reviewByProperty.map(
-  //   (review) => (totalReviewScore += review.rating)
-  // )
+	// console.log(props.reviewByProperty)
 
-  // let averageReviewScore = totalReviewScore/ratingLength
+	//refactor to use store
+	useEffect(() => {
+		findSingleProperty();
+		props.dispatch(clearPropById());
+	}, [props.match.params.id, props.properties]);
 
-  // console.log(averageReviewScore)
+	useEffect(() => {
+		findSingleProperty();
+	}, [JSON.stringify(props.properties)]);
 
-  const [show, setShow] = useState(false);
+	const [show, setShow] = useState(false);
 
-  return (
+	return (
     <>
       {singleProperty && (
         <>
-          {/* <Link to='/properties'>Back</Link> */}
 
           <section className="hero is-info is-medium is-bold" id="hero-image">
             <div className="hero-body"></div>
           </section>
           <Adverts side="left" />
           <Adverts side="right" />
-
           <div>
             <section className="articles">
               <div className="column is-8 is-offset-2">
@@ -131,12 +125,6 @@ function Property(props) {
                         </p>
                       </div>
                     </div>
-
-
-
-
-
-
                     <div className="content article-body ">
 					<div>
 

@@ -74,6 +74,7 @@ export function addReviewAction(review) {
   return dispatch => {
     return addReview(review)
       .then(() => {
+        console.log(review)
         dispatch(fetchReviewsByPropertyId(review.propsId))
         return null
       })
@@ -88,6 +89,7 @@ export function addReviewWithImage(image, review) {
         review.image = fileUrl
         return addReview(review)
           .then(reviewId => {
+          console.log(review)
             dispatch(fetchReviewsByPropertyId(review.propsId))
             return null
           })
@@ -100,7 +102,8 @@ export function addReviewWithDefaultImage(review) {
     review.img = ''
     return addReview(review)
       .then(reviewId => {
-        dispatch(fetchReviewsByPropertyId(review.propsId))
+          console.log(review)
+          dispatch(fetchReviewsByPropertyId(review.propsId))
         // dispatch(fetchProperties())
         return null
       })
@@ -108,8 +111,8 @@ export function addReviewWithDefaultImage(review) {
 }
 
 export function updateReviewAction(id, review) {
-  console.log("id",id)
-  console.log("review",review)
+  // console.log("id",id)
+  // console.log("review",review)
   return dispatch => {
     return updateReview(id, review)
       .then(() => {
