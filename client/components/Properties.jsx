@@ -125,6 +125,8 @@ function Properties(props) {
 						<option value="Owhiro Bay">Owhiro Bay</option>
 						<option value="Paparangi">Paparangi</option>
 						<option value="Pipitea">Pipitea</option>
+						<option value="Petone">Petone</option>
+						<option value="Riccarton">Riccarton</option>
 						<option value="Rongotai">Rongotai</option>
 						<option value="Roseneath">Roseneath</option>
 						<option value="Seatoun">Seatoun</option>
@@ -134,10 +136,12 @@ function Properties(props) {
 						<option value="Tawa">Tawa</option>
 						<option value="Te Aro">Te Aro</option>
 						<option value="Thorndon">Thorndon</option>
+						<option value="Trentham">Trentham</option>
 						<option value="Vogeltown">Vogeltown</option>
 						<option value="Wadestown">Wadestown</option>
 						<option value="Wellington Central">Wellington Central</option>
 						<option value="Wilton">Wilton</option>
+						<option value="Woburn">Woburn</option>
 						<option value="Woodridge">Woodridge</option>
 					</select>
 				</label>
