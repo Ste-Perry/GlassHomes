@@ -39,13 +39,13 @@ function AddProperty (props) {
     if(propImage == null) {
         props.dispatch(addPropertiesWithDefaultImage({
           address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, 
-          bathrooms: formData.bathrooms, parking: formData.parking, time: new Date()}))
+          bathrooms: formData.bathrooms, parking: formData.parking, time: Date.now()}))
           e.target.reset()
       } else {
       formImage.append('img', propImage)
       props.dispatch(addPropertiesWithImage(formImage,{
           address: formData.address, suburb: formData.suburb, bedrooms: formData.bedrooms, 
-          bathrooms: formData.bathrooms, parking: formData.parking, time: new Date()}))
+          bathrooms: formData.bathrooms, parking: formData.parking, time: Date.now()}))
           e.target.reset()
     }
   }
