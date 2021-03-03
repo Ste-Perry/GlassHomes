@@ -12,7 +12,7 @@ function Footer(props) {
 			<footer className="footer">
 				<div className="content has-text-centered">
 					<p>
-						<strong>GlassHomes </strong> by Team Yeet . Developed at
+						<strong>GlassHomes </strong> by Team HandUP . Developed at
       			<a href="https://devacademy.co.nz"> Dev Academy</a>.
 				  
    				</p>
