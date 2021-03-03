@@ -32,6 +32,8 @@ function PropertyReviews(props) {
 	const handleLimitChange = (e) => {
 		// console.log("handleChange",e.target.value)
 		setLimit(e.target.value)
+		// props.dispatch(fetchReviewsWithOffsetAndLimit(offset, limit, id))
+		// props.dispatch(reviewOffsetLimitAndId(offset, limit, id))
 	}
 
 	const handleLimitSubmit = (e) => {

@@ -171,7 +171,7 @@ function Properties(props) {
 																<div className="media-content has-text-centered">
 
 																	<p className="title article-title">{prp.address}</p>
-																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score}
+																	<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {(Math.round((prp.score + Number.EPSILON) * 100))/ 100}
 
 																	</li>
 																</div>
@@ -193,7 +193,7 @@ function Properties(props) {
 																	<div className="media-content has-text-centered">
 
 																		<p className="title article-title">{prp.address}</p>
-																		<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {prp.score}
+																		<li key={prp.id}>Address: {prp.suburb} {prp.address} Bedrooms: {prp.bedrooms} Bathrooms: {prp.bathrooms} Parking spaces: {prp.parking} Average Rating: {(Math.round((prp.score + Number.EPSILON) * 100))/ 100}
 
 																		</li>
 

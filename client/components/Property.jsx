@@ -169,15 +169,15 @@ function Property(props) {
                           }
                       })}
 
-
-                      <div className="">
+{/* 
+                      <div className="icon-text">
                         <span>
                           <img className="logo"
                             src={singleProperty.img}
                             alt="image of property"
                           />
                         </span>
-                      </div>
+                      </div> */}
 
                       {isAdmin && (
                         <>
@@ -250,7 +250,7 @@ function Property(props) {
                       <h3 className="has-text-centered">Reviews</h3>
 
                       <div>
-                        <div className="box has-text-centered">
+                        <div className="has-text-centered">
                           {props.auth.isAuthenticated && (
                             <>
                               <button
