@@ -108,7 +108,7 @@ function Register(props) {
                         </div>
                       </div>
                       <br></br>
-                      <input className="button is-success is-large is-half" value="Register" type="submit" />
+                      <input className="button is-info is-large is-half" value="Register" type="submit" />
                     <br></br>
                     <br></br>
                     </form>               

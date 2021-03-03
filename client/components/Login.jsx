@@ -89,7 +89,7 @@ function Login(props) {
 											</div>
 										</div>
 										<input
-											className="button is-large is-fullwidth is-success"
+											className="button is-large is-fullwidth is-info"
 											value="Login"
 											type="submit"
 										/>

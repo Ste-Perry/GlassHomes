@@ -194,7 +194,7 @@ e.target.blur()
                <br/>
 
                <br/>
-                <button className="button is-medium is-info is-outlined" type='submit'>Add</button>
+                <button className="button is-medium is-info" type='submit'>Submit</button>
 
             </form>
             </div>
