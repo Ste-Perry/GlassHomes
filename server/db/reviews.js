@@ -32,6 +32,9 @@ function updateReview (id, review, db = connection) {
   .where('id', id)
   .update(review)
 }
+
+
+
 function deleteReview (id, db = connection) {
   return db('reviews')
   .where('id', id)
