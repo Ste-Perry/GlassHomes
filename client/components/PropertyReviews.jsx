@@ -61,16 +61,23 @@ function PropertyReviews(props) {
 		<>
 			<div className="has-text-centered">
 				<form onSubmit={handleLimitSubmit} >
-					<label>
+					<label className="column is-12 has-text-weight-semibold subtitle mb-5">
 						Reviews per page:
+						<br />
+						<div className="select is-medium is-success">
+	
 				<select onChange={handleLimitChange}>
 							<option value="3">3</option>
 							<option value="5">5</option>
 							<option value="10">10</option>
 						</select>
+						</div>
+					<br />
+						<input className="button is-success my-2" type="submit" value="submit" />
 					</label>
-					<input type="submit" value="submit" />
+					
 				</form>
+				<br />
 
 				{!props.auth.isAuthenticated &&
 					<>
@@ -85,6 +92,9 @@ function PropertyReviews(props) {
 					)
 				})}
 
+<div className="">
+	<br />
+	<p className="is-large is-capitalized has-text-weight-semibold">
 				<ReactPaginate
 					previousLabel={'previous'}
 					nextLabel={'next'}
@@ -98,6 +108,9 @@ function PropertyReviews(props) {
 					subContainerClassName={'pages pagination'}
 					activeClassName={'active'}
 				/>
+				</p>
+</div>
+
 
 				{/* {console.log(count)} */}
 			</div>
