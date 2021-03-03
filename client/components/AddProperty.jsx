@@ -84,7 +84,7 @@ e.target.blur()
         <div className="container has-text-centered">
           <div className="card article">
             <div className="card-content"></div>
-            <Link to='/properties'>back</Link>
+            {/* <Link to='/properties'>back</Link> */}
             
             <div className='property-page'>
             {props.auth.isAuthenticated &&
