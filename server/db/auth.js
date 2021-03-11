@@ -12,7 +12,7 @@ function createUser (user, db = connection) {
     .then(passwordHash => {
       newUser.password = passwordHash
       // delete newUser.password
-      return db('users').insert(newUser)
+      return db('users').insert(newUser, "id")
     })
 }
 
